@@ -1,40 +1,11 @@
 /* FONTS */
 /* ------------------------------ */
-@font-face {
-    font-family: "Poppins-Regular";
-    src: url(../assets/fonts/Poppins/Poppins-Regular.ttf);
-}
-@font-face {
-    font-family: "Poppins-Medium";
-    src: url(../assets/fonts/Poppins/Poppins-Medium.ttf);
-}
-@font-face {
-    font-family: "Poppins-SemiBold";
-    src: url(../assets/fonts/Poppins/Poppins-SemiBold.ttf);
-}
-@font-face {
-    font-family: "Poppins-Bold";
-    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
-}
-@font-face {
-    font-family: "Poppins-Black";
-    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
-}
+@font-face { font-family: "Poppins-Regular"; src: url(../assets/fonts/Poppins/Poppins-Regular.ttf); }
+@font-face { font-family: "Poppins-Medium"; src: url(../assets/fonts/Poppins/Poppins-Medium.ttf); }
+@font-face { font-family: "Poppins-SemiBold"; src: url(../assets/fonts/Poppins/Poppins-SemiBold.ttf); }
+@font-face { font-family: "Poppins-Bold"; src: url(../assets/fonts/Poppins/Poppins-Bold.ttf); }
+@font-face { font-family: "Poppins-Black"; src: url(../assets/fonts/Poppins/Poppins-Black.ttf); }
 
-/* URL DECORATION */
-/* ------------------------------ */
-a:link {
-    text-decoration: none;
-}
-a:visited {
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: none;
-}
-a:active {
-    text-decoration: none;
-}
 
 /* COLOR VARS */
 /* ------------------------------ */
@@ -49,15 +20,13 @@ a:active {
 }
 
 
-
-
-
 /* ALL */
 /* ------------------------------ */
 * {
     margin: 0;
     padding: 0;
 }
+
 html {
     background-color: var(--first);
     color: var(--text-white);
@@ -66,11 +35,13 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
-body {
-    display: flex;
-}
+
+body { display: flex; }
+
+a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
 /* NAV */
+/* ------------------------------ */
 .side-nav {
     display: flex;
     flex-direction: column;
@@ -78,29 +49,29 @@ body {
     height: 100vh;
     min-width: 35rem;
     background-color: var(--fourth);
-    /* box-shadow: 0rem 2rem 2rem black; */
     z-index: 1;
     position: fixed;
-    
+
+    h2 {
+        margin: 2rem 0rem;
+        font-size: 2.75rem;
+    }    
 }
 .nav-head {
     display: flex;
     align-items: center;
     margin: 4rem 0rem;
     font-size: 1.75rem;
-}
-.nav-head img {
-    max-width: 5rem;
-    max-height: 5rem;
-    background-color: white;
-    border-radius: 1rem;
-    border: 2px solid var(--text-grey);
-    padding: 0.5rem;
-    margin-right: 1.5rem;
-}
-.side-nav h2 {
-    margin: 2rem 0rem;
-    font-size: 2.75rem;
+
+    img {
+        max-width: 5rem;
+        max-height: 5rem;
+        background-color: white;
+        border-radius: 1rem;
+        border: 2px solid var(--text-grey);
+        padding: 0.5rem;
+        margin-right: 1.5rem;
+    }
 }
 .nav-btn {
     display: flex;
@@ -114,14 +85,13 @@ body {
     background-color: var(--third);
     color: var(--text-white);
     cursor: pointer;
+
+    img {
+        max-width: 2.25rem;
+        margin: 0rem 2rem;
+    }
 }
-.nav-btn:hover {
-    background-color: var(--second);
-}
-.nav-btn img {
-    max-width: 2.25rem;
-    margin: 0rem 2rem;
-}
+.nav-btn:hover { background-color: var(--second); }
 .nav-toggle {
     background: none;
     border: none;
@@ -129,18 +99,17 @@ body {
     bottom: 1rem;
     right: 1rem;
     cursor: pointer;
-}
-.nav-toggle img {
-    max-width: 4rem;
-    opacity: 0.9;
-}
-.nav-toggle img:hover {
-    opacity: 1;
-}
 
+    img {
+        max-width: 4rem;
+        opacity: 0.9;
+    }
+    img:hover { opacity: 1; }
+}
 
 
 /* BODY */
+/* ------------------------------ */
 .content-body {
     flex: 1;
     display: flex;
@@ -148,13 +117,13 @@ body {
     align-items: center;
     background-color: var(--first);
     margin: 0rem 0rem 10rem 40rem;
-}
-.content-body h1 {
-    margin: 4rem 0rem;
-    color: var(--accent);
-    font-size: 3rem;
-}
 
+    h1 {
+        margin: 4rem 0rem;
+        color: var(--accent);
+        font-size: 3rem;
+    }
+}
 .expense-summary-ctnr {
     display: flex;
     flex-direction: column;
@@ -164,10 +133,11 @@ body {
     border-radius: 2rem;
     margin-bottom: 4rem;
     font-size: 2rem;
-}
-.expense-summary-ctnr h2 {
-    font-size: 2.75rem;
-    margin: 2rem 4rem;
+
+    h2 {
+        font-size: 2.75rem;
+        margin: 2rem 4rem;
+    }
 }
 /* toggle button */
 .summary-toggle {
@@ -204,9 +174,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.summary p:first-child {
-    font-size: 3.5rem;
-}
+.summary p:first-child { font-size: 3.5rem; }
 .summary p:last-child {
     color: var(--text-grey);
     font-size: 1.5rem;
@@ -286,36 +254,11 @@ td {
     text-align: left;
     display: flex; 
     align-items: center;
+    
+    img {
+        max-width: 2rem;
+        max-height: 2rem;
+        margin-right: 1.5rem;
+    }
 }
-td img {
-    max-width: 2rem;
-    max-height: 2rem;
-    margin-right: 1.5rem;
-}
-.total {
-    color: var(--accent);
-}
-
-/* .input-field {
-    background: blue;
-    color: black;
-    padding: 2rem;
-} */
-
-
-/* ADD EXPENSE */
-.add-expense-ctnr {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--fourth);
-    width: 50%;
-    /* min-height: 20rem; */
-    border-radius: 2rem;
-    margin-bottom: 4rem;
-    font-size: 2rem;
-}
-.add-expense-ctnr input {
-    width: 25%;
-}
-
-
+.total { color: var(--accent); }
