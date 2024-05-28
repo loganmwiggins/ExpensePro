@@ -1,0 +1,321 @@
+/* FONTS */
+/* ------------------------------ */
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(../assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(../assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url(../assets/fonts/Poppins/Poppins-SemiBold.ttf);
+}
+@font-face {
+    font-family: "Poppins-Bold";
+    src: url(../assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: "Poppins-Black";
+    src: url(../assets/fonts/Poppins/Poppins-Black.ttf);
+}
+
+/* URL DECORATION */
+/* ------------------------------ */
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+
+/* COLOR VARS */
+/* ------------------------------ */
+:root {
+    --first: #0a0a0a;
+    --second: #141414;
+    --third: #1f1f1f;
+    --fourth: #292929;
+    --accent: #a2f263;
+    --text-white: #ffffff;
+    --text-grey: #acacac;
+}
+
+
+
+
+
+/* ALL */
+/* ------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-color: var(--first);
+    color: var(--text-white);
+    font-family: "Poppins-Regular";
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body {
+    display: flex;
+}
+
+/* NAV */
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    min-width: 35rem;
+    background-color: var(--fourth);
+    /* box-shadow: 0rem 2rem 2rem black; */
+    z-index: 1;
+    position: fixed;
+    
+}
+.nav-head {
+    display: flex;
+    align-items: center;
+    margin: 4rem 0rem;
+    font-size: 1.75rem;
+}
+.nav-head img {
+    max-width: 5rem;
+    max-height: 5rem;
+    background-color: white;
+    border-radius: 1rem;
+    border: 2px solid var(--text-grey);
+    padding: 0.5rem;
+    margin-right: 1.5rem;
+}
+.side-nav h2 {
+    margin: 2rem 0rem;
+    font-size: 2.75rem;
+}
+.nav-btn {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    border: none;
+    border-radius: 2rem;
+    font-size: 2rem;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    background-color: var(--third);
+    color: var(--text-white);
+    cursor: pointer;
+}
+.nav-btn:hover {
+    background-color: var(--second);
+}
+.nav-btn img {
+    max-width: 2.25rem;
+    margin: 0rem 2rem;
+}
+.nav-toggle {
+    background: none;
+    border: none;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+.nav-toggle img {
+    max-width: 4rem;
+    opacity: 0.9;
+}
+.nav-toggle img:hover {
+    opacity: 1;
+}
+
+
+
+/* BODY */
+.content-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--first);
+    margin: 0rem 0rem 10rem 40rem;
+}
+.content-body h1 {
+    margin: 4rem 0rem;
+    color: var(--accent);
+    font-size: 3rem;
+}
+
+.expense-summary-ctnr {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth);
+    width: 90%;
+    /* min-height: 20rem; */
+    border-radius: 2rem;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+.expense-summary-ctnr h2 {
+    font-size: 2.75rem;
+    margin: 2rem 4rem;
+}
+/* toggle button */
+.summary-toggle {
+    width: 150px;
+    margin: 0rem 4rem;
+    padding: 1rem 2rem;
+    background: none;
+    color: var(--text-grey);
+    border: 2px solid #acacac;;
+    border-radius: 4rem;
+    font-family: "Poppins-Medium";
+    cursor: pointer;
+}
+.summary-toggle:hover {
+    color: var(--text-white);
+    border: 2px solid #ffffff;;
+}
+.summary-toggle.year {
+    color: #a2f263;
+    border: 2px solid #a2f263;
+}
+.summary-toggle.year:hover {
+    color: #6fff00;
+    border: 2px solid #6fff00;
+}
+
+/* toggle end */
+.expense-summary-body {
+    display: flex;
+    margin: 2rem 4rem;
+}
+.summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.summary p:first-child {
+    font-size: 3.5rem;
+}
+.summary p:last-child {
+    color: var(--text-grey);
+    font-size: 1.5rem;
+}
+
+
+.expense-lists-ctnr {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.table-ctnr {
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+    background-color: var(--fourth);
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.table-title {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0rem 2rem 2rem;
+    color: var(--text-grey);
+}
+.list-count {
+    background-color: var(--accent);
+    color: var(--fourth);
+    font-size: 1.25rem;
+    padding: 0.25rem 0.85rem;
+    margin: 0rem 2rem;
+    border-radius: 6rem;
+}
+table, th, td {
+    /* border: 1px solid white; */
+    border-collapse: collapse;
+    width: 100%;
+}
+table {
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    width: 100%;
+}
+tr {
+    display: flex;
+    justify-content: center;
+    /* border-top: 1px solid rgba(221, 221, 221, 0.25); */
+}
+    tr:nth-child(even) {
+        /* background-color: rgba(255, 255, 255, 0.1); */
+        border-radius: 2rem;
+    }
+    tr:nth-child(odd) {
+        background-color: var(--third);
+        border-radius: 2rem;
+    }
+    tr:first-child {
+        background-color: var(--second);
+        border-bottom: 1px solid rgba(221, 221, 221, 0.25);
+    }
+    tr:last-child {
+        background-color: var(--second);
+        border-top: 1px solid rgba(221, 221, 221, 0.25);
+    }
+th {
+    padding: 2rem;
+    text-align: left; 
+    border-top: 0;
+    border-radius: 2rem;
+    /* background-color: rgb(0, 0, 0, 0.5); */
+}
+td {
+    padding: 2rem;
+    text-align: left;
+    display: flex; 
+    align-items: center;
+}
+td img {
+    max-width: 2rem;
+    max-height: 2rem;
+    margin-right: 1.5rem;
+}
+.total {
+    color: var(--accent);
+}
+
+/* .input-field {
+    background: blue;
+    color: black;
+    padding: 2rem;
+} */
+
+
+/* ADD EXPENSE */
+.add-expense-ctnr {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth);
+    width: 50%;
+    /* min-height: 20rem; */
+    border-radius: 2rem;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+.add-expense-ctnr input {
+    width: 25%;
+}
+
+
