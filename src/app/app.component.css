@@ -1,52 +1,5 @@
 .main { display: flex; }
 
-/* NAV */
-/* ------------------------------ */
-.side-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    height: 100svh;
-    min-width: 35rem;
-    padding: 4rem 0rem;
-    background-color: var(--fourth);
-    z-index: 1;
-    position: fixed;
-}
-
-.nav-btn {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    border: none;
-    border-radius: 2rem;
-    font-size: 2rem;
-    padding: 2rem;
-    background-color: var(--third);
-    color: var(--text-white);
-    cursor: pointer;
-
-    img {
-        max-width: 2.25rem;
-        margin: 0rem 2rem;
-    }
-}
-.nav-btn:hover { background-color: var(--second); }
-
-.nav-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    img {
-        max-width: 4rem;
-        opacity: .25;
-    }
-    img:hover { opacity: .5; }
-}
-
-
 /* BODY */
 /* ------------------------------ */
 .content-body {
@@ -56,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--first);
-    margin: 0rem 0rem 10rem 40rem;
+    margin: 0rem 0rem 10rem 35rem;
 
     h1 {
         margin: 4rem 0rem;
