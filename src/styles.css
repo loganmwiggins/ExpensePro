@@ -1,6 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* FONTS */
+@font-face { font-family: "Poppins-Regular"; src: url(assets/fonts/Poppins/Poppins-Regular.ttf); }
+@font-face { font-family: "Poppins-Medium"; src: url(assets/fonts/Poppins/Poppins-Medium.ttf); }
+@font-face { font-family: "Poppins-SemiBold"; src: url(assets/fonts/Poppins/Poppins-SemiBold.ttf); }
+@font-face { font-family: "Poppins-Bold"; src: url(assets/fonts/Poppins/Poppins-Bold.ttf); }
+@font-face { font-family: "Poppins-Black"; src: url(assets/fonts/Poppins/Poppins-Black.ttf); }
+
+
+/* COLOR VARS */
+:root {
+    --first: #0a0a0a;
+    --second: #141414;
+    --third: #1f1f1f;
+    --fourth: #292929;
+    --accent: #a2f263;
+    --text-white: #ffffff;
+    --text-grey: #acacac;
+}
+
+
+/* GLOBAL ELEMENTS */
 * {
     margin: 0;
     padding: 0;
 }
+
+html {
+    background-color: var(--first);
+    color: var(--text-white);
+    font-family: "Poppins-Regular";
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+a:link, a:visited, a:hover, a:active { text-decoration: none; }

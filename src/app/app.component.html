@@ -1,173 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Logan M. Wiggins">
-        <title>Expenses</title>
-    </head>
-
-    <body>
-        <div class="side-nav">
-            <div class="nav-head">
-                <img src="assets/images/scaff-mock-1-small.png">
-                <p>Powered by<br>wigginsnet.com</p>
-            </div>
-            <h2>Welcome, Logan!</h2>
-            <button class="nav-btn">
-                <img src="assets/icons/dashboard-white.png" draggable="false">
-                <p>Dashboard</p>
-            </button>
-            <button class="nav-btn">
-                <img src="assets/icons/pencil-white.png" draggable="false">
-                <p>Edit Tables</p>
-            </button>
-            <button class="nav-btn">
-                <img src="assets/icons/settings-white.png" draggable="false">
-                <p>Preferences</p>
-            </button>
-            <button class="nav-toggle">
-                <img src="assets/icons/collapse-white.png">
-            </button>
-        </div>
-        <div class="content-body">
-            <h1>Dashboard</h1>
-            <div class="expense-summary-ctnr">
-                <h2>Expense Summary</h2>
-                <button class="summary-toggle" id="summary-toggle" value="month" onclick="summaryToggleSwitch()"><p id="summary-toggle-text">PER MONTH</p></button>
-                <div class="expense-summary-body">
-                    <div class="summary">
-                        <p>$1,700.28</p>
-                        <p>from Monthly Charges</p>
-                    </div>
-                    <div class="summary">
-                        <p>$190.98</p>
-                        <p>from Yearly Charges</p>
-                    </div>
-                    <div class="summary">
-                        <p>$1,891.86</p>
-                        <p>in Total Charges</p>
-                    </div>
+<div class="main">
+    <div class="side-nav">
+        <button class="nav-btn">
+            <img src="assets/icons/dashboard-white.png" draggable="false">
+            <p>Dashboard</p>
+        </button>
+        <button class="nav-btn">
+            <img src="assets/icons/pencil-white.png" draggable="false">
+            <p>Edit Tables</p>
+        </button>
+        <button class="nav-btn">
+            <img src="assets/icons/settings-white.png" draggable="false">
+            <p>Preferences</p>
+        </button>
+        <button class="nav-toggle">
+            <img src="assets/icons/collapse-white.png">
+        </button>
+    </div>
+    
+    <div class="content-body">
+        <h1>Welcome, Logan!</h1>
+        <div class="expense-summary-ctnr">
+            <h2>Expense Summary</h2>
+            <button class="summary-toggle" id="summary-toggle" value="month" onclick="summaryToggleSwitch()"><p id="summary-toggle-text">PER MONTH</p></button>
+            <div class="expense-summary-body">
+                <div class="summary">
+                    <p>$1,700.28</p>
+                    <p>from Monthly Charges</p>
                 </div>
-            </div>
-            <div class="expense-lists-ctnr">
-                <div class="table-ctnr">
-                    <div class="table-title">
-                        <h3>MONTHLY EXPENSES</h3>
-                        <div class="list-count">
-                            <h3>5</h3>
-                        </div>
-                        <button>Add Expense</button>
-                    </div>
-                    <table>
-                        <tr>
-                            <th>Expense</th>
-                            <th>Cost</th>
-                            <th>Payment Date</th>
-                            <th>Actions</th>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Rent</td>
-                            <td>$---.--</td>
-                            <td>1st</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Car Insurance</td>
-                            <td>$113.00</td>
-                            <td>8th</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Creative Cloud</td>
-                            <td>$19.99</td>
-                            <td>20th</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Spotify</td>
-                            <td>$5.71</td>
-                            <td>4th</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">iCloud+ Storage</td>
-                            <td>$2.99</td>
-                            <td>16th</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Total:</th>
-                            <th class="total">$141.69</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </table>
+                <div class="summary">
+                    <p>$190.98</p>
+                    <p>from Yearly Charges</p>
                 </div>
-                <div class="table-ctnr">
-                    <div class="table-title">
-                        <h3>YEARLY EXPENSES</h3>
-                        <div class="list-count">
-                            <h3>3</h3>
-                        </div>
-                    </div>
-                    <table>
-                        <tr>
-                            <th>Expense</th>
-                            <th>Cost</th>
-                            <th>Payment Date</th>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Amex Card Fee</td>
-                            <td>$95.00</td>
-                            <td>Nov 2</td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">Xbox Gold Pass</td>
-                            <td>$59.99</td>
-                            <td>Apr 11</td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">DistroKid</td>
-                            <td>$35.99</td>
-                            <td>Jun 7</td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td><img src="assets/icons/money-white.png" draggable="false">-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <th>Total:</th>
-                            <th class="total">$190.98</th>
-                            <th></th>
-                        </tr>
-                    </table>
+                <div class="summary">
+                    <p>$1,891.86</p>
+                    <p>in Total Charges</p>
                 </div>
             </div>
         </div>
-    </body>
-
-    <script src="scripts.js"></script>
-</html>
+        <div class="expense-lists-ctnr">
+            <div class="table-ctnr">
+                <div class="table-title">
+                    <h3>MONTHLY EXPENSES</h3>
+                    <div class="list-count">
+                        <h3>5</h3>
+                    </div>
+                    <button>Add Expense</button>
+                </div>
+                <table>
+                    <tr>
+                        <th>Expense</th>
+                        <th>Cost</th>
+                        <th>Payment Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Rent</td>
+                        <td>$---.--</td>
+                        <td>1st</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Car Insurance</td>
+                        <td>$113.00</td>
+                        <td>8th</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Creative Cloud</td>
+                        <td>$19.99</td>
+                        <td>20th</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Spotify</td>
+                        <td>$5.71</td>
+                        <td>4th</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">iCloud+ Storage</td>
+                        <td>$2.99</td>
+                        <td>16th</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <th class="total">$141.69</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-ctnr">
+                <div class="table-title">
+                    <h3>YEARLY EXPENSES</h3>
+                    <div class="list-count">
+                        <h3>3</h3>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Expense</th>
+                        <th>Cost</th>
+                        <th>Payment Date</th>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Amex Card Fee</td>
+                        <td>$95.00</td>
+                        <td>Nov 2</td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">Xbox Gold Pass</td>
+                        <td>$59.99</td>
+                        <td>Apr 11</td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">DistroKid</td>
+                        <td>$35.99</td>
+                        <td>Jun 7</td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/icons/money-white.png" draggable="false">-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <th class="total">$190.98</th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
