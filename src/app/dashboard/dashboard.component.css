@@ -1,0 +1,174 @@
+.btn {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    background: none;
+    color: var(--text-grey);
+    border: 2px solid #acacac;;
+    border-radius: 4rem;
+    font-family: "Poppins-Medium";
+    cursor: pointer;
+
+    img {
+        max-width: 2rem;
+        max-height: 2rem;
+        margin: 0;
+        filter: invert(71%) sepia(1%) saturate(826%) hue-rotate(64deg) brightness(100%) contrast(85%);
+    }
+}
+.btn:hover {
+    color: var(--text-white);
+    border: 2px solid #ffffff;;
+
+    img { filter: invert(100%) sepia(1%) saturate(1768%) hue-rotate(247deg) brightness(119%) contrast(100%); }
+}
+
+.btn-sm { padding: .5rem 1rem; }
+.btn-md { padding: .5rem 2rem; }
+
+.btn-icon {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+
+    img { max-width: 2.5rem; max-height: 2.5rem; }
+}
+.btn-icon:hover { border: none; }
+
+/* BODY */
+/* ------------------------------ */
+.dashboard-ctnr {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--first);
+    
+    padding: 4rem 0;
+
+    h1 {
+        color: var(--accent);
+        font-size: 3rem;
+    }
+}
+
+/* Expense Summary */
+.expense-summary-ctnr {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+}
+
+.expense-summary-hdr {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    h2 { font-size: 2.75rem; }
+}
+
+.expense-summary-body { display: flex; }
+
+.summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    p:first-child { font-size: 3.5rem; }
+    p:last-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
+}
+
+/* Expense Tables */
+.expense-tables-ctnr {
+    display: flex;
+    align-items: start;
+    width: 90%;
+    gap: 2rem;
+}
+
+.table-ctnr {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: var(--fourth);
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+.table-title {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: var(--text-grey);
+}
+
+.list-count {
+    background-color: var(--accent);
+    color: var(--fourth);
+    font-size: 1.25rem;
+    padding: .25rem .85rem;
+    border-radius: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    width: 100%;
+}
+table {
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    width: 100%;
+}
+tr {
+    display: flex;
+    justify-content: center;
+    /* border-top: 1px solid rgba(221, 221, 221, 0.25); */
+}
+    tr:nth-child(even) { border-radius: 2rem; }
+    tr:nth-child(odd) {
+        background-color: var(--third);
+        border-radius: 2rem;
+    }
+    tr:first-child {
+        background-color: var(--second);
+        border-bottom: 1px solid rgba(221, 221, 221, 0.25);
+    }
+    tr:last-child {
+        background-color: var(--second);
+        border-top: 1px solid rgba(221, 221, 221, 0.25);
+    }
+th {
+    padding: 2rem;
+    text-align: left; 
+    border-top: 0;
+    border-radius: 2rem;
+}
+td {
+    padding: 2rem;
+    text-align: left;
+    display: flex; 
+    align-items: center;
+    gap: 1rem;
+    
+    img { max-width: 2rem; max-height: 2rem; }
+}
+.td-btns {
+    justify-content: right;
+
+    img { max-width: 2rem; max-height: 2rem; }
+}
+
+.total { color: var(--accent); }
