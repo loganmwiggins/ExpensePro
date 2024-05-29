@@ -27,7 +27,7 @@
     align-items: center;
     gap: 2rem;
     background-color: var(--first);
-    margin-left: 12rem; /* get out of the way of nav */
+    margin-left: 14rem; /* get out of the way of nav */
     padding: 4rem 0;
 
     h1 {
