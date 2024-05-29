@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -12,6 +12,7 @@ import { EditExpenseComponent } from './edit-expense/edit-expense.component';
     styleUrl: './app.component.css',
     imports: [
         RouterOutlet,
+        RouterModule,
         NavigationComponent,
         DashboardComponent,
         EditExpenseComponent
