@@ -9,7 +9,7 @@ const routeConfig: Routes = [
         title: 'Dashboard'
     },
     {
-        path: 'edit-expense',
+        path: 'edit-expense/:id',
         component: EditExpenseComponent,
         title: 'Edit Expense'
     }

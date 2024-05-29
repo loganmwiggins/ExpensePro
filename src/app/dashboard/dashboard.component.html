@@ -182,4 +182,49 @@
             </table>
         </div>
     </div>
+
+    <!-- ........................ -->
+
+    <div class="expense-tables-ctnr">
+        <!-- Test Expenses -->
+        <div class="table-ctnr">
+            <div class="table-title">
+                <h3>TESTING EXPENSES</h3>
+                <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
+                <button class="btn btn-icon">
+                    <img src="assets/icons/new-page-black.svg" draggable="false">
+                </button>
+            </div>
+            <table>
+                <tr>
+                    <th>Expense</th>
+                    <th>Cost</th>
+                    <th>Payment Date</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let expense of expenseList">
+                    <td>
+                        <img [src]="expense.icon" draggable="false">
+                        {{ expense.name }}
+                    </td>
+                    <td>{{ expense.cost }}</td>
+                    <td>{{ expense.paymentDate }}</td>
+                    <td class="td-btns">
+                        <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                            <img src="assets/icons/pencil-black.svg" draggable="false">
+                        </button>
+                        <button class="btn btn-icon">
+                            <img src="assets/icons/trash-black.svg" draggable="false">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Total:</th>
+                    <th class="total">$141.69</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
