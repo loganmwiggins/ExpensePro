@@ -3,9 +3,16 @@
     
     <div class="content-body">
         <h1>Welcome, Logan!</h1>
+
+        <!-- Expense Summary -->
         <div class="expense-summary-ctnr">
-            <h2>Expense Summary</h2>
-            <button class="summary-toggle" id="summary-toggle" value="month" onclick="summaryToggleSwitch()"><p id="summary-toggle-text">PER MONTH</p></button>
+            <div class="expense-summary-hdr">
+                <h2>Expense Summary</h2>
+                <button class="btn btn-md" id="summary-toggle" value="month">
+                    <p id="summary-toggle-text">PER MONTH</p>
+                </button>
+            </div>
+            
             <div class="expense-summary-body">
                 <div class="summary">
                     <p>$1,700.28</p>
@@ -21,29 +28,30 @@
                 </div>
             </div>
         </div>
-        <div class="expense-lists-ctnr">
+
+        <!-- Expense Tables -->
+        <div class="expense-tables-ctnr">
+            <!-- Monthly Expenses -->
             <div class="table-ctnr">
                 <div class="table-title">
                     <h3>MONTHLY EXPENSES</h3>
-                    <div class="list-count">
-                        <h3>5</h3>
-                    </div>
-                    <button>Add Expense</button>
+                    <div class="list-count"><h3>5</h3></div>
+                    <button class="btn btn-sm">Add Expense</button>
                 </div>
                 <table>
                     <tr>
                         <th>Expense</th>
                         <th>Cost</th>
                         <th>Payment Date</th>
-                        <th>Actions</th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">Rent</td>
                         <td>$---.--</td>
                         <td>1st</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -51,8 +59,8 @@
                         <td>$113.00</td>
                         <td>8th</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -60,8 +68,8 @@
                         <td>$19.99</td>
                         <td>20th</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -69,8 +77,8 @@
                         <td>$5.71</td>
                         <td>4th</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -78,8 +86,8 @@
                         <td>$2.99</td>
                         <td>16th</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -90,47 +98,70 @@
                     </tr>
                 </table>
             </div>
+
+            <!-- Yearly Expenses -->
             <div class="table-ctnr">
                 <div class="table-title">
                     <h3>YEARLY EXPENSES</h3>
-                    <div class="list-count">
-                        <h3>3</h3>
-                    </div>
+                    <div class="list-count"><h3>3</h3></div>
+                    <button class="btn btn-sm">Add Expense</button>
                 </div>
                 <table>
                     <tr>
                         <th>Expense</th>
                         <th>Cost</th>
                         <th>Payment Date</th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">Amex Card Fee</td>
                         <td>$95.00</td>
                         <td>Nov 2</td>
+                        <td>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">Xbox Gold Pass</td>
                         <td>$59.99</td>
                         <td>Apr 11</td>
+                        <td>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">DistroKid</td>
                         <td>$35.99</td>
                         <td>Jun 7</td>
+                        <td>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">-</td>
                         <td>-</td>
                         <td>-</td>
+                        <td>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td><img src="assets/icons/money-white.png" draggable="false">-</td>
                         <td>-</td>
                         <td>-</td>
+                        <td>
+                            <button class="btn btn-sm">Edit</button>
+                            <button class="btn btn-sm">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <th>Total:</th>
                         <th class="total">$190.98</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </table>

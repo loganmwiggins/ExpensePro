@@ -1,5 +1,22 @@
 .main { display: flex; }
 
+.btn {
+    background: none;
+    color: var(--text-grey);
+    border: 2px solid #acacac;;
+    border-radius: 4rem;
+    font-family: "Poppins-Medium";
+    cursor: pointer;
+}
+.btn:hover {
+    color: var(--text-white);
+    border: 2px solid #ffffff;;
+}
+
+.btn-sm { padding: .5rem 1rem; }
+.btn-md { padding: .5rem 2rem; }
+
+
 /* BODY */
 /* ------------------------------ */
 .content-body {
@@ -8,103 +25,87 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
     background-color: var(--first);
-    margin: 0rem 0rem 10rem 35rem;
+    margin-left: 12rem; /* get out of the way of nav */
+    padding: 4rem 0;
 
     h1 {
-        margin: 4rem 0rem;
         color: var(--accent);
         font-size: 3rem;
     }
 }
+
+/* Expense Summary */
 .expense-summary-ctnr {
     display: flex;
     flex-direction: column;
     background-color: var(--fourth);
-    width: 90%;
-    /* min-height: 20rem; */
+    width: 85%;
+    gap: 2rem;
     border-radius: 2rem;
-    margin-bottom: 4rem;
+    padding: 2rem 4rem;
     font-size: 2rem;
-
-    h2 {
-        font-size: 2.75rem;
-        margin: 2rem 4rem;
-    }
-}
-/* toggle button */
-.summary-toggle {
-    width: 150px;
-    margin: 0rem 4rem;
-    padding: 1rem 2rem;
-    background: none;
-    color: var(--text-grey);
-    border: 2px solid #acacac;;
-    border-radius: 4rem;
-    font-family: "Poppins-Medium";
-    cursor: pointer;
-}
-.summary-toggle:hover {
-    color: var(--text-white);
-    border: 2px solid #ffffff;;
-}
-.summary-toggle.year {
-    color: #a2f263;
-    border: 2px solid #a2f263;
-}
-.summary-toggle.year:hover {
-    color: #6fff00;
-    border: 2px solid #6fff00;
 }
 
-/* toggle end */
-.expense-summary-body {
+.expense-summary-hdr {
     display: flex;
-    margin: 2rem 4rem;
+    align-items: center;
+    gap: 2rem;
+
+    h2 { font-size: 2.75rem; }
 }
+
+.expense-summary-body { display: flex; }
+
 .summary {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
-.summary p:first-child { font-size: 3.5rem; }
-.summary p:last-child {
-    color: var(--text-grey);
-    font-size: 1.5rem;
+
+    p:first-child { font-size: 3.5rem; }
+    p:last-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
 }
 
-
-.expense-lists-ctnr {
+/* Expense Tables */
+.expense-tables-ctnr {
     display: flex;
-    justify-content: space-between;
+    align-items: start;
     width: 90%;
+    gap: 2rem;
 }
+
 .table-ctnr {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    width: 47%;
+    gap: 2rem;
     background-color: var(--fourth);
     color: var(--text-white);
     border-radius: 2rem;
     font-size: 1.5rem;
-    padding: 1rem;
+    padding: 2rem;
 }
+
 .table-title {
     display: flex;
     align-items: center;
-    padding: 2rem 0rem 2rem 2rem;
+    gap: 2rem;
     color: var(--text-grey);
 }
+
 .list-count {
     background-color: var(--accent);
     color: var(--fourth);
     font-size: 1.25rem;
-    padding: 0.25rem 0.85rem;
-    margin: 0rem 2rem;
-    border-radius: 6rem;
+    padding: .25rem .85rem;
+    border-radius: 100%;
 }
+
 table, th, td {
-    /* border: 1px solid white; */
     border-collapse: collapse;
     width: 100%;
 }
@@ -119,10 +120,7 @@ tr {
     justify-content: center;
     /* border-top: 1px solid rgba(221, 221, 221, 0.25); */
 }
-    tr:nth-child(even) {
-        /* background-color: rgba(255, 255, 255, 0.1); */
-        border-radius: 2rem;
-    }
+    tr:nth-child(even) { border-radius: 2rem; }
     tr:nth-child(odd) {
         background-color: var(--third);
         border-radius: 2rem;
@@ -140,18 +138,19 @@ th {
     text-align: left; 
     border-top: 0;
     border-radius: 2rem;
-    /* background-color: rgb(0, 0, 0, 0.5); */
 }
 td {
     padding: 2rem;
     text-align: left;
     display: flex; 
     align-items: center;
+    gap: .5rem;
     
     img {
         max-width: 2rem;
         max-height: 2rem;
-        margin-right: 1.5rem;
+        margin-right: 1rem;
     }
 }
+
 .total { color: var(--accent); }
