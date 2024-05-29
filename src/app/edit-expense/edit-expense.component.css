@@ -1,0 +1,49 @@
+.edit-expense-ctnr {
+    display: flex;
+    background-color: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.form-inputs {
+    display: flex;
+    flex-flow: wrap;
+    gap: 2rem;
+}
+
+.input-ctnr {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    p {
+        font-size: 1.5rem;
+        color: var(--text-grey);
+    }
+    input, select {
+        font-family: "Poppins-Regular";
+        font-size: 2rem;
+        background: var(--third);
+        color: #fff;
+        border: 1.5px solid var(--text-grey);
+        border-radius: 1rem;
+        padding: .5rem 1rem;
+    }
+}
+
+.form-btns {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

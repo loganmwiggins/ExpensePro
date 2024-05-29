@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditExpenseComponent } from './edit-expense/edit-expense.component';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     imports: [
         RouterOutlet,
         NavigationComponent,
-        DashboardComponent
+        DashboardComponent,
+        EditExpenseComponent
     ]
 })
 
