@@ -1,5 +1,5 @@
 <div class="content-ctnr">
-    <h1>Add/Edit Expense ({{ expenseId }})</h1>
+    <h1>Add/Edit Expense</h1>
 
     <div class="edit-expense-ctnr">
         <form>
@@ -16,26 +16,26 @@
                 </div>
                 <div class="input-ctnr">
                     <p>Name</p>
-                    <input type="text">
+                    <input type="text" [value]="expense?.name">
                 </div>
                 <div class="input-ctnr">
                     <p>Type</p>
-                    <select name="type-select">
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
+                    <select name="type-select" [value]="expense?.type">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
                     </select>
                 </div>
                 <div class="input-ctnr">
                     <p>Cost</p>
-                    <input type="number">
+                    <input type="text" [value]="expense?.cost">
                 </div>
                 <div class="input-ctnr">
                     <p>Payment Date</p>
-                    <input type="text">
+                    <input type="text" [value]="expense?.paymentDate">
                 </div>
             </div>
             <div class="form-btns">
-                <button type="button" class="btn btn-lg">Cancel</button>
+                <button type="button" class="btn btn-lg" routerLink="/">Cancel</button>
                 <button type="button" class="btn btn-lg btn-color">Save</button>
             </div>
         </form>
