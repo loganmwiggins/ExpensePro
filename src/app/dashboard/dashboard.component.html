@@ -33,9 +33,9 @@
             <div class="table-title">
                 <h3>MONTHLY EXPENSES</h3>
                 <div class="list-count"><h3>5</h3></div>
-                <button class="btn btn-icon">
+                <a class="btn btn-icon" href="#addExpenseCtnr">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </button>
+                </a>
             </div>
             <table>
                 <tr>
@@ -123,9 +123,9 @@
             <div class="table-title">
                 <h3>YEARLY EXPENSES</h3>
                 <div class="list-count"><h3>3</h3></div>
-                <button class="btn btn-icon">
+                <a class="btn btn-icon" href="#addExpenseCtnr">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </button>
+                </a>
             </div>
             <table>
                 <tr>
@@ -186,11 +186,13 @@
     <!-- ........................ -->
 
     <div class="expense-tables-ctnr">
-        <!-- Test Expenses -->
+        <!-- Testing API Call -->
         <div class="table-ctnr">
             <div class="table-title">
-                <h3>TESTING EXPENSES</h3>
-                <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
+                <h3>TESTING API CALL</h3>
+                @if (expenseList$ | async; as expenseList) {
+                    <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
+                }
                 <button class="btn btn-icon">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
                 </button>
@@ -202,29 +204,89 @@
                     <th>Payment Date</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let expense of expenseList">
-                    <td>
-                        <img [src]="expense.icon" draggable="false">
-                        {{ expense.name }}
-                    </td>
-                    <td>{{ expense.cost }}</td>
-                    <td>{{ expense.paymentDate }}</td>
-                    <td class="td-btns">
-                        <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
-                            <img src="assets/icons/pencil-black.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-icon">
-                            <img src="assets/icons/trash-black.svg" draggable="false">
-                        </button>
-                    </td>
-                </tr>
+                @if (expenseList$ | async; as expenseList) {
+                    @if (expenseList.length > 0) {
+                        @for (expense of expenseList; track $index) {
+                            <tr>
+                                <td>
+                                    <img [src]="expense.icon" draggable="false">
+                                    {{ expense.name }}
+                                </td>
+                                <td>{{ expense.cost }}</td>
+                                <td>{{ expense.paymentDate }}</td>
+                                <td class="td-btns">
+                                    <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                                    </button>
+                                    <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                                        <img src="assets/icons/trash-black.svg" draggable="false">
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @else {
+                        <tr>
+                            <td>
+                                No expenses found...
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
                 <tr>
                     <th>Total:</th>
-                    <th class="total">$141.69</th>
+                    <th class="total">---</th>
                     <th></th>
                     <th></th>
                 </tr>
             </table>
         </div>
+    </div>
+
+    <!-- Add Expense Form -->
+    <div class="add-expense-ctnr" id="addExpenseCtnr">
+        <div class="table-title">
+            <h3>ADD EXPENSE</h3>
+        </div>
+        <form (ngSubmit)="onFormSubmit()" [formGroup]="expenseForm">
+            <div class="form-inputs">
+                <div class="input-ctnr">
+                    <p>Icon</p>
+                    <select name="icon-select" formControlName="icon">
+                        <option value="/assets/icons/money.svg">Default</option>
+                        <option value="homeIcon">Home</option>
+                        <option value="carIcon">Car</option>
+                        <option value="cardIcon">Card</option>
+                        <option value="gameIcon">Game</option>
+                    </select>
+                </div>
+                <div class="input-ctnr">
+                    <p>Name</p>
+                    <input type="text" formControlName="name">
+                </div>
+                <div class="input-ctnr">
+                    <p>Type</p>
+                    <select name="type-select" formControlName="type">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="input-ctnr">
+                    <p>Cost</p>
+                    <input type="number" formControlName="cost">
+                </div>
+                <div class="input-ctnr">
+                    <p>Payment Date</p>
+                    <input type="text" formControlName="paymentDate">
+                </div>
+            </div>
+            <div class="form-btns">
+                <button type="button" class="btn btn-lg" (click)="clearForm()">Clear</button>
+                <button type="submit" class="btn btn-lg btn-color">Add</button>
+            </div>
+        </form>
     </div>
 </div>
