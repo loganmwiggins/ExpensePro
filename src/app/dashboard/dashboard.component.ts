@@ -22,7 +22,7 @@ export class DashboardComponent {
     expenseForm = new FormGroup({
         name: new FormControl<string>(""),
         type: new FormControl<string>(""),
-        icon: new FormControl<string>("/assets/icons/money.svg"),
+        icon: new FormControl<string>("/assets/icons/expense-icons/usd-circle.svg"),
         cost: new FormControl<number>(0),
         paymentDate: new FormControl<string>("")
     })
