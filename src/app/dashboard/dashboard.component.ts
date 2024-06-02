@@ -29,25 +29,35 @@ export class DashboardComponent {
 
     expenseList$ = this.getExpenses();
 
-    onFormSubmit() {
-        // console.log(this.expenseForm.value);
+    
 
-        const addExpenseRequest = {
-            name: this.expenseForm.value.name,
-            type: this.expenseForm.value.type,
-            icon: this.expenseForm.value.icon,
-            cost: this.expenseForm.value.cost,
-            paymentDate: this.expenseForm.value.paymentDate
+    addExpense() {
+        if (
+            this.expenseForm.value.icon == null
+            || this.expenseForm.value.name == null || this.expenseForm.value.name == ""
+            || this.expenseForm.value.type == null || this.expenseForm.value.type == ""
+            || this.expenseForm.value.cost == null || this.expenseForm.value.cost == 0
+        ) {
+            alert("Icon, Name, Type, and Cost fields are required.");
         }
-
-        this.http.post("https://localhost:7265/api/Expenses", addExpenseRequest)
-            .subscribe({
-                next: (value) => {
-                    console.log(value); //value will contain id, good check - if getting id back to confirm expense was created
-                    this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
-                    this.expenseForm.reset();   //clears form
-                }
-            });
+        else {
+            const addExpenseRequest = {
+                name: this.expenseForm.value.name,
+                type: this.expenseForm.value.type,
+                icon: this.expenseForm.value.icon,
+                cost: this.expenseForm.value.cost,
+                paymentDate: this.expenseForm.value.paymentDate
+            }
+    
+            this.http.post("https://localhost:7265/api/Expenses", addExpenseRequest)
+                .subscribe({
+                    next: (value) => {
+                        console.log(value); //value will contain id, good check - if getting id back to confirm expense was created
+                        this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
+                        this.expenseForm.reset();   //clears form
+                    }
+                });
+        }
     }
 
     deleteExpense(id: string) {
@@ -56,7 +66,7 @@ export class DashboardComponent {
                 // Will only run when we get a success response from API
                 next: (value) => {
                     this.expenseList$ = this.getExpenses();
-                    alert("Expense deleted successfully.");
+                    // alert("Expense deleted successfully.");
                 }
             })
     }
