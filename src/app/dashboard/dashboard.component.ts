@@ -84,7 +84,6 @@ export class DashboardComponent {
         this.expenseList$.subscribe(expenses => {
             this.totalExpenseCost = expenses.reduce((sum, expense) => sum + expense.cost, 0);
             this.totalExpenseCost = Number(this.totalExpenseCost.toFixed(2));   //round number to 2 decimal places
-            console.log(this.totalExpenseCost);
         });
     }
 }

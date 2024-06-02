@@ -20,7 +20,7 @@
                 <p>from Yearly Charges</p>
             </div>
             <div class="summary">
-                <p>$1,891.86</p>
+                <p>${{totalExpenseCost}}</p>
                 <p>in Total Charges</p>
             </div>
         </div>
@@ -183,11 +183,11 @@
 
     <!-- ........................ -->
 
+    <!-- TESTING: All Expenses -->
     <div class="expense-tables-ctnr">
-        <!-- Testing API Call -->
         <div class="table-ctnr">
             <div class="table-title">
-                <h3>TESTING API CALL</h3>
+                <h3>ALL EXPENSES</h3>
                 @if (expenseList$ | async; as expenseList) {
                     <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
                 }
