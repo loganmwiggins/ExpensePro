@@ -30,6 +30,12 @@ export class DashboardComponent {
     expenseList$ = this.getExpenses();
     totalExpenseCost: number = 0;
 
+    currencyFormatter = new Intl.NumberFormat("en-US", {
+        // Ensures numbers follow USD currency format -- $xx.xx
+        style: "currency",
+        currency: "USD"
+    })
+
     ngOnInit(): void {
         this.calculateTotalExpenseCost();
     }
@@ -58,6 +64,7 @@ export class DashboardComponent {
                         //console.log(response); [value will contain id, good check - if getting id back to confirm expense was created]
                         this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
                         this.expenseForm.reset();   //clears form
+                        this.calculateTotalExpenseCost();
                     }
                 });
         }
@@ -70,6 +77,7 @@ export class DashboardComponent {
                 next: (response) => {
                     this.expenseList$ = this.getExpenses();
                     // alert("Expense deleted successfully.");
+                    this.calculateTotalExpenseCost();
                 }
             });
     }

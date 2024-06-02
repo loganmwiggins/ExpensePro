@@ -20,7 +20,7 @@
                 <p>from Yearly Charges</p>
             </div>
             <div class="summary">
-                <p>${{totalExpenseCost}}</p>
+                <p>{{currencyFormatter.format(totalExpenseCost)}}</p>
                 <p>in Total Charges</p>
             </div>
         </div>
@@ -189,7 +189,7 @@
             <div class="table-title">
                 <h3>ALL EXPENSES</h3>
                 @if (expenseList$ | async; as expenseList) {
-                    <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
+                    <div class="list-count"><h3>{{expenseList.length}}</h3></div>
                 }
                 <a class="btn btn-icon" href="#addExpenseCtnr">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
@@ -208,10 +208,10 @@
                             <tr>
                                 <td>
                                     <img [src]="expense.icon" draggable="false">
-                                    {{ expense.name }}
+                                    {{expense.name}}
                                 </td>
-                                <td>${{ expense.cost }}</td>
-                                <td>{{ expense.paymentDate }}</td>
+                                <td>{{currencyFormatter.format(expense.cost)}}</td>
+                                <td>{{expense.paymentDate}}</td>
                                 <td class="td-btns">
                                     <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
                                         <img src="assets/icons/pencil-black.svg" draggable="false">
@@ -236,7 +236,7 @@
                 }
                 <tr>
                     <th>Total:</th>
-                    <th class="total">${{totalExpenseCost}}</th>
+                    <th class="total">{{currencyFormatter.format(totalExpenseCost)}}</th>
                     <th></th>
                     <th></th>
                 </tr>
