@@ -1,42 +1,65 @@
 <div class="content-ctnr">
-    <h1>Add/Edit Expense</h1>
+    <h1>Edit Expense</h1>
 
     <div class="edit-expense-ctnr">
-        <form>
+        <form [formGroup]="editExpenseForm" (ngSubmit)="updateExpense()">
             <div class="form-inputs">
                 <div class="input-ctnr">
                     <p>Icon</p>
-                    <select name="icon-select">
-                        <option value="defaultIcon">Default</option>
-                        <option value="homeIcon">Home</option>
-                        <option value="carIcon">Car</option>
-                        <option value="cardIcon">Card</option>
-                        <option value="gameIcon">Game</option>
+                    <select name="icon-select" formControlName="icon">
+                        <option value="/assets/icons/expense-icons/usd-circle.svg">Default</option>
+                        <option value="/assets/icons/expense-icons/baby.svg">Baby</option>
+                        <option value="/assets/icons/expense-icons/briefcase.svg">Briefcase</option>
+                        <option value="/assets/icons/expense-icons/car.svg">Car</option>
+                        <option value="/assets/icons/expense-icons/credit-card.svg">Card</option>
+                        <option value="/assets/icons/expense-icons/coins.svg">Coins</option>
+                        <option value="/assets/icons/expense-icons/computer.svg">Computer</option>
+                        <option value="/assets/icons/expense-icons/gamepad.svg">Game Controller</option>
+                        <option value="/assets/icons/expense-icons/house.svg">House</option>
+                        <option value="/assets/icons/expense-icons/globe.svg">Internet</option>
+                        <option value="/assets/icons/expense-icons/joystick.svg">Joystick</option>
+                        <option value="/assets/icons/expense-icons/laptop.svg">Laptop</option>
+                        <option value="/assets/icons/expense-icons/mobile-phone.svg">Mobile Phone</option>
+                        <option value="/assets/icons/expense-icons/music-note.svg">Music</option>
+                        <option value="/assets/icons/expense-icons/paw.svg">Pet</option>
+                        <option value="/assets/icons/expense-icons/pills.svg">Pills/Meds</option>
+                        <option value="/assets/icons/expense-icons/shopping-cart.svg">Shopping Cart</option>
+                        <option value="/assets/icons/expense-icons/sparkles.svg">Sparkles</option>
+                        <option value="/assets/icons/expense-icons/star.svg">Star</option>
+                        <option value="/assets/icons/expense-icons/tv.svg">TV</option>
+                        <option value="/assets/icons/expense-icons/tv-retro.svg">TV Retro</option>
                     </select>
                 </div>
                 <div class="input-ctnr">
                     <p>Name</p>
-                    <input type="text">
+                    <input type="text" formControlName="name">
                 </div>
                 <div class="input-ctnr">
                     <p>Type</p>
-                    <select name="type-select">
+                    <select name="type-select" formControlName="type">
                         <option value="Monthly">Monthly</option>
                         <option value="Yearly">Yearly</option>
                     </select>
                 </div>
                 <div class="input-ctnr">
                     <p>Cost</p>
-                    <input type="text">
+                    <input type="text" formControlName="cost">
                 </div>
                 <div class="input-ctnr">
                     <p>Payment Date</p>
-                    <input type="text">
+                    <input type="text" formControlName="paymentDate">
                 </div>
             </div>
             <div class="form-btns">
-                <button type="button" class="btn btn-lg" routerLink="/">Cancel</button>
-                <button type="button" class="btn btn-lg btn-color">Save</button>
+                <button
+                    type="button"
+                    class="btn btn-lg"
+                    routerLink="/"
+                >Cancel</button>
+                <button
+                    type="submit"
+                    class="btn btn-lg btn-color"
+                >Save</button>
             </div>
         </form>
     </div>

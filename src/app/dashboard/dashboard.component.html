@@ -27,8 +27,7 @@
     </div>
 
     <!-- Expense Tables -->
-    <div class="expense-tables-ctnr">
-        <!-- Monthly Expenses -->
+    <!-- <div class="expense-tables-ctnr">
         <div class="table-ctnr">
             <div class="table-title">
                 <h3>MONTHLY EXPENSES</h3>
@@ -118,7 +117,6 @@
             </table>
         </div>
 
-        <!-- Yearly Expenses -->
         <div class="table-ctnr">
             <div class="table-title">
                 <h3>YEARLY EXPENSES</h3>
@@ -181,7 +179,7 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div> -->
 
     <!-- ........................ -->
 
@@ -193,9 +191,9 @@
                 @if (expenseList$ | async; as expenseList) {
                     <div class="list-count"><h3>{{ expenseList.length }}</h3></div>
                 }
-                <button class="btn btn-icon">
+                <a class="btn btn-icon" href="#addExpenseCtnr">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </button>
+                </a>
             </div>
             <table>
                 <tr>

@@ -3,9 +3,9 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Expense } from '../../models/expense.model';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-dashboard',
@@ -25,11 +25,9 @@ export class DashboardComponent {
         icon: new FormControl<string>("/assets/icons/expense-icons/usd-circle.svg"),
         cost: new FormControl<number>(0),
         paymentDate: new FormControl<string>("")
-    })
+    });
 
     expenseList$ = this.getExpenses();
-
-    
 
     addExpense() {
         if (
@@ -51,8 +49,8 @@ export class DashboardComponent {
     
             this.http.post("https://localhost:7265/api/Expenses", addExpenseRequest)
                 .subscribe({
-                    next: (value) => {
-                        console.log(value); //value will contain id, good check - if getting id back to confirm expense was created
+                    next: (response) => {
+                        //console.log(response); [value will contain id, good check - if getting id back to confirm expense was created]
                         this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
                         this.expenseForm.reset();   //clears form
                     }
@@ -64,11 +62,11 @@ export class DashboardComponent {
         this.http.delete(`https://localhost:7265/api/Expenses/${id}`)
             .subscribe({
                 // Will only run when we get a success response from API
-                next: (value) => {
+                next: (response) => {
                     this.expenseList$ = this.getExpenses();
                     // alert("Expense deleted successfully.");
                 }
-            })
+            });
     }
 
     clearForm() { this.expenseForm.reset(); }
