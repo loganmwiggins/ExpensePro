@@ -210,7 +210,7 @@
                                     <img [src]="expense.icon" draggable="false">
                                     {{ expense.name }}
                                 </td>
-                                <td>{{ expense.cost }}</td>
+                                <td>${{ expense.cost }}</td>
                                 <td>{{ expense.paymentDate }}</td>
                                 <td class="td-btns">
                                     <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
@@ -236,7 +236,7 @@
                 }
                 <tr>
                     <th>Total:</th>
-                    <th class="total">---</th>
+                    <th class="total">${{totalExpenseCost}}</th>
                     <th></th>
                     <th></th>
                 </tr>
