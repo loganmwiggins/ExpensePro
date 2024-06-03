@@ -122,6 +122,14 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; }
 }
 
 /* Tables */
+app-expense-tables {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
 .expense-tables-ctnr {
     display: flex;
     width: 90%;

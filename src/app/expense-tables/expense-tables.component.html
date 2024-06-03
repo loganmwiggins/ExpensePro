@@ -1,0 +1,209 @@
+<!-- Expense Summary -->
+<div class="expense-summary-ctnr" *ngIf="showSummary">
+    <div class="expense-summary-hdr">
+        <h2>Expense Summary</h2>
+        <button class="btn btn-md" id="summary-toggle" value="month">
+            <p id="summary-toggle-text">PER MONTH</p>
+        </button>
+    </div>
+    
+    <div class="expense-summary-body">
+        <div class="summary">
+            <p>{{currencyFormatter.format(totalMonthlyCost)}}</p>
+            <p>from Monthly Charges</p>
+        </div>
+        <div class="summary">
+            <p>{{currencyFormatter.format(totalYearlyCost)}}</p>
+            <p>from Yearly Charges</p>
+        </div>
+        <div class="summary">
+            <p>{{currencyFormatter.format(totalExpenseCost)}}</p>
+            <p>in Total Charges</p>
+        </div>
+    </div>
+</div>
+
+<!-- All Expenses (Combined Table) -->
+<div class="expense-tables-ctnr" *ngIf="showAllExpensesTable">
+    <div class="table-ctnr">
+        <div class="table-header">
+            <div class="title-ctnr">
+                <h3>ALL EXPENSES</h3>
+                @if (expenseList$ | async; as expenseList) {
+                    <div class="list-count"><h3>{{expenseList.length}}</h3></div>
+                }
+                <button class="btn btn-icon" [routerLink]="['/edit-expense']">
+                    <img src="assets/icons/new-page-black.svg" draggable="false">
+                </button>
+            </div>
+            <div class="sort-ctnr">
+                <label for="sort-options">Sort by:</label>
+                <select id="sort-options" (change)="sortAllExpenses($event)">
+                    <option value="default">Default (Order Added)</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="cost-asc">Cost (Low to High)</option>
+                    <option value="cost-desc">Cost (High to Low)</option>
+                    <option value="type-asc">Type (Monthly to Yearly)</option>
+                    <option value="type-desc">Type (Yearly to Monthly)</option>
+                </select>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Expense</th>
+                <th>Cost</th>
+                <th>Payment Date</th>
+                <th>Type</th>
+                <th></th>
+            </tr>
+            @if (expenseList$ | async; as expenseList) {
+                @if (expenseList.length > 0) {
+                    @for (expense of sortedAllExpenses; track $index) {
+                        <tr>
+                            <td>
+                                <img [src]="expense.icon" draggable="false">
+                                {{expense.name}}
+                            </td>
+                            <td>{{currencyFormatter.format(expense.cost)}}</td>
+                            <td>{{expense.paymentDate}}</td>
+                            <td>{{expense.type}}</td>
+                            <td class="td-btns">
+                                <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                                    <img src="assets/icons/pencil-black.svg" draggable="false">
+                                </button>
+                                <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                                    <img src="assets/icons/trash-black.svg" draggable="false">
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+                @else {
+                    <tr>
+                        <td>
+                            No expenses found...
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            }
+            <tr>
+                <th>Total:</th>
+                <th class="total">{{currencyFormatter.format(totalExpenseCost)}}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Separated Expense Tables -->
+<div class="expense-tables-ctnr" *ngIf="showSeparatedTables">
+    <!-- Monthly Expenses -->
+    <div class="table-ctnr">
+        <div class="table-header">
+            <div class="title-ctnr">
+                <h3>MONTHLY EXPENSES</h3>
+                <div class="list-count"><h3>{{originalMonthlyExpenses.length}}</h3></div>
+                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                    <img src="assets/icons/new-page-black.svg" draggable="false">
+                </button>
+            </div>
+            <div class="sort-ctnr">
+                <label for="sort-options">Sort by:</label>
+                <select id="sort-options" (change)="sortMonthlyExpenses($event)">
+                    <option value="default">Default (Order Added)</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="cost-asc">Cost (Low to High)</option>
+                    <option value="cost-desc">Cost (High to Low)</option>
+                </select>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Expense</th>
+                <th>Cost</th>
+                <th>Payment Date</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let expense of sortedMonthlyExpenses; let i = index">
+                <td>
+                    <img [src]="expense.icon" draggable="false">
+                    {{expense.name}}
+                </td>
+                <td>{{currencyFormatter.format(expense.cost)}}</td>
+                <td>{{expense.paymentDate}}</td>
+                <td class="td-btns">
+                    <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                    </button>
+                    <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                        <img src="assets/icons/trash-black.svg" draggable="false">
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th>Total:</th>
+                <th class="total">{{currencyFormatter.format(totalMonthlyCost)}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Yearly Expenses -->
+    <div class="table-ctnr">
+        <div class="table-header">
+            <div class="title-ctnr">
+                <h3>YEARLY EXPENSES</h3>
+                <div class="list-count"><h3>{{originalYearlyExpenses.length}}</h3></div>
+                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                    <img src="assets/icons/new-page-black.svg" draggable="false">
+                </button>
+            </div>
+            <div class="sort-ctnr">
+                <label for="sort-options">Sort by:</label>
+                <select id="sort-options" (change)="sortYearlyExpenses($event)">
+                    <option value="default">Default (Order Added)</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="cost-asc">Cost (Low to High)</option>
+                    <option value="cost-desc">Cost (High to Low)</option>
+                </select>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Expense</th>
+                <th>Cost</th>
+                <th>Payment Date</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let expense of sortedYearlyExpenses; let i = index">
+                <td>
+                    <img [src]="expense.icon" draggable="false">
+                    {{expense.name}}
+                </td>
+                <td>{{currencyFormatter.format(expense.cost)}}</td>
+                <td>{{expense.paymentDate}}</td>
+                <td class="td-btns">
+                    <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                    </button>
+                    <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                        <img src="assets/icons/trash-black.svg" draggable="false">
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th>Total:</th>
+                <th class="total">{{currencyFormatter.format(totalYearlyCost)}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
