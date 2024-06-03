@@ -5,7 +5,7 @@ import { EditExpenseComponent } from "./app/edit-expense/edit-expense.component"
 
 const routeConfig: Routes = [
     {
-        path: '',
+        path: 'dashboard',
         component: DashboardComponent,
         title: 'Dashboard'
     },

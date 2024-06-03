@@ -32,3 +32,8 @@
     }
 }
 .nav-btn:hover { background-color: var(--second); }
+
+.nav-btn.active-link {
+    img { filter: invert(7%) sepia(68%) saturate(659%) hue-rotate(32deg) brightness(98%) contrast(94%); }
+    p { color: var(--accent); }
+}
