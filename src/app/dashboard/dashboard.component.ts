@@ -28,6 +28,11 @@ export class DashboardComponent {
     });
 
     expenseList$ = this.getExpenses();
+    monthlyExpenses: Expense[] = [];
+    yearlyExpenses: Expense[] = [];
+
+    totalMonthlyCost: number = 0;
+    totalYearlyCost: number = 0;
     totalExpenseCost: number = 0;
 
     currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -37,7 +42,11 @@ export class DashboardComponent {
     })
 
     ngOnInit(): void {
-        this.calculateTotalExpenseCost();
+        this.expenseList$.subscribe(expenses => {
+            this.monthlyExpenses = expenses.filter(expense => expense.type === "Monthly");
+            this.yearlyExpenses = expenses.filter(expense => expense.type === "Yearly");
+            this.calculateTotalExpenseCost();
+        });
     }
 
     addExpense() {
@@ -61,14 +70,15 @@ export class DashboardComponent {
             this.http.post("https://localhost:7265/api/Expenses", addExpenseRequest)
                 .subscribe({
                     next: (response) => {
-                        //console.log(response); [value will contain id, good check - if getting id back to confirm expense was created]
                         this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
-                        this.expenseForm.reset();   //clears form
-                        this.calculateTotalExpenseCost();
+                        this.clearForm();
+                        this.ngOnInit();
                     }
                 });
         }
     }
+
+    clearForm() { this.expenseForm.reset(); }
 
     deleteExpense(id: string) {
         this.http.delete(`https://localhost:7265/api/Expenses/${id}`)
@@ -77,21 +87,20 @@ export class DashboardComponent {
                 next: (response) => {
                     this.expenseList$ = this.getExpenses();
                     // alert("Expense deleted successfully.");
-                    this.calculateTotalExpenseCost();
+                    this.ngOnInit();
                 }
             });
     }
-
-    clearForm() { this.expenseForm.reset(); }
 
     private getExpenses(): Observable<Expense[]> {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
     }
 
     calculateTotalExpenseCost(): void {
-        this.expenseList$.subscribe(expenses => {
-            this.totalExpenseCost = expenses.reduce((sum, expense) => sum + expense.cost, 0);
-            this.totalExpenseCost = Number(this.totalExpenseCost.toFixed(2));   //round number to 2 decimal places
-        });
+        this.totalMonthlyCost = this.monthlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
+        this.totalYearlyCost = this.yearlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
+        this.totalExpenseCost = this.totalMonthlyCost + this.totalYearlyCost;
+
+        // this.totalExpenseCost = Number(this.totalExpenseCost.toFixed(2));
     }
 }
