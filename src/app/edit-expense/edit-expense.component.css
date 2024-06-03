@@ -47,3 +47,54 @@ form {
     align-items: center;
     gap: 1rem;
 }
+
+
+/* Custom icon dropdown */
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+    background: var(--third);
+    border: 1.5px solid var(--text-grey);
+    border-radius: 1rem;
+    padding: .65rem 1rem;
+    cursor: pointer;
+
+    img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.options {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+    padding: 1rem;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1.5px solid rgb(65, 65, 65);
+    border-radius: 1rem;
+    background: var(--third);
+    z-index: 10;
+}
+
+.option {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+
+    img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+.option:hover { background: var(--second); }

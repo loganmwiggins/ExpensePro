@@ -20,6 +20,32 @@ export class EditExpenseComponent {
     expenseId!: string | null;
     expense$!: Observable<Expense>;
 
+    dropdownOpen = false;
+
+    icons = [
+        { path: '/assets/icons/expense-icons/usd-circle.svg', name: 'Default' },
+        { path: '/assets/icons/expense-icons/baby.svg', name: 'Baby' },
+        { path: '/assets/icons/expense-icons/briefcase.svg', name: 'Briefcase' },
+        { path: '/assets/icons/expense-icons/car.svg', name: 'Car' },
+        { path: '/assets/icons/expense-icons/credit-card.svg', name: 'Card' },
+        { path: '/assets/icons/expense-icons/coins.svg', name: 'Coins' },
+        { path: '/assets/icons/expense-icons/computer.svg', name: 'Computer' },
+        { path: '/assets/icons/expense-icons/gamepad.svg', name: 'Game Controller' },
+        { path: '/assets/icons/expense-icons/house.svg', name: 'House' },
+        { path: '/assets/icons/expense-icons/globe.svg', name: 'Internet' },
+        { path: '/assets/icons/expense-icons/joystick.svg', name: 'Joystick' },
+        { path: '/assets/icons/expense-icons/laptop.svg', name: 'Laptop' },
+        { path: '/assets/icons/expense-icons/mobile-phone.svg', name: 'Mobile Phone' },
+        { path: '/assets/icons/expense-icons/music-note.svg', name: 'Music' },
+        { path: '/assets/icons/expense-icons/paw.svg', name: 'Pet' },
+        { path: '/assets/icons/expense-icons/pills.svg', name: 'Pills/Meds' },
+        { path: '/assets/icons/expense-icons/shopping-cart.svg', name: 'Shopping Cart' },
+        { path: '/assets/icons/expense-icons/sparkles.svg', name: 'Sparkles' },
+        { path: '/assets/icons/expense-icons/star.svg', name: 'Star' },
+        { path: '/assets/icons/expense-icons/tv.svg', name: 'TV' },
+        { path: '/assets/icons/expense-icons/tv-retro.svg', name: 'TV Retro' }
+    ];
+
     editExpenseForm = new FormGroup({
         name: new FormControl<string>(""),
         type: new FormControl<string>(""),
@@ -54,6 +80,15 @@ export class EditExpenseComponent {
                 paymentDate: expense.paymentDate
             });
         });
+    }
+
+    toggleDropdown(): void {
+        this.dropdownOpen = !this.dropdownOpen;
+    }
+
+    selectIcon(icon: { path: string; name: string }): void {
+        this.editExpenseForm.get('icon')?.setValue(icon.path);
+        this.dropdownOpen = false;
     }
 
     updateExpense(): void {

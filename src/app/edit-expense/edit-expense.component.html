@@ -13,10 +13,12 @@
     <div class="edit-expense-ctnr">
         <form [formGroup]="editExpenseForm" (ngSubmit)="updateExpense()">
             <div class="form-inputs">
+                <!-- Name input -->
                 <div class="input-ctnr">
                     <p>Name</p>
                     <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, etc.">
                 </div>
+                <!-- Type input -->
                 <div class="input-ctnr">
                     <p>Type</p>
                     <select name="type-select" formControlName="type">
@@ -24,36 +26,30 @@
                         <option value="Yearly">Yearly</option>
                     </select>
                 </div>
+                <!-- Icon input -->
                 <div class="input-ctnr">
                     <p>Icon</p>
-                    <select name="icon-select" formControlName="icon">
-                        <option value="/assets/icons/expense-icons/usd-circle.svg">Default</option>
-                        <option value="/assets/icons/expense-icons/baby.svg">Baby</option>
-                        <option value="/assets/icons/expense-icons/briefcase.svg">Briefcase</option>
-                        <option value="/assets/icons/expense-icons/car.svg">Car</option>
-                        <option value="/assets/icons/expense-icons/credit-card.svg">Card</option>
-                        <option value="/assets/icons/expense-icons/coins.svg">Coins</option>
-                        <option value="/assets/icons/expense-icons/computer.svg">Computer</option>
-                        <option value="/assets/icons/expense-icons/gamepad.svg">Game Controller</option>
-                        <option value="/assets/icons/expense-icons/house.svg">House</option>
-                        <option value="/assets/icons/expense-icons/globe.svg">Internet</option>
-                        <option value="/assets/icons/expense-icons/joystick.svg">Joystick</option>
-                        <option value="/assets/icons/expense-icons/laptop.svg">Laptop</option>
-                        <option value="/assets/icons/expense-icons/mobile-phone.svg">Mobile Phone</option>
-                        <option value="/assets/icons/expense-icons/music-note.svg">Music</option>
-                        <option value="/assets/icons/expense-icons/paw.svg">Pet</option>
-                        <option value="/assets/icons/expense-icons/pills.svg">Pills/Meds</option>
-                        <option value="/assets/icons/expense-icons/shopping-cart.svg">Shopping Cart</option>
-                        <option value="/assets/icons/expense-icons/sparkles.svg">Sparkles</option>
-                        <option value="/assets/icons/expense-icons/star.svg">Star</option>
-                        <option value="/assets/icons/expense-icons/tv.svg">TV</option>
-                        <option value="/assets/icons/expense-icons/tv-retro.svg">TV Retro</option>
-                    </select>
+                    <div class="custom-dropdown">
+                        <div class="selected-option" (click)="toggleDropdown()">
+                            <img [src]="editExpenseForm.get('icon')?.value" alt="Selected Icon">
+                        </div>
+                        <div class="options" *ngIf="dropdownOpen">
+                            <div 
+                                *ngFor="let icon of icons"
+                                class="option"
+                                (click)="selectIcon(icon)"
+                            >
+                                <img [src]="icon.path" [alt]="icon.name">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Cost input -->
                 <div class="input-ctnr">
                     <p>Cost</p>
                     <input type="text" formControlName="cost">
                 </div>
+                <!-- Payment Date input -->
                 <div class="input-ctnr">
                     <p>Payment Date</p>
                     <input type="text" formControlName="paymentDate" placeholder="Ex: 8th, Nov 2, etc.">
