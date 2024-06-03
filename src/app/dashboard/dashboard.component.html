@@ -33,12 +33,14 @@
     <div class="expense-tables-ctnr">
         <!-- Monthly Expenses -->
         <div class="table-ctnr">
-            <div class="table-title">
-                <h3>MONTHLY EXPENSES</h3>
-                <div class="list-count"><h3>{{monthlyExpenses.length}}</h3></div>
-                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
-                    <img src="assets/icons/new-page-black.svg" draggable="false">
-                </button>
+            <div class="table-header">
+                <div class="title-ctnr">
+                    <h3>MONTHLY EXPENSES</h3>
+                    <div class="list-count"><h3>{{monthlyExpenses.length}}</h3></div>
+                    <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                        <img src="assets/icons/new-page-black.svg" draggable="false">
+                    </button>
+                </div>
             </div>
             <table>
                 <tr>
@@ -74,12 +76,14 @@
 
         <!-- Yearly Expenses -->
         <div class="table-ctnr">
-            <div class="table-title">
-                <h3>YEARLY EXPENSES</h3>
-                <div class="list-count"><h3>{{yearlyExpenses.length}}</h3></div>
-                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
-                    <img src="assets/icons/new-page-black.svg" draggable="false">
-                </button>
+            <div class="table-header">
+                <div class="title-ctnr">
+                    <h3>YEARLY EXPENSES</h3>
+                    <div class="list-count"><h3>{{yearlyExpenses.length}}</h3></div>
+                    <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                        <img src="assets/icons/new-page-black.svg" draggable="false">
+                    </button>
+                </div>
             </div>
             <table>
                 <tr>
