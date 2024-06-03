@@ -17,7 +17,7 @@ import { Expense } from '../../models/expense.model';
 export class EditExpenseComponent {
     http = inject(HttpClient);
 
-    expenseId!: string;
+    expenseId!: string | null;
     expense$!: Observable<Expense>;
 
     editExpenseForm = new FormGroup({
@@ -32,12 +32,9 @@ export class EditExpenseComponent {
 
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
+        this.expenseId = id;
 
-        if (id !== null) {
-            this.expenseId = id;
-            this.loadExpense(this.expenseId);
-        }
-        else { this.expenseId = ''; }
+        if (id !== null) { this.loadExpense(id); }
     }
 
     private getExpenseById(id: string): Observable<Expense> {
@@ -46,6 +43,8 @@ export class EditExpenseComponent {
 
     private loadExpense(id: string): void {
         this.expense$ = this.getExpenseById(id);
+
+        // Fill expense form with retrieved observable data
         this.expense$.subscribe(expense => {
             this.editExpenseForm.patchValue({
                 name: expense.name,
@@ -58,6 +57,7 @@ export class EditExpenseComponent {
     }
 
     updateExpense(): void {
+        // What to do if form is not valid
         if (
             this.editExpenseForm.value.icon == null
             || this.editExpenseForm.value.name == null || this.editExpenseForm.value.name == ""
@@ -65,18 +65,12 @@ export class EditExpenseComponent {
             || this.editExpenseForm.value.cost == null || this.editExpenseForm.value.cost == 0
         ) {
             alert("Icon, Name, Type, and Cost fields are required.");
-            this.expense$.subscribe(expense => {
-                this.editExpenseForm.patchValue({
-                    name: expense.name,
-                    type: expense.type,
-                    icon: expense.icon,
-                    cost: expense.cost,
-                    paymentDate: expense.paymentDate
-                });
-            });
-
+            return;
         }
-        else {
+
+        // If expenseId is not null/empty
+        if (this.expenseId) {
+            // Edit existing expense
             const updatedExpense = this.editExpenseForm.value;
 
             this.http.put(`https://localhost:7265/api/Expenses/${this.expenseId}`, updatedExpense)
@@ -86,11 +80,22 @@ export class EditExpenseComponent {
                         alert("Expense updated successfully.");
                     },
                     error: (error) => {
-                        alert("Error updating expense: " + error);
+                        alert("Error updating expense.");
+                    }
+                });
+        } else {
+            // Add new expense
+            const newExpense = this.editExpenseForm.value;
+
+            this.http.post(`https://localhost:7265/api/Expenses`, newExpense)
+                .subscribe({
+                    next: (response) => {
+                        this.router.navigate(['/']); // Redirect to the dashboard
+                        alert("Expense added successfully.");
                     },
-                    // complete: () => {
-                    //     alert("Update request completed");
-                    // }
+                    error: (error) => {
+                        alert("Error adding expense.");
+                    }
                 });
         }
     }

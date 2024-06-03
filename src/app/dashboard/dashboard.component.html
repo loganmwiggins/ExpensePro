@@ -36,9 +36,9 @@
             <div class="table-title">
                 <h3>MONTHLY EXPENSES</h3>
                 <div class="list-count"><h3>{{monthlyExpenses.length}}</h3></div>
-                <a class="btn btn-icon" href="#addExpenseCtnr">
+                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </a>
+                </button>
             </div>
             <table>
                 <tr>
@@ -77,9 +77,9 @@
             <div class="table-title">
                 <h3>YEARLY EXPENSES</h3>
                 <div class="list-count"><h3>{{yearlyExpenses.length}}</h3></div>
-                <a class="btn btn-icon" href="#addExpenseCtnr">
+                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </a>
+                </button>
             </div>
             <table>
                 <tr>
@@ -124,9 +124,9 @@
                 @if (expenseList$ | async; as expenseList) {
                     <div class="list-count"><h3>{{expenseList.length}}</h3></div>
                 }
-                <a class="btn btn-icon" href="#addExpenseCtnr">
+                <button class="btn btn-icon" [routerLink]="['/edit-expense']">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
-                </a>
+                </button>
             </div>
             <table>
                 <tr>
@@ -179,65 +179,5 @@
                 </tr>
             </table>
         </div>
-    </div>
-
-    <!-- Add Expense Form -->
-    <div class="add-expense-ctnr" id="addExpenseCtnr">
-        <div class="table-title">
-            <h3>ADD EXPENSE</h3>
-        </div>
-        <form (ngSubmit)="addExpense()" [formGroup]="expenseForm">
-            <div class="form-inputs">
-                <div class="input-ctnr">
-                    <p>Icon</p>
-                    <select name="icon-select" formControlName="icon">
-                        <option value="/assets/icons/expense-icons/usd-circle.svg">Default</option>
-                        <option value="/assets/icons/expense-icons/baby.svg">Baby</option>
-                        <option value="/assets/icons/expense-icons/briefcase.svg">Briefcase</option>
-                        <option value="/assets/icons/expense-icons/car.svg">Car</option>
-                        <option value="/assets/icons/expense-icons/credit-card.svg">Card</option>
-                        <option value="/assets/icons/expense-icons/coins.svg">Coins</option>
-                        <option value="/assets/icons/expense-icons/computer.svg">Computer</option>
-                        <option value="/assets/icons/expense-icons/gamepad.svg">Game Controller</option>
-                        <option value="/assets/icons/expense-icons/house.svg">House</option>
-                        <option value="/assets/icons/expense-icons/globe.svg">Internet</option>
-                        <option value="/assets/icons/expense-icons/joystick.svg">Joystick</option>
-                        <option value="/assets/icons/expense-icons/laptop.svg">Laptop</option>
-                        <option value="/assets/icons/expense-icons/mobile-phone.svg">Mobile Phone</option>
-                        <option value="/assets/icons/expense-icons/music-note.svg">Music</option>
-                        <option value="/assets/icons/expense-icons/paw.svg">Pet</option>
-                        <option value="/assets/icons/expense-icons/pills.svg">Pills/Meds</option>
-                        <option value="/assets/icons/expense-icons/shopping-cart.svg">Shopping Cart</option>
-                        <option value="/assets/icons/expense-icons/sparkles.svg">Sparkles</option>
-                        <option value="/assets/icons/expense-icons/star.svg">Star</option>
-                        <option value="/assets/icons/expense-icons/tv.svg">TV</option>
-                        <option value="/assets/icons/expense-icons/tv-retro.svg">TV Retro</option>
-                    </select>
-                </div>
-                <div class="input-ctnr">
-                    <p>Name</p>
-                    <input type="text" formControlName="name">
-                </div>
-                <div class="input-ctnr">
-                    <p>Type</p>
-                    <select name="type-select" formControlName="type">
-                        <option value="Monthly">Monthly</option>
-                        <option value="Yearly">Yearly</option>
-                    </select>
-                </div>
-                <div class="input-ctnr">
-                    <p>Cost</p>
-                    <input type="number" formControlName="cost">
-                </div>
-                <div class="input-ctnr">
-                    <p>Payment Date</p>
-                    <input type="text" formControlName="paymentDate">
-                </div>
-            </div>
-            <div class="form-btns">
-                <button type="button" class="btn btn-lg" (click)="clearForm()">Clear</button>
-                <button type="submit" class="btn btn-lg btn-color">Add</button>
-            </div>
-        </form>
     </div>
 </div>

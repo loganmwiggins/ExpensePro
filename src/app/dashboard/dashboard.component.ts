@@ -49,37 +49,6 @@ export class DashboardComponent {
         });
     }
 
-    addExpense() {
-        if (
-            this.expenseForm.value.icon == null
-            || this.expenseForm.value.name == null || this.expenseForm.value.name == ""
-            || this.expenseForm.value.type == null || this.expenseForm.value.type == ""
-            || this.expenseForm.value.cost == null || this.expenseForm.value.cost == 0
-        ) {
-            alert("Icon, Name, Type, and Cost fields are required.");
-        }
-        else {
-            const addExpenseRequest = {
-                name: this.expenseForm.value.name,
-                type: this.expenseForm.value.type,
-                icon: this.expenseForm.value.icon,
-                cost: this.expenseForm.value.cost,
-                paymentDate: this.expenseForm.value.paymentDate
-            }
-    
-            this.http.post("https://localhost:7265/api/Expenses", addExpenseRequest)
-                .subscribe({
-                    next: (response) => {
-                        this.expenseList$ = this.getExpenses();  //refreshing observable with new values coming from api
-                        this.clearForm();
-                        this.ngOnInit();
-                    }
-                });
-        }
-    }
-
-    clearForm() { this.expenseForm.reset(); }
-
     deleteExpense(id: string) {
         this.http.delete(`https://localhost:7265/api/Expenses/${id}`)
             .subscribe({
@@ -100,7 +69,5 @@ export class DashboardComponent {
         this.totalMonthlyCost = this.monthlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
         this.totalYearlyCost = this.yearlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
         this.totalExpenseCost = this.totalMonthlyCost + this.totalYearlyCost;
-
-        // this.totalExpenseCost = Number(this.totalExpenseCost.toFixed(2));
     }
 }
