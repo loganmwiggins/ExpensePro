@@ -99,8 +99,10 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; }
 }
 
 .page-title {
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     flex-flow: wrap;
 

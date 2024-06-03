@@ -1,0 +1,96 @@
+<div class="content-ctnr">
+    <div class="page-title">
+        <img src="assets/icons/nav-icons/list-black.svg" draggable="false">
+        <h1>All Expenses</h1>
+    </div>
+
+    <!-- Expense Summary -->
+    <div class="expense-summary-ctnr">
+        <div class="expense-summary-hdr">
+            <h2>Expense Summary</h2>
+            <button class="btn btn-md" id="summary-toggle" value="month">
+                <p id="summary-toggle-text">PER MONTH</p>
+            </button>
+        </div>
+        
+        <div class="expense-summary-body">
+            <div class="summary">
+                <p>{{currencyFormatter.format(totalMonthlyCost)}}</p>
+                <p>from Monthly Charges</p>
+            </div>
+            <div class="summary">
+                <p>{{currencyFormatter.format(totalYearlyCost)}}</p>
+                <p>from Yearly Charges</p>
+            </div>
+            <div class="summary">
+                <p>{{currencyFormatter.format(totalExpenseCost)}}</p>
+                <p>in Total Charges</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Expenses -->
+    <div class="expense-tables-ctnr">
+        <div class="table-ctnr">
+            <div class="table-title">
+                <h3>ALL EXPENSES</h3>
+                @if (expenseList$ | async; as expenseList) {
+                    <div class="list-count"><h3>{{expenseList.length}}</h3></div>
+                }
+                <button class="btn btn-icon" [routerLink]="['/edit-expense']">
+                    <img src="assets/icons/new-page-black.svg" draggable="false">
+                </button>
+            </div>
+            <table>
+                <tr>
+                    <th>Expense</th>
+                    <th>Cost</th>
+                    <th>Payment Date</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+                @if (expenseList$ | async; as expenseList) {
+                    @if (expenseList.length > 0) {
+                        @for (expense of expenseList; track $index) {
+                            <tr>
+                                <td>
+                                    <img [src]="expense.icon" draggable="false">
+                                    {{expense.name}}
+                                </td>
+                                <td>{{currencyFormatter.format(expense.cost)}}</td>
+                                <td>{{expense.paymentDate}}</td>
+                                <td>{{expense.type}}</td>
+                                <td class="td-btns">
+                                    <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                                    </button>
+                                    <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                                        <img src="assets/icons/trash-black.svg" draggable="false">
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @else {
+                        <tr>
+                            <td>
+                                No expenses found...
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <th>Total:</th>
+                    <th class="total">{{currencyFormatter.format(totalExpenseCost)}}</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

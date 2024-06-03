@@ -1,28 +1,22 @@
-import { Component, Input, inject } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule, AsyncPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Expense } from '../../models/expense.model';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'app-all-expenses',
     standalone: true,
-    imports: [
-        CommonModule
-        , RouterModule
-        , HttpClientModule
-        , AsyncPipe
-    ],
-    templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.css'
+    imports: [ CommonModule, HttpClientModule, RouterModule, AsyncPipe ],
+    templateUrl: './all-expenses.component.html',
+    styleUrl: './all-expenses.component.css'
 })
+export class AllExpensesComponent {
 
-export class DashboardComponent {
-
-    http = inject(HttpClient);
-
+    http = inject(HttpClient);  //Enables calls to API
+    
     expenseList$ = this.getExpenses();
     monthlyExpenses: Expense[] = [];
     yearlyExpenses: Expense[] = [];
@@ -66,4 +60,5 @@ export class DashboardComponent {
         this.totalYearlyCost = this.yearlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
         this.totalExpenseCost = this.totalMonthlyCost + this.totalYearlyCost;
     }
+
 }
