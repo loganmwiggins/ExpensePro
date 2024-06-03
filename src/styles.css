@@ -96,7 +96,19 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; }
     gap: 2rem;
     background-color: var(--first);
     padding: 4rem 0;
+}
 
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-flow: wrap;
+
+    img {
+        max-height: 3rem;
+        max-width: 3rem;
+        filter: invert(93%) sepia(68%) saturate(659%) hue-rotate(32deg) brightness(98%) contrast(94%);
+    }
     h1 {
         color: var(--accent);
         font-size: 3rem;
