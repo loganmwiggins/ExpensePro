@@ -64,7 +64,7 @@ export class EditExpenseComponent {
             || this.editExpenseForm.value.type == null || this.editExpenseForm.value.type == ""
             || this.editExpenseForm.value.cost == null || this.editExpenseForm.value.cost == 0
         ) {
-            alert("Icon, Name, Type, and Cost fields are required.");
+            alert("Name, Type, Icon, and Cost fields are required.");
             return;
         }
 
