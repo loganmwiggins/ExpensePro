@@ -73,9 +73,8 @@ form {
 .options {
     position: absolute;
     display: flex;
-    justify-content: center;
-    flex-flow: wrap;
-    padding: 1rem;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
     top: 100%;
     left: 0;
     right: 0;
@@ -84,6 +83,13 @@ form {
     background: var(--third);
     z-index: 10;
 }
+
+.options-category {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
+}
+.options-category:last-child { margin-bottom: 0; }
 
 .option {
     padding: 1rem;

@@ -22,28 +22,61 @@ export class EditExpenseComponent {
 
     dropdownOpen = false;
 
-    icons = [
-        { path: '/assets/icons/expense-icons/usd-circle.svg', name: 'Default' },
-        { path: '/assets/icons/expense-icons/baby.svg', name: 'Baby' },
-        { path: '/assets/icons/expense-icons/briefcase.svg', name: 'Briefcase' },
-        { path: '/assets/icons/expense-icons/car.svg', name: 'Car' },
-        { path: '/assets/icons/expense-icons/credit-card.svg', name: 'Card' },
-        { path: '/assets/icons/expense-icons/coins.svg', name: 'Coins' },
-        { path: '/assets/icons/expense-icons/computer.svg', name: 'Computer' },
-        { path: '/assets/icons/expense-icons/gamepad.svg', name: 'Game Controller' },
-        { path: '/assets/icons/expense-icons/house.svg', name: 'House' },
-        { path: '/assets/icons/expense-icons/globe.svg', name: 'Internet' },
-        { path: '/assets/icons/expense-icons/joystick.svg', name: 'Joystick' },
-        { path: '/assets/icons/expense-icons/laptop.svg', name: 'Laptop' },
-        { path: '/assets/icons/expense-icons/mobile-phone.svg', name: 'Mobile Phone' },
-        { path: '/assets/icons/expense-icons/music-note.svg', name: 'Music' },
-        { path: '/assets/icons/expense-icons/paw.svg', name: 'Pet' },
-        { path: '/assets/icons/expense-icons/pills.svg', name: 'Pills/Meds' },
-        { path: '/assets/icons/expense-icons/shopping-cart.svg', name: 'Shopping Cart' },
-        { path: '/assets/icons/expense-icons/sparkles.svg', name: 'Sparkles' },
-        { path: '/assets/icons/expense-icons/star.svg', name: 'Star' },
-        { path: '/assets/icons/expense-icons/tv.svg', name: 'TV' },
-        { path: '/assets/icons/expense-icons/tv-retro.svg', name: 'TV Retro' }
+    iconsFinance= [
+        { path: "/assets/icons/expense-icons/usd-circle.svg", name: "Default" },
+        { path: "/assets/icons/expense-icons/coins.svg", name: "Coins" },
+        { path: "/assets/icons/expense-icons/credit-card.svg", name: "Credit Card" },
+        { path: "/assets/icons/expense-icons/dollar-bill.svg", name: "Dollar Bill" },
+        { path: "/assets/icons/expense-icons/bank.svg", name: "Bank" },
+        { path: "/assets/icons/expense-icons/piggy-bank.svg", name: "Piggy Bank" }
+    ];
+
+    iconsPersonal = [
+        { path: "/assets/icons/expense-icons/house.svg", name: "House" },
+        { path: "/assets/icons/expense-icons/briefcase.svg", name: "Briefcase" },
+        { path: "/assets/icons/expense-icons/car.svg", name: "Car" },
+        { path: "/assets/icons/expense-icons/gas-pump.svg", name: "Gas Pump" },
+        { path: "/assets/icons/expense-icons/shopping-cart.svg", name: "Shopping Cart" },
+        { path: "/assets/icons/expense-icons/groceries.svg", name: "Groceries" },
+        { path: "/assets/icons/expense-icons/gym.svg", name: "Gym" },
+        { path: "/assets/icons/expense-icons/paw.svg", name: "Pet" },
+        { path: "/assets/icons/expense-icons/baby.svg", name: "Baby" },
+        { path: "/assets/icons/expense-icons/hospital.svg", name: "Hospital" },
+        { path: "/assets/icons/expense-icons/stethoscope.svg", name: "Stethoscope" },
+        { path: "/assets/icons/expense-icons/pills.svg", name: "Pills/Meds" },
+        { path: "/assets/icons/expense-icons/tooth.svg", name: "Tooth" },
+        { path: "/assets/icons/expense-icons/bolt.svg", name: "Bolt" },
+        { path: "/assets/icons/expense-icons/bulb.svg", name: "Bulb" },
+        { path: "/assets/icons/expense-icons/raindrops.svg", name: "Raindrops" },
+        { path: "/assets/icons/expense-icons/faucet.svg", name: "Faucet" }
+    ];
+
+    iconsEntertainment= [
+        { path: "/assets/icons/expense-icons/music-note.svg", name: "Music" },
+        { path: "/assets/icons/expense-icons/tv-retro.svg", name: "TV Retro" },
+        { path: "/assets/icons/expense-icons/clapperboard.svg", name: "Clapperboard" },
+        { path: "/assets/icons/expense-icons/gamepad.svg", name: "Game Controller" },
+        { path: "/assets/icons/expense-icons/joystick.svg", name: "Joystick" },
+        { path: "/assets/icons/expense-icons/ticket.svg", name: "Ticket" },
+        { path: "/assets/icons/expense-icons/golf-club.svg", name: "Golf Club" }
+    ];
+
+    iconsTech= [
+        { path: "/assets/icons/expense-icons/computer.svg", name: "Computer" },
+        { path: "/assets/icons/expense-icons/laptop.svg", name: "Laptop" },
+        { path: "/assets/icons/expense-icons/mobile-phone.svg", name: "Mobile Phone" },
+        { path: "/assets/icons/expense-icons/tv.svg", name: "TV" },
+        { path: "/assets/icons/expense-icons/wifi.svg", name: "Wifi" },
+        { path: "/assets/icons/expense-icons/cloud.svg", name: "Cloud" },
+        { path: "/assets/icons/expense-icons/plug-cable.svg", name: "Plug Cable" }
+    ];
+
+    iconsOther= [
+        { path: "/assets/icons/expense-icons/star.svg", name: "Star" },
+        { path: "/assets/icons/expense-icons/sparkles.svg", name: "Sparkles" },
+        { path: "/assets/icons/expense-icons/heat.svg", name: "Heat" },
+        { path: "/assets/icons/expense-icons/shield.svg", name: "Shield" },
+        { path: "/assets/icons/expense-icons/globe.svg", name: "Globe" }
     ];
 
     editExpenseForm = new FormGroup({

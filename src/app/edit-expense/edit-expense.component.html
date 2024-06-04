@@ -16,7 +16,7 @@
                 <!-- Name input -->
                 <div class="input-ctnr">
                     <p>Name</p>
-                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, etc.">
+                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, ...">
                 </div>
                 <!-- Type input -->
                 <div class="input-ctnr">
@@ -31,15 +31,63 @@
                     <p>Icon</p>
                     <div class="custom-dropdown">
                         <div class="selected-option" (click)="toggleDropdown()">
-                            <img [src]="editExpenseForm.get('icon')?.value" alt="Selected Icon">
+                            <img [src]="editExpenseForm.get('icon')?.value" alt="Selected Icon" draggable="false">
                         </div>
                         <div class="options" *ngIf="dropdownOpen">
-                            <div 
-                                *ngFor="let icon of icons"
-                                class="option"
-                                (click)="selectIcon(icon)"
-                            >
-                                <img [src]="icon.path" [alt]="icon.name">
+                            <p>Finance</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsFinance"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Home/Personal</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsPersonal"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Entertainment</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsEntertainment"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Tech</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsTech"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Other</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsOther"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,9 +100,10 @@
                 <!-- Payment Date input -->
                 <div class="input-ctnr">
                     <p>Payment Date</p>
-                    <input type="text" formControlName="paymentDate" placeholder="Ex: 8th, Nov 2, etc.">
+                    <input type="text" formControlName="paymentDate" placeholder="Ex: 8th, Nov 2, ...">
                 </div>
             </div>
+            
             <div class="form-btns">
                 <button
                     type="button"
