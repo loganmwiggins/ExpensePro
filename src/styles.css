@@ -1,4 +1,5 @@
 /* You can add GLOBAL STYLES to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/purple-green.css';
 
 /* FONTS */
 @font-face { font-family: "Poppins-Regular"; src: url(assets/fonts/Poppins/Poppins-Regular.ttf); }
