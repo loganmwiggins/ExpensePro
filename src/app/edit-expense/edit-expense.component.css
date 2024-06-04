@@ -22,7 +22,7 @@ form {
 }
 
 .input-ctnr {
-    width: 30%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -41,6 +41,7 @@ form {
         padding: .5rem 1rem;
     }
 }
+.icon-input-ctnr { max-width: fit-content; }
 
 .form-btns {
     display: flex;
@@ -61,7 +62,8 @@ form {
     background: var(--third);
     border: 1.5px solid var(--text-grey);
     border-radius: 1rem;
-    padding: .65rem 1rem;
+    padding: .75rem 1rem;
+    max-width: fit-content;
     cursor: pointer;
 
     img {
@@ -71,6 +73,7 @@ form {
 }
 
 .options {
+    width: 800%;
     position: absolute;
     display: flex;
     flex-direction: column;

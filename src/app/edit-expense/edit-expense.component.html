@@ -13,21 +13,8 @@
     <div class="edit-expense-ctnr">
         <form [formGroup]="editExpenseForm" (ngSubmit)="updateExpense()">
             <div class="form-inputs">
-                <!-- Name input -->
-                <div class="input-ctnr">
-                    <p>Name</p>
-                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, ...">
-                </div>
-                <!-- Type input -->
-                <div class="input-ctnr">
-                    <p>Type</p>
-                    <select name="type-select" formControlName="type">
-                        <option value="Monthly">Monthly</option>
-                        <option value="Yearly">Yearly</option>
-                    </select>
-                </div>
                 <!-- Icon input -->
-                <div class="input-ctnr">
+                <div class="input-ctnr icon-input-ctnr">
                     <p>Icon</p>
                     <div class="custom-dropdown">
                         <div class="selected-option" (click)="toggleDropdown()">
@@ -92,6 +79,20 @@
                         </div>
                     </div>
                 </div>
+                <!-- Name input -->
+                <div class="input-ctnr">
+                    <p>Name</p>
+                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, ...">
+                </div>
+                <!-- Type input -->
+                <div class="input-ctnr">
+                    <p>Type</p>
+                    <select name="type-select" formControlName="type">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+                
                 <!-- Cost input -->
                 <div class="input-ctnr">
                     <p>Cost</p>
