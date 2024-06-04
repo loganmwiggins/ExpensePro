@@ -30,9 +30,16 @@ export class ExpenseTablesComponent {
     sortedMonthlyExpenses: Expense[] = [];
     sortedYearlyExpenses: Expense[] = [];
 
-    totalMonthlyCost: number = 0;
-    totalYearlyCost: number = 0;
+    totalMonthlyCost: number = 0;   // Sum of all monthly expenses
+    totalYearlyCost: number = 0;    // Sum of all yearly expenses
     totalExpenseCost: number = 0;
+
+    totalMonthlyCostPerYear: number = 0;    // Sum of all monthly expenses * 12
+    totalYearlyCostPerMonth: number = 0;    // Summ of all yearly expenses / 12
+    totalExpenseCostPerMonth: number = 0;   // totalMonthlyCost + totalYearlyCostPerMonth
+    totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
+
+    showMonthlyValues = true;
 
     // Ensures numbers follow USD currency format -- $xx.xx
     currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -49,8 +56,12 @@ export class ExpenseTablesComponent {
             this.sortedMonthlyExpenses = [...this.originalMonthlyExpenses]; // Initialize sortedMonthlyExpenses with original/default MonthlyExpenses
             this.sortedYearlyExpenses = [...this.originalYearlyExpenses];   // Initialize sortedYearlyExpenses with original/default YearlyExpenses
             this.sortedAllExpenses = [...expenses];  // Initialize sortedAllExpenses with all expenses
-            this.calculateTotalExpenseCost();
+            this.calculateExpenseCosts();
         });
+    }
+
+    toggleSummaryValues() {
+        this.showMonthlyValues = !this.showMonthlyValues;
     }
 
     deleteExpense(id: string) {
@@ -71,10 +82,15 @@ export class ExpenseTablesComponent {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
     }
 
-    calculateTotalExpenseCost(): void {
+    calculateExpenseCosts(): void {
         this.totalMonthlyCost = this.originalMonthlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
         this.totalYearlyCost = this.originalYearlyExpenses.reduce((sum, expense) => sum + expense.cost, 0);
-        this.totalExpenseCost = this.totalMonthlyCost + this.totalYearlyCost;
+
+        this.totalMonthlyCostPerYear = this.totalMonthlyCost * 12;
+        this.totalYearlyCostPerMonth = this.totalYearlyCost / 12;
+
+        this.totalExpenseCostPerMonth = this.totalMonthlyCost + this.totalYearlyCostPerMonth;
+        this.totalExpenseCostPerYear = this.totalYearlyCost + this.totalMonthlyCostPerYear;
     }
 
     // Sort ALL EXPENSES table
