@@ -32,7 +32,7 @@
                 @if (expenseList$ | async; as expenseList) {
                     <div class="list-count"><h3>{{expenseList.length}}</h3></div>
                 }
-                <button class="btn btn-icon" [routerLink]="['/edit-expense']">
+                <button class="btn btn-icon" routerLink="/edit-expense">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
                 </button>
             </div>
@@ -109,7 +109,7 @@
             <div class="title-ctnr">
                 <h3>MONTHLY EXPENSES</h3>
                 <div class="list-count"><h3>{{originalMonthlyExpenses.length}}</h3></div>
-                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                <button type="button" class="btn btn-icon" routerLink="/edit-expense">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
                 </button>
             </div>
@@ -161,7 +161,7 @@
             <div class="title-ctnr">
                 <h3>YEARLY EXPENSES</h3>
                 <div class="list-count"><h3>{{originalYearlyExpenses.length}}</h3></div>
-                <button type="button" class="btn btn-icon" [routerLink]="['/edit-expense']">
+                <button type="button" class="btn btn-icon" routerLink="/edit-expense">
                     <img src="assets/icons/new-page-black.svg" draggable="false">
                 </button>
             </div>
