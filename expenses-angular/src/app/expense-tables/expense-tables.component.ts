@@ -151,6 +151,9 @@ export class ExpenseTablesComponent {
             case 'cost-desc': //Cost (High to Low)
                 this.sortedMonthlyExpenses.sort((a, b) => b.cost - a.cost);
                 break;
+            case 'category-asc':  // Category (A-Z)
+                this.sortedMonthlyExpenses.sort((a, b) => a.category.localeCompare(b.category));
+                break;
             default:
                 break;
         }
@@ -172,6 +175,9 @@ export class ExpenseTablesComponent {
                 break;
             case 'cost-desc': //Cost (High to Low)
                 this.sortedYearlyExpenses.sort((a, b) => b.cost - a.cost);
+                break;
+            case 'category-asc':  // Category (A-Z)
+                this.sortedYearlyExpenses.sort((a, b) => a.category.localeCompare(b.category));
                 break;
             default:
                 break;
