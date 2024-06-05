@@ -58,7 +58,8 @@ namespace ExpensesAngularAPI.Controllers
                 Type = addExpenseDTO.Type,
                 Icon = addExpenseDTO.Icon,
                 Cost = addExpenseDTO.Cost,
-                PaymentDate = addExpenseDTO.PaymentDate
+                PaymentDate = addExpenseDTO.PaymentDate,
+                Category = addExpenseDTO.Category
             };
 
             dbContext.Expenses.Add(expenseEntity);
@@ -86,6 +87,7 @@ namespace ExpensesAngularAPI.Controllers
             expense.Icon = updateExpenseDTO.Icon;
             expense.Cost = updateExpenseDTO.Cost;
             expense.PaymentDate = updateExpenseDTO.PaymentDate;
+            expense.Category = updateExpenseDTO.Category;
 
             dbContext.SaveChanges();
 

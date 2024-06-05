@@ -11,5 +11,7 @@
         public required double Cost { get; set; }
 
         public string? PaymentDate { get; set; }
+
+        public required string Category { get; set; }
     }
 }
