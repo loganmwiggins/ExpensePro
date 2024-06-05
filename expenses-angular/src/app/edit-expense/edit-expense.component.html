@@ -82,17 +82,19 @@
                 <!-- Name input -->
                 <div class="input-ctnr">
                     <p>Name</p>
-                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, ...">
+                    <input type="text" formControlName="name" placeholder="Ex:   Rent, Netflix, ...">
                 </div>
                 <!-- Type input -->
                 <div class="input-ctnr">
                     <p>Type</p>
-                    <select name="type-select" formControlName="type">
+                    <select formControlName="type" [ngStyle]="editExpenseForm.value.type == '' ? {'color': 'grey'} : {'color': 'white'}">
+                        <option value="" selected disabled>Select Monthly or Yearly...</option>
                         <option value="Monthly">Monthly</option>
                         <option value="Yearly">Yearly</option>
                     </select>
                 </div>
-                
+            </div>
+            <div class="form-inputs">
                 <!-- Cost input -->
                 <div class="input-ctnr">
                     <p>Cost</p>
@@ -101,7 +103,23 @@
                 <!-- Payment Date input -->
                 <div class="input-ctnr">
                     <p>Payment Date</p>
-                    <input type="text" formControlName="paymentDate" placeholder="Ex: 8th, Nov 2, ...">
+                    <input type="text" formControlName="paymentDate" placeholder="Ex:   8th, Nov 2, ...">
+                </div>
+                <!-- Category input -->
+                <div class="input-ctnr">
+                    <p>Category</p>
+                    <select formControlName="category" [ngStyle]="editExpenseForm.value.category == '' ? {'color': 'grey'} : {'color': 'white'}">
+                        <option value="" selected disabled>Select a Category...</option>
+                        <option value="Housing & Utilities">Housing & Utilities</option>
+                        <option value="Car & Transportation">Car & Transportation</option>
+                        <option value="Food & Dining">Food & Dining</option>
+                        <option value="Health & Wellness">Health & Wellness</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Debt & Savings">Debt & Savings</option>
+                        <option value="Personal & Family Care">Personal & Family Care</option>
+                        <option value="Entertainment & Recreation">Entertainment & Recreation</option>
+                        <option value="Miscellaneous & Other">Miscellaneous & Other</option>
+                    </select>
                 </div>
             </div>
             

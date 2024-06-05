@@ -108,23 +108,26 @@ export class ExpenseTablesComponent {
         const sortOption = (event.target as HTMLSelectElement).value;
 
         switch (sortOption) {
-            case 'default':   //Default (Order Added)
+            case 'default':   // Default (Order Added)
                 this.sortedAllExpenses = [...this.originalAllExpenses];
                 break;
-            case 'name-asc':  //Name (A-Z)
+            case 'name-asc':  // Name (A-Z)
                 this.sortedAllExpenses.sort((a, b) => a.name.localeCompare(b.name));
                 break;
-            case 'cost-asc':  //Cost (Low to High)
+            case 'cost-asc':  // Cost (Low to High)
                 this.sortedAllExpenses.sort((a, b) => a.cost - b.cost);
                 break;
-            case 'cost-desc': //Cost (High to Low)
+            case 'cost-desc': // Cost (High to Low)
                 this.sortedAllExpenses.sort((a, b) => b.cost - a.cost);
                 break;
-            case 'type-asc':  //Type (Monthly to Yearly)
+            case 'type-asc':  // Type (Monthly to Yearly)
                 this.sortedAllExpenses.sort((a, b) => a.type.localeCompare(b.type));
                 break;
-            case 'type-desc':  //Type (Yearly to Monthly)
+            case 'type-desc':  // Type (Yearly to Monthly)
                 this.sortedAllExpenses.sort((a, b) => b.type.localeCompare(a.type));
+                break;
+            case 'category-asc':  // Category (A-Z)
+                this.sortedAllExpenses.sort((a, b) => a.category.localeCompare(b.category));
                 break;
             default:
                 break;

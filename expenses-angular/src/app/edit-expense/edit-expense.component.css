@@ -12,7 +12,7 @@ form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .form-inputs {
@@ -40,13 +40,16 @@ form {
         border-radius: 1rem;
         padding: .5rem 1rem;
     }
+    option { color: white; }
+    option:first-child { color: grey; }
 }
-.icon-input-ctnr { max-width: fit-content; }
+/* .icon-input-ctnr { max-width: fit-content; } */
 
 .form-btns {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 
@@ -63,7 +66,7 @@ form {
     border: 1.5px solid var(--text-grey);
     border-radius: 1rem;
     padding: .75rem 1rem;
-    max-width: fit-content;
+    /* max-width: fit-content; */
     cursor: pointer;
 
     img {
@@ -73,7 +76,7 @@ form {
 }
 
 .options {
-    width: 800%;
+    /* width: 800%; */
     position: absolute;
     display: flex;
     flex-direction: column;

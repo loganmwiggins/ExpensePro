@@ -65,6 +65,7 @@
                     <option value="cost-desc">Cost (High to Low)</option>
                     <option value="type-asc">Type (Monthly to Yearly)</option>
                     <option value="type-desc">Type (Yearly to Monthly)</option>
+                    <option value="category-asc">Category (A-Z)</option>
                 </select>
             </div>
         </div>
@@ -74,6 +75,7 @@
                 <th>Cost</th>
                 <th>Payment Date</th>
                 <th>Type</th>
+                <th>Category</th>
                 <th></th>
             </tr>
             @if (expenseList$ | async; as expenseList) {
@@ -87,6 +89,7 @@
                             <td>{{currencyFormatter.format(expense.cost)}}</td>
                             <td>{{expense.paymentDate}}</td>
                             <td>{{expense.type}}</td>
+                            <td>{{expense.category}}</td>
                             <td class="td-btns">
                                 <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
                                     <img src="assets/icons/pencil-black.svg" draggable="false">

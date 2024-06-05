@@ -84,7 +84,8 @@ export class EditExpenseComponent {
         type: new FormControl<string>(""),
         icon: new FormControl<string>("/assets/icons/expense-icons/usd-circle.svg"),
         cost: new FormControl<number>(0),
-        paymentDate: new FormControl<string>("")
+        paymentDate: new FormControl<string>(""),
+        category: new FormControl<string>("")
     });
 
     constructor(private route: ActivatedRoute, private router: Router) {}
@@ -110,7 +111,8 @@ export class EditExpenseComponent {
                 type: expense.type,
                 icon: expense.icon,
                 cost: expense.cost,
-                paymentDate: expense.paymentDate
+                paymentDate: expense.paymentDate,
+                category: expense.category
             });
         });
     }
@@ -131,8 +133,9 @@ export class EditExpenseComponent {
             || this.editExpenseForm.value.name == null || this.editExpenseForm.value.name == ""
             || this.editExpenseForm.value.type == null || this.editExpenseForm.value.type == ""
             || this.editExpenseForm.value.cost == null || this.editExpenseForm.value.cost == 0
+            || this.editExpenseForm.value.category == null || this.editExpenseForm.value.category == ""
         ) {
-            alert("Name, Type, Icon, and Cost fields are required.");
+            alert("Icon, Name, Type, Cost, and Category fields are required.");
             return;
         }
 
