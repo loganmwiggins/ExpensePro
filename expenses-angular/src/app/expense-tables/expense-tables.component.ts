@@ -25,8 +25,6 @@ import { Expense } from '../../models/expense.model';
 
 export class ExpenseTablesComponent {
     @Input() showSummary = true;
-    @Input() showAllExpensesTable = true;
-    @Input() showSeparatedTables = true;
 
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();
@@ -48,8 +46,8 @@ export class ExpenseTablesComponent {
     totalExpenseCostPerMonth: number = 0;   // totalMonthlyCost + totalYearlyCostPerMonth
     totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
 
-    showMonthlyValues = true;
     summaryToggleValue: string = "perMonth";
+    tableViewValue: string = "separated";
 
     // Ensures numbers follow USD currency format -- $xx.xx
     currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -72,6 +70,10 @@ export class ExpenseTablesComponent {
 
     changeSummaryValue(event: any) {
         this.summaryToggleValue = event.value;
+    }
+
+    changeTableView(event: any) {
+        this.tableViewValue = event.value;
     }
 
     deleteExpense(id: string) {

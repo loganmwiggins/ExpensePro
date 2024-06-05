@@ -43,12 +43,18 @@
 </div>
 
 
-<!-- ALL EXPENSES (COMBINED TABLE) -->
-<div class="expense-tables-ctnr" *ngIf="showAllExpensesTable">
+<!-- MY EXPENSES -->
+<div class="expense-tables-ctnr">
     <div class="expense-tables-hdr">
         <h2>My Expenses</h2>
+        <mat-button-toggle-group [(ngModel)]="tableViewValue" (change)="changeTableView($event)">
+            <mat-button-toggle value="separated">SEPARATED BY TYPE</mat-button-toggle>
+            <mat-button-toggle value="combined">COMBINED</mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
-    <div class="table-group-ctnr">
+
+    <!-- COMBINED  -->
+    <div class="table-group-ctnr" *ngIf="tableViewValue == 'combined'">
         <div class="table-ctnr">
             <div class="table-header">
                 <div class="title-ctnr">
@@ -132,16 +138,9 @@
             </table>
         </div>
     </div>
-    
-</div>
 
-
-<!-- SEPARATED EXPENSE TABLES -->
-<div class="expense-tables-ctnr" *ngIf="showSeparatedTables">
-    <div class="expense-tables-hdr">
-        <h2>My Expenses</h2>
-    </div>
-    <div class="table-group-ctnr">
+    <!-- SEPARATED BY TYPE -->
+    <div class="table-group-ctnr" *ngIf="tableViewValue == 'separated'">
         <!-- Monthly Expenses -->
         <div class="table-ctnr">
             <div class="table-header">
