@@ -1,0 +1,152 @@
+/* Tables */
+.expense-tables-ctnr {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: var(--fourth);
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+}
+
+.table-group-ctnr {
+    display: flex;
+    gap: 4rem;
+}
+
+.table-ctnr {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: var(--text-white);
+    font-size: 1.5rem;
+}
+
+/* Table Header */
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    color: var(--text-grey);
+}
+
+.title-ctnr {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.list-count {
+    background-color: var(--accent);
+    color: var(--fourth);
+    font-size: 1.25rem;
+    padding: .25rem .85rem;
+    border-radius: 100%;
+}
+
+.sort-ctnr {
+    display: flex;
+    align-items: center;
+    flex-flow: wrap;
+    gap: 1rem;
+}
+
+#sort-options {
+    font-family: "Poppins-Regular";
+    font-size: 1.5rem;
+    background: var(--third);
+    color: #fff;
+    border: 1.5px solid rgb(65, 65, 65);
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+}
+/* *** */
+
+table, th, td {
+    border-collapse: collapse;
+    width: 100%;
+}
+table {
+    color: var(--text-white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    width: 100%;
+}
+tr {
+    display: flex;
+    justify-content: center;
+    /* border-top: 1px solid rgba(221, 221, 221, 0.25); */
+}
+    tr:nth-child(even) { border-radius: 2rem; }
+    tr:nth-child(odd) {
+        background-color: var(--third);
+        border-radius: 2rem;
+    }
+    tr:first-child {
+        background-color: var(--second);
+        border-bottom: 1px solid rgba(221, 221, 221, 0.25);
+    }
+    tr:last-child {
+        background-color: var(--second);
+        border-top: 1px solid rgba(221, 221, 221, 0.25);
+    }
+th {
+    padding: 2rem;
+    text-align: left; 
+    border-top: 0;
+    border-radius: 2rem;
+}
+td {
+    padding: 2rem;
+    text-align: left;
+    display: flex; 
+    align-items: center;
+    gap: 1rem;
+    
+    img { max-width: 2rem; max-height: 2rem; }
+}
+.td-btns {
+    justify-content: right;
+
+    img { max-width: 2rem; max-height: 2rem; }
+}
+
+.total { color: var(--accent); }
+
+
+/* Expense Summary */
+.expense-summary-ctnr {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+}
+
+.expense-summary-hdr,
+.expense-tables-hdr {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    h2 { font-size: 2.75rem; }
+}
+
+.expense-summary-body { display: flex; }
+
+.summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    p:first-child { font-size: 3.5rem; }
+    p:last-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
+}
