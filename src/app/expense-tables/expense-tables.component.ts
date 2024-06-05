@@ -1,18 +1,26 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-// import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { Expense } from '../../models/expense.model';
 
 @Component({
-  selector: 'app-expense-tables',
-  standalone: true,
-  imports: [ CommonModule, HttpClientModule, RouterModule, AsyncPipe ],
-  templateUrl: './expense-tables.component.html',
-  styleUrl: './expense-tables.component.css'
+    selector: 'app-expense-tables',
+    standalone: true,
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterModule,
+        AsyncPipe,
+        MatButtonToggleModule,
+        FormsModule
+    ],
+    templateUrl: './expense-tables.component.html',
+    styleUrl: './expense-tables.component.css'
 })
 
 export class ExpenseTablesComponent {
@@ -41,6 +49,7 @@ export class ExpenseTablesComponent {
     totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
 
     showMonthlyValues = true;
+    summaryToggleValue: string = "perMonth";
 
     // Ensures numbers follow USD currency format -- $xx.xx
     currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -61,8 +70,8 @@ export class ExpenseTablesComponent {
         });
     }
 
-    toggleSummaryValues() {
-        this.showMonthlyValues = !this.showMonthlyValues;
+    changeSummaryValue(event: any) {
+        this.summaryToggleValue = event.value;
     }
 
     deleteExpense(id: string) {

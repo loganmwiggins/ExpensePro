@@ -2,16 +2,16 @@
 <div class="expense-summary-ctnr" *ngIf="showSummary">
     <div class="expense-summary-hdr">
         <h2>Expense Summary</h2>
-        <button class="btn btn-md" id="summary-toggle" value="month" (click)="toggleSummaryValues()">
-            <p id="summary-toggle-text" *ngIf="showMonthlyValues">PER MONTH</p>
-            <p id="summary-toggle-text" *ngIf="!showMonthlyValues">PER YEAR</p>
-        </button>
+        <mat-button-toggle-group [(ngModel)]="summaryToggleValue" (change)="changeSummaryValue($event)">
+            <mat-button-toggle value="perMonth">PER MONTH</mat-button-toggle>
+            <mat-button-toggle value="perYear">PER YEAR</mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
     
     <div class="expense-summary-body">
         <!-- Monthly Charges Summary -->
         <div class="summary">
-            <ng-container *ngIf="showMonthlyValues; else yearlyValuesForMonthlyCharges">
+            <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForMonthlyCharges">
                 <p>{{currencyFormatter.format(totalMonthlyCost)}}</p>
             </ng-container>
             <ng-template #yearlyValuesForMonthlyCharges>
@@ -21,7 +21,7 @@
         </div>
         <!-- Yearly Charges Summary -->
         <div class="summary">
-            <ng-container *ngIf="showMonthlyValues; else yearlyValuesForYearlyCharges">
+            <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForYearlyCharges">
                 <p>{{currencyFormatter.format(totalYearlyCostPerMonth)}}</p>
             </ng-container>
             <ng-template #yearlyValuesForYearlyCharges>
@@ -31,7 +31,7 @@
         </div>
         <!-- Total Charges Summary -->
         <div class="summary">
-            <ng-container *ngIf="showMonthlyValues; else yearlyValuesForTotalCharges">
+            <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForTotalCharges">
                 <p class="total">{{currencyFormatter.format(totalExpenseCostPerMonth)}}</p>
             </ng-container>
             <ng-template #yearlyValuesForTotalCharges>
@@ -112,7 +112,7 @@
             }
             <tr>
                 <th>Total:</th>
-                <ng-container *ngIf="showMonthlyValues; else yearlyValuesForTotalCharges">
+                <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForTotalCharges">
                     <th class="total">{{currencyFormatter.format(totalExpenseCostPerMonth)}} / month</th>
                 </ng-container>
                 <ng-template #yearlyValuesForTotalCharges>
