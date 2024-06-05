@@ -1,0 +1,121 @@
+<div class="content-ctnr">
+    <div class="page-title">
+        <ng-container *ngIf="expenseId; else addExpense">
+            <img src="assets/icons/pencil-black.svg" draggable="false">
+            <h1>Edit Expense</h1>
+        </ng-container>
+        <ng-template #addExpense>
+            <img src="assets/icons/new-page-black.svg" draggable="false">
+            <h1>Add Expense</h1>
+        </ng-template>
+    </div>
+
+    <div class="edit-expense-ctnr">
+        <form [formGroup]="editExpenseForm" (ngSubmit)="updateExpense()">
+            <div class="form-inputs">
+                <!-- Icon input -->
+                <div class="input-ctnr icon-input-ctnr">
+                    <p>Icon</p>
+                    <div class="custom-dropdown">
+                        <div class="selected-option" (click)="toggleDropdown()">
+                            <img [src]="editExpenseForm.get('icon')?.value" alt="Selected Icon" draggable="false">
+                        </div>
+                        <div class="options" *ngIf="dropdownOpen">
+                            <p>Finance</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsFinance"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Home/Personal</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsPersonal"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Entertainment</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsEntertainment"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Tech</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsTech"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                            <p>Other</p>
+                            <div class="options-category">
+                                <div 
+                                    *ngFor="let icon of iconsOther"
+                                    class="option"
+                                    [title]="icon.name"
+                                    (click)="selectIcon(icon)"
+                                >
+                                    <img [src]="icon.path" [alt]="icon.name" draggable="false">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Name input -->
+                <div class="input-ctnr">
+                    <p>Name</p>
+                    <input type="text" formControlName="name" placeholder="Ex: Rent, Netflix, ...">
+                </div>
+                <!-- Type input -->
+                <div class="input-ctnr">
+                    <p>Type</p>
+                    <select name="type-select" formControlName="type">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+                
+                <!-- Cost input -->
+                <div class="input-ctnr">
+                    <p>Cost</p>
+                    <input type="text" formControlName="cost">
+                </div>
+                <!-- Payment Date input -->
+                <div class="input-ctnr">
+                    <p>Payment Date</p>
+                    <input type="text" formControlName="paymentDate" placeholder="Ex: 8th, Nov 2, ...">
+                </div>
+            </div>
+            
+            <div class="form-btns">
+                <button
+                    type="button"
+                    class="btn btn-lg"
+                    routerLink="/dashboard"
+                >Cancel</button>
+                <button
+                    type="submit"
+                    class="btn btn-lg btn-color"
+                >Save</button>
+            </div>
+        </form>
+    </div>
+</div>

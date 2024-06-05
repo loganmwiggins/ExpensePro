@@ -1,24 +1,26 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Frontend - Angular specific ignores
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Compiled output
+/expenses-angular/dist
+/expenses-angular/tmp
+/expenses-angular/out-tsc
+/expenses-angular/bazel-out
+
+# Node modules
+/expenses-angular/node_modules
+/expenses-angular/npm-debug.log
+/expenses-angular/yarn-error.log
 
 # IDEs and editors
 .idea/
-.project
+/.project
 .classpath
 .c9/
 *.launch
 .settings/
-*.sublime-workspace
+/expenses-angular/*.sublime-workspace
 
 # Visual Studio Code
 .vscode/*
@@ -29,14 +31,76 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+/expenses-angular/.angular/cache
+/expenses-angular/.sass-cache/
+/expenses-angular/connect.lock
+/expenses-angular/coverage
+/expenses-angular/libpeerconnection.log
+/expenses-angular/testem.log
+/expenses-angular/typings
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Backend - C# specific ignores
+
+# Compiled binary directories
+/ExpensesAngularAPI/ExpensesAngularAPI/bin/
+/ExpensesAngularAPI/ExpensesAngularAPI/obj/
+
+# User-specific files
+/ExpensesAngularAPI/ExpensesAngularAPI/.vs/
+/ExpensesAngularAPI/ExpensesAngularAPI/.userprefs
+
+# Logs
+/ExpensesAngularAPI/ExpensesAngularAPI/*.log
+/ExpensesAngularAPI/ExpensesAngularAPI/logs
+
+# Temporary files
+/ExpensesAngularAPI/ExpensesAngularAPI/tmp/
+/ExpensesAngularAPI/ExpensesAngularAPI/temp/
+
+# Package directories
+/ExpensesAngularAPI/ExpensesAngularAPI/packages/
+/ExpensesAngularAPI/ExpensesAngularAPI/node_modules/
+
+# Environment files
+/ExpensesAngularAPI/ExpensesAngularAPI/.env
+
+# Rider and JetBrains IDEs
+/ExpensesAngularAPI/ExpensesAngularAPI/.idea/
+/ExpensesAngularAPI/ExpensesAngularAPI/.idea_modules/
+
+# Visual Studio specific files
+/ExpensesAngularAPI/.vs/
+/ExpensesAngularAPI/*.suo
+/ExpensesAngularAPI/*.user
+/ExpensesAngularAPI/*.userosscache
+/ExpensesAngularAPI/*.sln.docstates
+/ExpensesAngularAPI/.resharper/
+/ExpensesAngularAPI/resharper.xml
+/ExpensesAngularAPI/*.DotSettings.user
+
+# NuGet
+/ExpensesAngularAPI/ExpensesAngularAPI/NuGet.config
+/ExpensesAngularAPI/ExpensesAngularAPI/NuGet.exe
+/ExpensesAngularAPI/ExpensesAngularAPI/NuGetScratch/
+/ExpensesAngularAPI/ExpensesAngularAPI/packages.config
+
+# Azure specific files
+/ExpensesAngularAPI/ExpensesAngularAPI/.azure
+
+# Temporary files from editors
+/ExpensesAngularAPI/ExpensesAngularAPI/*.orig
+/ExpensesAngularAPI/ExpensesAngularAPI/*.bak
+
+# Backup files from text editors
+/ExpensesAngularAPI/ExpensesAngularAPI/*~ 
+
+# Project specific files
+/ExpensesAngularAPI/ExpensesAngularAPI/project.lock.json
+/ExpensesAngularAPI/ExpensesAngularAPI/project.fragment.lock.json
+
+# Coverage reports
+/ExpensesAngularAPI/ExpensesAngularAPI/coverage/
