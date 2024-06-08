@@ -25,6 +25,7 @@ import { Expense } from '../../models/expense.model';
 
 export class ExpenseTablesComponent {
     @Input() showSummary = true;
+    @Input() showExpenseList = true;
 
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();

@@ -44,7 +44,7 @@
 
 
 <!-- MY EXPENSES -->
-<div class="expense-tables-ctnr">
+<div class="expense-tables-ctnr"  *ngIf="showExpenseList">
     <div class="expense-tables-hdr">
         <h2>My Expenses</h2>
         <mat-button-toggle-group [(ngModel)]="tableViewValue" (change)="changeTableView($event)">
@@ -131,6 +131,7 @@
                     <ng-template #yearlyValuesForTotalCharges>
                         <th class="total">{{currencyFormatter.format(totalExpenseCostPerYear)}} / year</th>
                     </ng-template>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
