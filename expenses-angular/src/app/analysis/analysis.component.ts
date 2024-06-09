@@ -27,8 +27,13 @@ export class AnalysisComponent implements OnInit {
 
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();
+    expenseListLength: number = 0;
 
-    // Category counters
+    // Pie charts
+    categoryPieChart!: Chart;
+    costPieChart!: Chart;
+
+    // Category distribution counters
     housingAndUtilitiesNum: number = 0;
     carAndTransportationNum: number = 0;
     foodAndDiningNum: number = 0;
@@ -39,11 +44,20 @@ export class AnalysisComponent implements OnInit {
     entertainmentNum: number = 0;
     miscellaneousNum: number = 0;
 
-    categoryPieChart!: Chart;
+    // Cost distribution counters
+    cost5orLess: number = 0;
+    cost6to20: number = 0;
+    cost21to50: number = 0;
+    cost51to100: number = 0;
+    cost101to500: number = 0;
+    costMoreThan500: number = 0;
 
     ngOnInit(): void {
         this.expenseList$.subscribe(expenses => {
             expenses.forEach(expense => {
+                this.expenseListLength++;
+
+                // Category distribution counters
                 switch (expense.category) {
                     case 'Housing & Utilities':
                         this.housingAndUtilitiesNum++;
@@ -73,9 +87,17 @@ export class AnalysisComponent implements OnInit {
                         this.miscellaneousNum++;
                         break;
                 }
+
+                // Cost distribution counters
+                if (expense.cost <= 5) { this.cost5orLess++; } 
+                else if (expense.cost <= 20) { this.cost6to20++; }
+                else if (expense.cost <= 50) { this.cost21to50++; }
+                else if (expense.cost <= 100) { this.cost51to100++; }
+                else if (expense.cost <= 500) { this.cost101to500++; }
+                else { this.costMoreThan500++; }
             });
 
-            this.updateChart();
+            this.updateCharts();
         });
     }
 
@@ -84,8 +106,9 @@ export class AnalysisComponent implements OnInit {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
     }
 
-    updateChart(): void {
-        const pieChartData = [
+    updateCharts(): void {
+        // Category pie chart
+        const categoryChartData = [
             { name: 'Housing & Utilities', y: this.housingAndUtilitiesNum },
             { name: 'Car & Transportation', y: this.carAndTransportationNum },
             { name: 'Food & Dining', y: this.foodAndDiningNum },
@@ -128,11 +151,64 @@ export class AnalysisComponent implements OnInit {
             },
             tooltip: {
                 style: { fontSize: '1.75rem' },
+                valueSuffix: `/${this.expenseListLength}`
             },
             legend: { enabled: false },
             series: [{
                 type: 'pie',
-                data: pieChartData,
+                data: categoryChartData,
+                name: ""
+            }],
+        });
+
+
+        // Cost pie chart
+        const costChartData = [
+            { name: '$5 or Less', y: this.cost5orLess },
+            { name: '$6 to $20', y: this.cost6to20 },
+            { name: '$21 to $50', y: this.cost21to50 },
+            { name: '$51 to $100', y: this.cost51to100 },
+            { name: '$101 to $500', y: this.cost101to500 },
+            { name: 'More than $500', y: this.costMoreThan500 },
+        ].filter(item => item.y > 0);   // Filter out entries with y value of 0
+
+        this.costPieChart = new Chart({
+            chart: {
+                type: 'pie',
+                plotShadow: false,
+                style: {
+                    fontFamily: 'Poppins-Regular',
+                    fontSize: '2rem',
+                },
+                backgroundColor: '#292929',
+                colorCount: 9,
+                borderColor: '#fff'
+            },
+            colors: ['#006400', '#32CD32', '#00FA9A', '#228B22', '#7FFF00', '#3CB371', '#ADFF2F', '#2E8B57', '#98FB98'],
+            credits: { enabled: false },  // Hide Highcharts watermark
+            plotOptions: {
+                pie: {
+                  innerSize: '80%',
+                  borderWidth: 0,
+                  borderRadius: 0,
+                  borderColor: '',
+                  slicedOffset: 10,
+                  dataLabels: { connectorWidth: 0 },
+                }
+            },
+            title: {
+                text: 'By Cost',
+                verticalAlign: 'middle',
+                style: { color: '#fff' }
+            },
+            tooltip: {
+                style: { fontSize: '1.75rem' },
+                valueSuffix: `/${this.expenseListLength}`
+            },
+            legend: { enabled: false },
+            series: [{
+                type: 'pie',
+                data: costChartData,
                 name: ""
             }],
         });
