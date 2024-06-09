@@ -28,6 +28,7 @@ export class AnalysisComponent implements OnInit {
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();
 
+    // Category counters
     housingAndUtilitiesNum: number = 0;
     carAndTransportationNum: number = 0;
     foodAndDiningNum: number = 0;
@@ -78,6 +79,7 @@ export class AnalysisComponent implements OnInit {
         });
     }
 
+    // [HttpGet] - All Expenses
     loadExpenses(): Observable<Expense[]> {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
     }
