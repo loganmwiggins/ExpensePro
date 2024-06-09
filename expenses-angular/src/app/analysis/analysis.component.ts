@@ -116,7 +116,7 @@ export class AnalysisComponent implements OnInit {
                   borderRadius: 0,
                   borderColor: '',
                   slicedOffset: 10,
-                  dataLabels: { connectorWidth: 0 }
+                  dataLabels: { connectorWidth: 0 },
                 }
             },
             title: {
@@ -125,12 +125,13 @@ export class AnalysisComponent implements OnInit {
                 style: { color: '#fff' }
             },
             tooltip: {
-                style: { fontSize: '1.75rem' }
+                style: { fontSize: '1.75rem' },
             },
             legend: { enabled: false },
             series: [{
                 type: 'pie',
-                data: pieChartData
+                data: pieChartData,
+                name: ""
             }],
         });
     }
