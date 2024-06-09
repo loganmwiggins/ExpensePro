@@ -151,3 +151,18 @@ td {
         font-size: 1.5rem;
     }
 }
+
+.num-and-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        filter: invert(94%) sepia(0%) saturate(0%) hue-rotate(253deg) brightness(106%) contrast(106%);
+    }
+}
+
+.green-arrow { filter: invert(53%) sepia(90%) saturate(470%) hue-rotate(71deg) brightness(104%) contrast(86%) !important; }
+.red-arrow { filter: invert(22%) sepia(77%) saturate(3374%) hue-rotate(348deg) brightness(88%) contrast(98%) !important; }

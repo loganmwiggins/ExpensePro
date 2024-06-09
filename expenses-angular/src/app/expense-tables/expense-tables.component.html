@@ -9,7 +9,7 @@
     </div>
     
     <div class="expense-summary-body">
-        <!-- Monthly Charges Summary -->
+        <!-- Monthly Expenses Summary -->
         <div class="summary">
             <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForMonthlyCharges">
                 <p>{{currencyFormatter.format(totalMonthlyCost)}}</p>
@@ -17,9 +17,9 @@
             <ng-template #yearlyValuesForMonthlyCharges>
                 <p>{{currencyFormatter.format(totalMonthlyCostPerYear)}}</p>
             </ng-template>
-            <p>from Monthly Charges</p>
+            <p>from Monthly Expenses</p>
         </div>
-        <!-- Yearly Charges Summary -->
+        <!-- Yearly Expenses Summary -->
         <div class="summary">
             <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForYearlyCharges">
                 <p>{{currencyFormatter.format(totalYearlyCostPerMonth)}}</p>
@@ -27,17 +27,95 @@
             <ng-template #yearlyValuesForYearlyCharges>
                 <p>{{currencyFormatter.format(totalYearlyCost)}}</p>
             </ng-template>
-            <p>from Yearly Charges</p>
+            <p>from Yearly Expenses</p>
         </div>
-        <!-- Total Charges Summary -->
+        <!-- Total Expenses Summary -->
         <div class="summary">
             <ng-container *ngIf="summaryToggleValue == 'perMonth'; else yearlyValuesForTotalCharges">
-                <p class="total">{{currencyFormatter.format(totalExpenseCostPerMonth)}}</p>
+                <p><b>{{currencyFormatter.format(totalExpenseCostPerMonth)}}</b></p>
             </ng-container>
             <ng-template #yearlyValuesForTotalCharges>
-                <p class="total">{{currencyFormatter.format(totalExpenseCostPerYear)}}</p>
+                <p><b>{{currencyFormatter.format(totalExpenseCostPerYear)}}</b></p>
             </ng-template>
-            <p>in Total Charges</p>
+            <p>in Total Expenses</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- INCOME V. EXPENSES -->
+<div class="expense-summary-ctnr" *ngIf="showIncomeVsExpenses">
+    <div class="expense-summary-hdr">
+        <h2>Income vs. Expenses</h2>
+        <mat-button-toggle-group [(ngModel)]="incomeVsExpensesToggleValue" (change)="changeIncomeVsExpensesToggleValue($event)">
+            <mat-button-toggle value="perMonth">PER MONTH</mat-button-toggle>
+            <mat-button-toggle value="perYear">PER YEAR</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    
+    <div class="expense-summary-body">
+        <!-- Income -->
+        <div class="summary">
+            <div class="num-and-icon">
+                <ng-container *ngIf="incomeVsExpensesToggleValue == 'perMonth'; else yearlyValuesForIncome">
+                    <p>{{currencyFormatter.format(userMonthlyIncome)}}</p>
+                </ng-container>
+                <ng-template #yearlyValuesForIncome>
+                    <p>{{currencyFormatter.format(userYearlyIncome)}}</p>
+                </ng-template>
+
+                <img
+                    src="assets/icons/arrow-up-bold.svg"
+                    draggable="false"
+                    class="green-arrow"
+                >
+            </div>
+            
+            <p>in Income</p>
+        </div>
+        <!-- Expenses -->
+        <div class="summary">
+            <div class="num-and-icon">
+                <ng-container *ngIf="incomeVsExpensesToggleValue == 'perMonth'; else yearlyValuesForExpenses">
+                    <p>{{currencyFormatter.format(totalExpenseCostPerMonth)}}</p>
+                </ng-container>
+                <ng-template #yearlyValuesForExpenses>
+                    <p>{{currencyFormatter.format(totalExpenseCostPerYear)}}</p>
+                </ng-template>
+
+                <img
+                    src="assets/icons/arrow-down-bold.svg"
+                    draggable="false"
+                    class="red-arrow"
+                >
+            </div>
+            
+            <p>in Expenses</p>
+        </div>
+        <!-- Difference -->
+        <div class="summary">
+            <div class="num-and-icon">
+                <ng-container *ngIf="incomeVsExpensesToggleValue == 'perMonth'; else yearlyValuesForTotalDiff">
+                    <p><b>{{currencyFormatter.format(userMonthlyIncome - totalExpenseCostPerMonth)}}</b></p>
+                </ng-container>
+                <ng-template #yearlyValuesForTotalDiff>
+                    <p><b>{{currencyFormatter.format(userYearlyIncome - totalExpenseCostPerYear)}}</b></p>
+                </ng-template>
+
+                <ng-container *ngIf="userYearlyIncome - totalExpenseCostPerYear > 0; else totalDeficit">
+                    <img src="assets/icons/arrow-up-bold.svg" class="green-arrow" draggable="false">
+                </ng-container>
+                <ng-template #totalDeficit>
+                    <img src="assets/icons/arrow-down-bold.svg" class="red-arrow" draggable="false">
+                </ng-template>
+            </div>
+
+            <ng-container *ngIf="userYearlyIncome - totalExpenseCostPerYear > 0; else totalDeficit">
+                <p>in Total Gain</p>
+            </ng-container>
+            <ng-template #totalDeficit>
+                <p>in Total Loss</p>
+            </ng-template>
         </div>
     </div>
 </div>

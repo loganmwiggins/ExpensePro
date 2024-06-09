@@ -26,6 +26,7 @@ import { Expense } from '../../models/expense.model';
 export class ExpenseTablesComponent {
     @Input() showSummary = true;
     @Input() showExpenseList = true;
+    @Input() showIncomeVsExpenses = true;
 
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();
@@ -47,7 +48,11 @@ export class ExpenseTablesComponent {
     totalExpenseCostPerMonth: number = 0;   // totalMonthlyCost + totalYearlyCostPerMonth
     totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
 
+    userYearlyIncome: number = 82500;
+    userMonthlyIncome: number = this.userYearlyIncome / 12;
+
     summaryToggleValue: string = "perMonth";
+    incomeVsExpensesToggleValue: string = "perMonth";
     tableViewValue: string = "separated";
 
     // Ensures numbers follow USD currency format -- $xx.xx
@@ -69,14 +74,12 @@ export class ExpenseTablesComponent {
         });
     }
 
-    changeSummaryValue(event: any) {
-        this.summaryToggleValue = event.value;
-    }
+    // Change toggle functions
+    changeSummaryValue(event: any) { this.summaryToggleValue = event.value; }
+    changeIncomeVsExpensesToggleValue(event: any) { this.incomeVsExpensesToggleValue = event.value; }
+    changeTableView(event: any) { this.tableViewValue = event.value; }
 
-    changeTableView(event: any) {
-        this.tableViewValue = event.value;
-    }
-
+    // [HttpDelete]
     deleteExpense(id: string) {
         if (window.confirm("Are you sure you want to delete this expense?")) {  //Confirmation request
             this.http.delete(`https://localhost:7265/api/Expenses/${id}`)
@@ -91,6 +94,7 @@ export class ExpenseTablesComponent {
         }
     }
 
+    // [HttpGet]
     loadExpenses(): Observable<Expense[]> {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
     }
