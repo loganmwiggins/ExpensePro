@@ -105,12 +105,12 @@ td {
     align-items: center;
     gap: 1rem;
     
-    img { max-width: 2rem; max-height: 2rem; }
+    img { width: 2rem; height: 2rem; }
 }
 .td-btns {
     justify-content: right;
 
-    img { max-width: 2rem; max-height: 2rem; }
+    img { width: 2rem; height: 2rem; }
 }
 
 .total { color: var(--accent); }
@@ -135,6 +135,7 @@ td {
     gap: 2rem;
 
     h2 { font-size: 2.75rem; }
+    .btn-icon img { width: 3rem; height: 3rem; }
 }
 
 .expense-summary-body { display: flex; }
