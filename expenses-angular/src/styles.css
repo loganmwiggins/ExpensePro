@@ -15,7 +15,7 @@
     --second: #141414;
     --third: #1f1f1f;
     --fourth: #292929;
-    --accent: #a2f263;
+    --accent: #7cfc00;
     --text-white: #ffffff;
     --text-grey: #acacac;
 }
@@ -114,7 +114,7 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; }
     img {
         max-height: 3rem;
         max-width: 3rem;
-        filter: invert(93%) sepia(68%) saturate(659%) hue-rotate(32deg) brightness(98%) contrast(94%);
+        filter: invert(68%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%);
     }
     h1 {
         color: var(--accent);

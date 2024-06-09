@@ -34,6 +34,6 @@
 .nav-btn:hover { background-color: var(--second); }
 
 .nav-btn.active-link {
-    img { filter: invert(7%) sepia(68%) saturate(659%) hue-rotate(32deg) brightness(98%) contrast(94%); }
+    img { filter: invert(32%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%); }
     p { color: var(--accent); }
 }
