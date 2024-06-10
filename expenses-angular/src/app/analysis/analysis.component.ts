@@ -29,6 +29,11 @@ export class AnalysisComponent implements OnInit {
     expenseList$ = this.loadExpenses();
     expenseListLength: number = 0;
 
+    lowestExpenseCostPerMonth: number = Number.POSITIVE_INFINITY;
+    highestExpenseCostPerMonth: number = Number.NEGATIVE_INFINITY;
+    lowestExpensePerMonth!: Expense;
+    highestExpensePerMonth!: Expense;
+
     // Pie charts
     categoryPieChart!: Chart;
     costPieChart!: Chart;
@@ -55,9 +60,32 @@ export class AnalysisComponent implements OnInit {
     ngOnInit(): void {
         this.expenseList$.subscribe(expenses => {
             expenses.forEach(expense => {
+                // Calculate list length
                 this.expenseListLength++;
 
-                // Category distribution counters
+                // Calculate highest/lowest expense
+                if (expense.type == "Monthly") {
+                    if (expense.cost < this.lowestExpenseCostPerMonth) {
+                        this.lowestExpenseCostPerMonth = expense.cost;
+                        this.lowestExpensePerMonth = expense;
+                    }
+                    if (expense.cost > this.highestExpenseCostPerMonth) {
+                        this.highestExpenseCostPerMonth = expense.cost;
+                        this.highestExpensePerMonth = expense;
+                    }
+                }
+                else {
+                    if (expense.cost/12 < this.lowestExpenseCostPerMonth) {
+                        this.lowestExpenseCostPerMonth = expense.cost/12;
+                        this.lowestExpensePerMonth = expense;
+                    }
+                    if (expense.cost/12 > this.highestExpenseCostPerMonth) {
+                        this.highestExpenseCostPerMonth = expense.cost/12;
+                        this.highestExpensePerMonth = expense;
+                    }
+                }
+
+                // Calculate category distribution
                 switch (expense.category) {
                     case 'Housing & Utilities':
                         this.housingAndUtilitiesNum++;
@@ -88,7 +116,7 @@ export class AnalysisComponent implements OnInit {
                         break;
                 }
 
-                // Cost distribution counters
+                // Calculate price range distribution
                 if (expense.cost <= 5) { this.cost5orLess++; } 
                 else if (expense.cost <= 20) { this.cost6to20++; }
                 else if (expense.cost <= 50) { this.cost21to50++; }
