@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<div class="content-ctnr">
+    <div class="page-title">
+        <img src="assets/icons/nav-icons/user-black.svg" draggable="false">
+        <h1>My Profile</h1>
+    </div>
+
+    <div class="form-ctnr">
+        <form>
+            <div class="form-inputs">
+                <!-- Username input -->
+                <div class="input-ctnr">
+                    <p>Username</p>
+                    <input type="text" formControlName="username">
+                </div>
+                <!-- Annual Income input -->
+                <div class="input-ctnr">
+                    <p>Annual Income</p>
+                    <input type="number" formControlName="annualIncome" placeholder="Ex:  82500">
+                </div>
+                <!-- Additional Income input -->
+                <div class="input-ctnr">
+                    <p>Additional Income</p>
+                    <input type="number" formControlName="additionalIncome" placeholder="Ex:  3000">
+                </div>
+            </div>
+            
+            <div class="form-btns">
+                <button
+                    type="submit"
+                    class="btn btn-lg btn-color"
+                >Save</button>
+            </div>
+        </form>
+    </div>
+</div>
