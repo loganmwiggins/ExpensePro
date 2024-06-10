@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { DashboardComponent } from "./app/dashboard/dashboard.component";
 import { AnalysisComponent } from "./app/analysis/analysis.component";
 import { EditExpenseComponent } from "./app/edit-expense/edit-expense.component";
+import { ProfileComponent } from "./app/profile/profile.component";
 
 const routeConfig: Routes = [
     {
@@ -29,6 +30,11 @@ const routeConfig: Routes = [
         path: 'edit-expense/:id',
         component: EditExpenseComponent,
         title: 'Edit Expense'
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        title: 'My Profile'
     },
     { // Optional: Redirect any unknown paths to the dashboard
         path: '**', 
