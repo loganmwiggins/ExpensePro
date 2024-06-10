@@ -241,4 +241,10 @@ export class AnalysisComponent implements OnInit {
             }],
         });
     }
+
+    // Ensures numbers follow USD currency format -- $xx.xx
+    currencyFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
 }

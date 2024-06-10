@@ -21,4 +21,29 @@
             <div class="pie-chart" [chart]="costPieChart"></div>
         </div>
     </div>
+
+    <!-- Highest and Lowest -->
+     <div class="high-low-ctnr">
+        <div class="expense-ctnr">
+            <p>Highest Expense</p>
+            <div class="expense">
+                <img [src]="highestExpensePerMonth.icon" draggable="false">
+                <p>{{highestExpensePerMonth.name}}&nbsp;&nbsp;=&nbsp;&nbsp;{{currencyFormatter.format(highestExpenseCostPerMonth)}}/month</p>
+            </div>
+        </div>
+        <div class="expense-ctnr">
+            <p>Lowest Expense</p>
+            <div class="expense">
+                <img [src]="lowestExpensePerMonth.icon" draggable="false">
+                <p>{{lowestExpensePerMonth.name}}&nbsp;&nbsp;=&nbsp;&nbsp;{{currencyFormatter.format(lowestExpenseCostPerMonth)}}/month</p>
+            </div>
+        </div>
+        <div class="expense-ctnr">
+            <button
+                type="button"
+                class="btn btn-lg"
+                routerLink="/dashboard"
+            >VIEW ALL EXPENSES</button>
+        </div>
+     </div>
 </div>
