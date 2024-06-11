@@ -1,4 +1,5 @@
 ﻿using ExpensesAngularAPI.Data;
+using ExpensesAngularAPI.Helpers;
 using ExpensesAngularAPI.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,15 @@ namespace ExpensesAngularAPI.Controllers
             // If user object (passed in) is empty/blank
             if (userObj == null) { return BadRequest(); }
 
-            await dbContext.Users.AddAsync(userObj);    // Add user to database
+            // Hash password
+            userObj.Password = PasswordHasher.HashPassword(userObj.Password);
+
+            // Default values
+            userObj.Role = "User";
+            userObj.Token = "";
+
+            // Add user to database
+            await dbContext.Users.AddAsync(userObj);    
             await dbContext.SaveChangesAsync();
 
             return Ok(new { Message = "Account created successfully!" });
