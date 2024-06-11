@@ -59,7 +59,7 @@ export class SignupComponent {
         else {
             // Throw error message
             ValidateForm.validateFormFields(this.signupForm);
-            alert("Account information is not valid.");
+            // alert("Account information is not valid.");
         }
     }
 }

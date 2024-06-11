@@ -4,6 +4,8 @@ using ExpensesAngularAPI.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ExpensesAngularAPI.Controllers
 {
@@ -28,12 +30,17 @@ namespace ExpensesAngularAPI.Controllers
             // If user object (passed in) is empty/blank
             if (userObj == null) { return BadRequest(); }
 
-            // Check if user exists (by username and password)
+            // Check if user exists (by username)
             var user = await dbContext.Users
-                .FirstOrDefaultAsync(x => x.Username == userObj.Username && x.Password == userObj.Password);
+                .FirstOrDefaultAsync(x => x.Username == userObj.Username);
 
             // If user is not found by username
             if (user == null) { return NotFound(new { Message = "User not found." }); }
+
+            // Check if password matches registered password hash (returns boolean, true if verified)
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password)) {
+                return BadRequest(new { Message = "Password is incorrect." });
+            }
 
             return Ok(new { Message = "Login success!" });
         }
@@ -45,6 +52,19 @@ namespace ExpensesAngularAPI.Controllers
         {
             // If user object (passed in) is empty/blank
             if (userObj == null) { return BadRequest(); }
+
+            // Check if username is unique
+            if (await CheckUsernameExistAsync(userObj.Username))
+                return BadRequest(new { Message = "Username taken."});
+
+            // Check if email is unique
+            if (await CheckEmailExistAsync(userObj.Email))
+                return BadRequest(new { Message = "An account has already been registered with this email." });
+
+            // Check password strength
+            var pass = CheckPasswordStrength(userObj.Password);
+            if (!string.IsNullOrEmpty(pass))
+                return BadRequest(new { Message = pass.ToString() });
 
             // Hash password
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
@@ -58,6 +78,46 @@ namespace ExpensesAngularAPI.Controllers
             await dbContext.SaveChangesAsync();
 
             return Ok(new { Message = "Account created successfully!" });
+        }
+
+
+        // Check if username already exists in Db
+        private async Task<bool> CheckUsernameExistAsync(string username)
+        {
+            return await dbContext.Users.AnyAsync(x => x.Username == username);
+        }
+
+
+        // Check if email already exists in Db
+        private async Task<bool> CheckEmailExistAsync(string email)
+        {
+            return await dbContext.Users.AnyAsync(x => x.Email == email);
+        }
+
+
+        // Check the strength of a password
+        private string CheckPasswordStrength(string password)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Should be at least 8 characters
+            if (password.Length < 8)
+                sb.Append("Minimum password length is 8." + Environment.NewLine);
+
+            // Should contain at least one lowercase letter, one capital letter, and one number
+            if (!(Regex.IsMatch(password, "[a-z]") && Regex.IsMatch(password, "[A-Z]")
+                && Regex.IsMatch(password, "[0-9]")))     
+            {
+                sb.Append("Password should contain at least one lowercase letter, one capital letter, and one number." + Environment.NewLine);
+            }
+
+            // Should contain at least one special character
+            if (!Regex.IsMatch(password, "[<,>,@,!,#,$,%,^,&,*,(,),_,+,\\[,\\],{,},?,:,;,|,',\\,.,/,~,`,-,=]"))
+            {
+                sb.Append("Password should contain at least one special character." + Environment.NewLine);
+            }
+
+            return sb.ToString();
         }
     }
 }
