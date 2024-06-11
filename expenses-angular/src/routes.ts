@@ -4,6 +4,8 @@ import { DashboardComponent } from "./app/dashboard/dashboard.component";
 import { AnalysisComponent } from "./app/analysis/analysis.component";
 import { EditExpenseComponent } from "./app/edit-expense/edit-expense.component";
 import { ProfileComponent } from "./app/profile/profile.component";
+import { LoginComponent } from "./app/login/login.component";
+import { SignupComponent } from "./app/signup/signup.component";
 
 const routeConfig: Routes = [
     {
@@ -35,6 +37,16 @@ const routeConfig: Routes = [
         path: 'profile',
         component: ProfileComponent,
         title: 'My Profile'
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        title: 'Log In'
+    },
+    {
+        path: 'signup',
+        component: SignupComponent,
+        title: 'Sign Up'
     },
     { // Optional: Redirect any unknown paths to the dashboard
         path: '**', 
