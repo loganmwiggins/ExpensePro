@@ -6,12 +6,26 @@
 
     <div class="form-ctnr">
         <form>
+            <!-- First Name input -->
+            <div class="login-input-ctnr">
+                <img src="assets/icons/login-icons/badge.svg" draggable="false">
+                <input type="text" formControlName="firstName" placeholder="First Name">
+            </div>
+            <!-- Last Name input -->
+            <div class="login-input-ctnr">
+                <img src="assets/icons/login-icons/badge.svg" draggable="false">
+                <input type="text" formControlName="lastName" placeholder="Last Name">
+            </div>
+            <!-- Email input -->
+            <div class="login-input-ctnr">
+                <img src="assets/icons/login-icons/envelope.svg" draggable="false">
+                <input type="text" formControlName="email" placeholder="Email Address">
+            </div>
             <!-- Username input -->
             <div class="login-input-ctnr">
                 <img src="assets/icons/nav-icons/user.svg" draggable="false">
                 <input type="text" formControlName="username" maxlength="20" placeholder="Username">
             </div>
-
             <!-- Password input -->
             <div class="login-input-ctnr">
                 <img src="assets/icons/expense-icons/lock.svg" draggable="false">
@@ -28,6 +42,7 @@
                 >
             </div>
 
+            <!-- Buttons -->
             <div class="form-btns">
                 <div>
                     <button
@@ -36,7 +51,10 @@
                     >Create Account</button>
                 </div>
                 <div>
-                    <a routerLink="/login">Already have an account?</a>
+                    <a routerLink="/login">
+                        Already have an account? 
+                        <span style="text-decoration: underline;">Login</span>
+                    </a>
                 </div>
             </div>
         </form>
