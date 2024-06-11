@@ -1,4 +1,7 @@
-.form-ctnr { width: 35%; }
+.form-ctnr {
+    width: 35%;
+    padding: 4rem;
+}
 
 .login-input-ctnr {
     display: flex;
@@ -31,20 +34,7 @@
     display: flex;
     align-items: center;
     gap: 2rem;
-
-    
 }
-
-/* input {
-    flex: 1;
-    font-family: "Poppins-Regular";
-    font-size: 2rem;
-    background: var(--third);
-    color: #fff;
-    border: 1.5px solid var(--text-grey);
-    border-radius: 1rem;
-    padding: .5rem 1rem;
-} */
 
 .form-btns {
     justify-content: space-between;
@@ -66,6 +56,4 @@ a:hover {
     text-decoration: underline;
 }
 
-.eye-icon {
-    cursor: pointer;
-}
+.eye-icon { cursor: pointer; }

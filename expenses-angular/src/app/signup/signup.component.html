@@ -1,1 +1,44 @@
-<p>signup works!</p>
+<div class="content-ctnr">
+    <div class="page-title">
+        <img src="assets/icons/login-icons/user-add-black.svg" draggable="false">
+        <h1>Sign Up</h1>
+    </div>
+
+    <div class="form-ctnr">
+        <form>
+            <!-- Username input -->
+            <div class="login-input-ctnr">
+                <img src="assets/icons/nav-icons/user.svg" draggable="false">
+                <input type="text" formControlName="username" maxlength="20" placeholder="Username">
+            </div>
+
+            <!-- Password input -->
+            <div class="login-input-ctnr">
+                <img src="assets/icons/expense-icons/lock.svg" draggable="false">
+                <input
+                    [type]="pwType"
+                    formControlName="password"
+                    placeholder="Password"
+                >
+                <img
+                    [src]="eyeIcon"
+                    draggable="false"
+                    class="eye-icon"
+                    (click)="hideShowPassword()"
+                >
+            </div>
+
+            <div class="form-btns">
+                <div>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-color"
+                    >Create Account</button>
+                </div>
+                <div>
+                    <a routerLink="/login">Already have an account?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

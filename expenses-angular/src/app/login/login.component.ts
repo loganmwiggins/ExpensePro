@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Router } from 'express';
 
 @Component({
     selector: 'app-login',
@@ -11,7 +10,6 @@ import { Router } from 'express';
 })
 
 export class LoginComponent {
-
     // Password input
     pwIsText: boolean = false;
     pwType: string = "password";
