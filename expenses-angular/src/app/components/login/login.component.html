@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-ctnr">
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
             <!-- Username input -->
             <div class="login-input-ctnr" [class.error-input]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
                 <img src="assets/icons/nav-icons/user.svg" draggable="false">

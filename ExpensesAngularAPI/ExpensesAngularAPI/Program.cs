@@ -9,6 +9,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 // DbContext
 builder.Services.AddDbContext<ExpensesDbContext>(options =>
@@ -26,8 +33,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // In production, change this to only allow origins you want to accept connections from
-app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors("MyPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -13,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     imports: [
         RouterOutlet,
         RouterModule,
+        HttpClientModule,
         ReactiveFormsModule,
         NavigationComponent,
         DashboardComponent

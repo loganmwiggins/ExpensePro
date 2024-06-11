@@ -32,9 +32,9 @@ namespace ExpensesAngularAPI.Controllers
                 .FirstOrDefaultAsync(x => x.Username == userObj.Username && x.Password == userObj.Password);
 
             // If user is not found by username
-            if (user == null) { return NotFound("User not found."); }
+            if (user == null) { return NotFound(new { Message = "User not found." }); }
 
-            return Ok("Login success!");
+            return Ok(new { Message = "Login success!" });
         }
 
 
@@ -48,7 +48,7 @@ namespace ExpensesAngularAPI.Controllers
             await dbContext.Users.AddAsync(userObj);    // Add user to database
             await dbContext.SaveChangesAsync();
 
-            return Ok("User successfully registered!");
+            return Ok(new { Message = "Account created successfully!" });
         }
     }
 }

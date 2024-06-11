@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
-import ValidateForm from '../../../helpers/validateform';
+import ValidateForm from '../../helpers/validateform';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent {
 
     signupForm!: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private router: Router, private fb: FormBuilder, private auth: AuthService) {}
 
     ngOnInit(): void {
         this.signupForm = this.fb.group({    // Initialize and add validation to form group
@@ -40,10 +41,20 @@ export class SignupComponent {
         this.pwIsText ? this.eyeIcon = "assets/icons/login-icons/eye-slash.svg" : this.eyeIcon = "assets/icons/login-icons/eye.svg";
     }
 
-    signUp() {
+    submitSignup() {
         if (this.signupForm.valid) {
-            // Send the object to database
-            console.log(this.signupForm.value);
+            // Send the object to database using API call in AuthService
+            this.auth.signUp(this.signupForm.value)
+                .subscribe({
+                    next:(response => {
+                        alert(response.message);
+                        this.signupForm.reset();            // Clear form
+                        this.router.navigate(['login']);    // Route to login page
+                    }),
+                    error:(response => {
+                        alert(response.error.message);
+                    })
+                })
         }
         else {
             // Throw error message
