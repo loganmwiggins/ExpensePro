@@ -57,3 +57,12 @@ a:hover {
 }
 
 .eye-icon { cursor: pointer; }
+
+.error-msgs {
+    display: flex;
+    flex-direction: column;
+
+    small { color: var(--text-red); }
+}
+
+.error-input { border-color: var(--text-red); }

@@ -5,15 +5,20 @@
     </div>
 
     <div class="form-ctnr">
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
             <!-- Username input -->
-            <div class="login-input-ctnr">
+            <div class="login-input-ctnr" [class.error-input]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
                 <img src="assets/icons/nav-icons/user.svg" draggable="false">
-                <input type="text" formControlName="username" maxlength="20" placeholder="Username">
+                <input
+                    type="text"
+                    formControlName="username"
+                    maxlength="20"
+                    placeholder="Username"
+                >
             </div>
 
             <!-- Password input -->
-            <div class="login-input-ctnr">
+            <div class="login-input-ctnr" [class.error-input]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
                 <img src="assets/icons/expense-icons/lock.svg" draggable="false">
                 <input
                     [type]="pwType"
@@ -28,6 +33,13 @@
                 >
             </div>
 
+            <!-- Validation errors -->
+            <div class="error-msgs">
+                <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">* Username is required</small>
+                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">* Password is required</small>
+            </div>
+
+            <!-- Buttons -->
             <div class="form-btns">
                 <div>
                     <button

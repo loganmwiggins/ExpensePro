@@ -7,7 +7,7 @@ import { ChartModule } from 'angular-highcharts';
 import { Chart } from 'angular-highcharts';
 
 import { ExpenseTablesComponent } from '../expense-tables/expense-tables.component';
-import { Expense } from '../../models/expense.model';
+import { Expense } from '../../../models/expense.model';
 
 @Component({
     selector: 'app-analysis',

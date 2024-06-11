@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { NavigationComponent } from './navigation/navigation.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @Component({
     selector: 'app-root',
@@ -12,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     imports: [
         RouterOutlet,
         RouterModule,
+        ReactiveFormsModule,
         NavigationComponent,
         DashboardComponent
     ]

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-import { Expense } from '../../models/expense.model';
+import { Expense } from '../../../models/expense.model';
 
 @Component({
     selector: 'app-expense-tables',

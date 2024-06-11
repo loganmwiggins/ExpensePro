@@ -18,6 +18,7 @@
     --accent: #7cfc00;
     --text-white: #ffffff;
     --text-grey: #acacac;
+    --text-red: #de2422;
 }
 
 
@@ -143,6 +144,7 @@ form {
 .form-btns {
     display: flex;
     align-items: center;
+    flex-flow: wrap;
     gap: 1rem;
     margin-top: 2rem;
 }

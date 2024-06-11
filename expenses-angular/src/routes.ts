@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
 
-import { DashboardComponent } from "./app/dashboard/dashboard.component";
-import { AnalysisComponent } from "./app/analysis/analysis.component";
-import { EditExpenseComponent } from "./app/edit-expense/edit-expense.component";
-import { ProfileComponent } from "./app/profile/profile.component";
-import { LoginComponent } from "./app/login/login.component";
-import { SignupComponent } from "./app/signup/signup.component";
+import { DashboardComponent } from "./app/components/dashboard/dashboard.component";
+import { AnalysisComponent } from "./app/components/analysis/analysis.component";
+import { EditExpenseComponent } from "./app/components/edit-expense/edit-expense.component";
+import { ProfileComponent } from "./app/components/profile/profile.component";
+import { LoginComponent } from "./app/components/login/login.component";
+import { SignupComponent } from "./app/components/signup/signup.component";
 
 const routeConfig: Routes = [
     {
@@ -41,7 +41,7 @@ const routeConfig: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        title: 'Log In'
+        title: 'Login'
     },
     {
         path: 'signup',

@@ -5,7 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { Expense } from '../../models/expense.model';
+import { Expense } from '../../../models/expense.model';
 
 @Component({
     selector: 'app-edit-expense',
