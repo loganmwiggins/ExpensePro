@@ -74,13 +74,23 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; }
     padding: .5rem 2rem;
     font-size: 1.5rem;
 }
-.btn-color {
+.btn-save {
     color: var(--accent);
     border-color: var(--accent);
 }
-.btn-color:hover {
+.btn-save:hover {
     background: var(--accent);
     border-color: var(--accent);
+    color: var(--fourth);
+    font-weight: 600;
+}
+.btn-danger {
+    color: var(--text-red);
+    border-color: var(--text-red);
+}
+.btn-danger:hover {
+    background: var(--text-red);
+    border-color: var(--text-red);
     color: var(--fourth);
     font-weight: 600;
 }
@@ -144,9 +154,16 @@ form {
 .form-btns {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-flow: wrap;
-    gap: 1rem;
     margin-top: 2rem;
+    gap: 1rem;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 }
 
 

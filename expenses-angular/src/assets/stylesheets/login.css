@@ -36,16 +36,6 @@
     gap: 2rem;
 }
 
-.form-btns {
-    justify-content: space-between;
-
-    div {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-}
-
 a {
     color: var(--text-grey);
     font-size: 1.5rem;

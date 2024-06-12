@@ -124,15 +124,25 @@
             </div>
             
             <div class="form-btns">
-                <button
-                    type="button"
-                    class="btn btn-lg"
-                    routerLink="/dashboard"
-                >Cancel</button>
-                <button
-                    type="submit"
-                    class="btn btn-lg btn-color"
-                >Save</button>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg"
+                        routerLink="/dashboard"
+                    >Cancel</button>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Save</button>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-danger"
+                        (click)="deleteExpense()"
+                        *ngIf="expenseId"
+                    >Delete</button>
+                </div>
             </div>
         </form>
     </div>
