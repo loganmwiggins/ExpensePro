@@ -1,5 +1,10 @@
 using ExpensesAngularAPI.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +18,7 @@ builder.Services.AddCors(option =>
 {
     option.AddPolicy("MyPolicy", builder =>
     {
+        // In production, change this to only allow origins you want to accept connections from
         builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
@@ -20,6 +26,24 @@ builder.Services.AddCors(option =>
 // DbContext
 builder.Services.AddDbContext<ExpensesDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Authentication with JWT
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("veryveryverysecretsauceonakrabbypatty.....")),
+        ValidateAudience = false,
+        ValidateIssuer = false
+    };
+});
 
 var app = builder.Build();
 
@@ -32,10 +56,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// In production, change this to only allow origins you want to accept connections from
 app.UseCors("MyPolicy");
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

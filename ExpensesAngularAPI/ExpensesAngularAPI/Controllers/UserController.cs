@@ -4,6 +4,9 @@ using ExpensesAngularAPI.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -23,6 +26,14 @@ namespace ExpensesAngularAPI.Controllers
         }
 
 
+        // Get all users
+        [HttpGet]
+        public async Task<ActionResult<User>> GetAllUsers()
+        {
+            return Ok(await dbContext.Users.ToListAsync());
+        }
+
+
         // Login authentication
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User userObj)
@@ -35,14 +46,21 @@ namespace ExpensesAngularAPI.Controllers
                 .FirstOrDefaultAsync(x => x.Username == userObj.Username);
 
             // If user is not found by username
-            if (user == null) { return NotFound(new { Message = "User not found." }); }
+            if (user == null) { return NotFound(new { Message = "Username does not exist." }); }
 
             // Check if password matches registered password hash (returns boolean, true if verified)
             if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password)) {
                 return BadRequest(new { Message = "Password is incorrect." });
             }
 
-            return Ok(new { Message = "Login success!" });
+            // If user is authenticated...
+            user.Token = CreateJwtToken(user);
+
+            return Ok(new
+            {
+                Token = user.Token,                     // Send JWT token
+                Message = "Login success!"      // and return a success message
+            });
         }
 
 
@@ -118,6 +136,33 @@ namespace ExpensesAngularAPI.Controllers
             }
 
             return sb.ToString();
+        }
+        
+
+        // Create JWT token to authenticate user
+        // Token is made up of: 1. Header (algorithm and token type), 2. Payload (data), 3. Signature/Credentials (for verification)
+        private string CreateJwtToken(User user)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("veryveryverysecretsauceonakrabbypatty.....");   // Algorithm/key
+            var identity = new ClaimsIdentity(new Claim[]               // Payload = role and full name
+            {
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
+            });
+
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = identity,
+                Expires = DateTime.Now.AddDays(1),             // When token expires (valid for 1 day)
+                SigningCredentials = credentials
+            };
+
+            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
+
+            return jwtTokenHandler.WriteToken(token);
         }
     }
 }

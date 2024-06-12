@@ -40,7 +40,7 @@ namespace ExpensesAngularAPI.Controllers
 
             if (expense is null)
             {
-                return NotFound("Expense not found."); //404
+                return NotFound("Expense not found."); // 404
             }
 
             return Ok(expense);
@@ -74,11 +74,11 @@ namespace ExpensesAngularAPI.Controllers
         [Route("{id:guid}")]    // Accepts identifier for the action, but function also accepts parameter (DTO) for what we want to update
         public IActionResult UpdateExpense(Guid id, UpdateExpenseDTO updateExpenseDTO)
         {
-            var expense = dbContext.Expenses.Find(id);  //var is an expense if found, or null
+            var expense = dbContext.Expenses.Find(id);  // var is an expense if found, or null
 
             if (expense is null)
             {
-                return NotFound("Expense not found."); //404
+                return NotFound("Expense not found."); // 404
             }
 
             // Use information from client (DTO param) to update Db vars
@@ -105,13 +105,13 @@ namespace ExpensesAngularAPI.Controllers
 
             if (expense is null)
             {
-                return NotFound(); //404
+                return NotFound(); // 404
             }
 
             dbContext.Expenses.Remove(expense);
             dbContext.SaveChanges();
 
-            return Ok(); //Can pass a specific response if wanted, but not necessary
+            return Ok(); // Can pass a specific response if wanted, but not necessary
         }
     }
 }
