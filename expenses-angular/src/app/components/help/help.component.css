@@ -1,0 +1,32 @@
+.help-ctnr {
+    display: flex;
+    flex-direction: column;
+    background: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+}
+
+.help-ctnr-hdr {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    h2 { font-size: 2.75rem; }
+}
+
+.help-ctnr-body { display: flex; }
+
+.app-info-ctnr {
+    flex: 1;
+
+    p:first-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
+    p:nth-child(2) {
+        font-size: 2.5rem;
+    }
+}
