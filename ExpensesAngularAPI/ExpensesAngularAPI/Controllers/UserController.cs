@@ -98,23 +98,23 @@ namespace ExpensesAngularAPI.Controllers
         // Check the strength of a password
         private string CheckPasswordStrength(string password)
         {
-            StringBuilder sb = new StringBuilder();
+            string sb = "";
 
             // Should be at least 8 characters
             if (password.Length < 8)
-                sb.Append("Minimum password length is 8." + Environment.NewLine);
+                sb = "Passwords should be at least 8 characters and contain at least one lowercase letter, one uppercase letter, and one special character.";
 
             // Should contain at least one lowercase letter, one capital letter, and one number
             if (!(Regex.IsMatch(password, "[a-z]") && Regex.IsMatch(password, "[A-Z]")
                 && Regex.IsMatch(password, "[0-9]")))     
             {
-                sb.Append("Password should contain at least one lowercase letter, one capital letter, and one number." + Environment.NewLine);
+                sb = "Passwords should be at least 8 characters and contain at least one lowercase letter, one uppercase letter, and one special character.";
             }
 
             // Should contain at least one special character
             if (!Regex.IsMatch(password, "[<,>,@,!,#,$,%,^,&,*,(,),_,+,\\[,\\],{,},?,:,;,|,',\\,.,/,~,`,-,=]"))
             {
-                sb.Append("Password should contain at least one special character." + Environment.NewLine);
+                sb = "Passwords should be at least 8 characters and contain at least one lowercase letter, one uppercase letter, and one special character.";
             }
 
             return sb.ToString();

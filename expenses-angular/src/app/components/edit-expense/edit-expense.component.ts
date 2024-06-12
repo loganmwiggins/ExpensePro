@@ -4,6 +4,7 @@ import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { NgToastService } from 'ng-angular-popup';
 
 import { Expense } from '../../../models/expense.model';
 
@@ -110,7 +111,7 @@ export class EditExpenseComponent {
         category: new FormControl<string>("")
     });
 
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(private route: ActivatedRoute, private router: Router, private toast: NgToastService) {}
 
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
@@ -157,7 +158,7 @@ export class EditExpenseComponent {
             || this.editExpenseForm.value.cost == null || this.editExpenseForm.value.cost == 0
             || this.editExpenseForm.value.category == null || this.editExpenseForm.value.category == ""
         ) {
-            alert("Icon, Name, Type, Cost, and Category fields are required.");
+            this.toast.danger("Icon, Name, Type, Cost, and Category fields are required.", "ERROR", 5000);
             return;
         }
 
@@ -170,10 +171,10 @@ export class EditExpenseComponent {
                 .subscribe({
                     next: (response) => {
                         this.router.navigate(['/']); // Redirect to the dashboard
-                        alert("Expense updated successfully.");
+                        this.toast.success("Expense updated successfully.", "SUCCESS", 5000);
                     },
                     error: (error) => {
-                        alert("Error updating expense.");
+                        this.toast.danger("Error updating expense.", "ERROR", 5000);
                     }
                 });
         } else {
@@ -184,10 +185,10 @@ export class EditExpenseComponent {
                 .subscribe({
                     next: (response) => {
                         this.router.navigate(['/']); // Redirect to the dashboard
-                        alert("Expense added successfully.");
+                        this.toast.success("Expense added successfully.", "SUCCESS", 5000);
                     },
                     error: (error) => {
-                        alert("Error adding expense.");
+                        this.toast.danger("Error adding expense.", "ERROR", 5000);
                     }
                 });
         }

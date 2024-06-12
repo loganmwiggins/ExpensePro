@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 import ValidateForm from '../../helpers/validateform';
 import { AuthService } from '../../services/auth.service';
@@ -22,7 +23,12 @@ export class LoginComponent {
 
     loginForm!: FormGroup;
 
-    constructor(private router: Router, private fb: FormBuilder, private auth: AuthService) {}
+    constructor(
+        private router: Router,
+        private fb: FormBuilder,
+        private auth: AuthService,
+        private toast: NgToastService
+    ) {}
 
     ngOnInit(): void {
         this.loginForm = this.fb.group({    // Initialize and add validation to form group
@@ -44,19 +50,19 @@ export class LoginComponent {
             this.auth.login(this.loginForm.value)
                 .subscribe({
                     next: (response) => {
-                        alert(response.message);
+                        this.toast.success(response.message, "SUCCESS", 5000);
                         this.loginForm.reset();                 // Clear form
                         this.router.navigate(['dashboard']);    // Route to dashboard page
                     },
-                    error:(response) => {
-                        alert(response?.error.message);
+                    error: (response) => {
+                        this.toast.danger(response?.error.message, "ERROR", 5000);
                     }
                 })
         }
         else {
             // Throw error message
             ValidateForm.validateFormFields(this.loginForm);
-            alert("Login is not valid.");
+            this.toast.danger("Login is not valid.", "ERROR", 5000);
         }
     }
 }

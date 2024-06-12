@@ -3,6 +3,9 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgToastModule } from 'ng-angular-popup';
+import { ToasterPosition } from 'ng-angular-popup';
+
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
@@ -17,10 +20,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
         HttpClientModule,
         ReactiveFormsModule,
         NavigationComponent,
-        DashboardComponent
+        DashboardComponent,
+        NgToastModule,
     ]
 })
 
 export class AppComponent {
     title = 'expenses-angular';
+    ToasterPosition = ToasterPosition;
 }

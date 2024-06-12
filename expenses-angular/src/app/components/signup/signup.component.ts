@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 import ValidateForm from '../../helpers/validateform';
 import { AuthService } from '../../services/auth.service';
@@ -22,7 +23,12 @@ export class SignupComponent {
 
     signupForm!: FormGroup;
 
-    constructor(private router: Router, private fb: FormBuilder, private auth: AuthService) {}
+    constructor(
+        private router: Router,
+        private fb: FormBuilder,
+        private auth: AuthService,
+        private toast: NgToastService
+    ) {}
 
     ngOnInit(): void {
         this.signupForm = this.fb.group({    // Initialize and add validation to form group
@@ -46,20 +52,20 @@ export class SignupComponent {
             // Send the object to database using API call in AuthService
             this.auth.signUp(this.signupForm.value)
                 .subscribe({
-                    next:(response => {
-                        alert(response.message);
+                    next: (response => {
+                        this.toast.success(response.message, "SUCCESS", 5000);
                         this.signupForm.reset();            // Clear form
                         this.router.navigate(['login']);    // Route to login page
                     }),
-                    error:(response => {
-                        alert(response.error.message);
+                    error: (response => {
+                        this.toast.danger(response.error.message, "ERROR", 10000);
                     })
                 })
         }
         else {
             // Throw error message
             ValidateForm.validateFormFields(this.signupForm);
-            // alert("Account information is not valid.");
+            this.toast.danger("Account information is not valid.", "ERROR", 5000);
         }
     }
 }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { NgToastService } from 'ng-angular-popup';
 
 import { Expense } from '../../../models/expense.model';
 
@@ -61,6 +62,8 @@ export class ExpenseTablesComponent {
         currency: "USD"
     });
 
+    constructor(private toast: NgToastService) {}
+
     ngOnInit(): void {
         this.expenseList$.subscribe(expenses => {
             this.originalMonthlyExpenses = expenses.filter(expense => expense.type === "Monthly");
@@ -87,7 +90,7 @@ export class ExpenseTablesComponent {
                   // Will only run when we get a success response from API
                   next: (response) => {
                       this.expenseList$ = this.loadExpenses();
-                      // alert("Expense deleted successfully.");
+                      this.toast.success("Expense deleted successfully.", "SUCCESS", 5000);
                       this.ngOnInit();
                   }
               });
