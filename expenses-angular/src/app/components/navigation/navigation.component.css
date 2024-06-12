@@ -6,7 +6,7 @@
     height: 100svh;
     min-width: 14rem;
     padding: 4rem 0rem;
-    background-color: var(--fourth);
+    background: var(--fourth);
     z-index: 1;
     position: fixed;
 }
@@ -22,18 +22,24 @@
     border-radius: 1.25rem;
     font-size: 1.25rem;
     padding: 1.5rem;
-    background-color: var(--third);
+    background: var(--third);
     color: var(--text-white);
     cursor: pointer;
 
     img {
         max-width: 2.5rem;
         max-height: 2.5rem;
+        /* opacity: .5; */
     }
+    /* p { opacity: .5; } */
 }
-.nav-btn:hover { background-color: var(--second); }
+.nav-btn:hover { background: var(--second); }
 
 .nav-btn.active-link {
     img { filter: invert(32%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%); }
     p { color: var(--accent); }
 }
+/* .nav-btn.active-link {
+    img { opacity: 1; }
+    p { opacity: 1; }
+} */
