@@ -50,9 +50,10 @@ export class LoginComponent {
             this.auth.login(this.loginForm.value)
                 .subscribe({
                     next: (response) => {
+                        this.loginForm.reset(); // Clear form
+                        this.auth.storeToken(response.token); // Get and store JWT token passed from .NET using AuthService
                         this.toast.success(response.message, "SUCCESS", 5000);
-                        this.loginForm.reset();                 // Clear form
-                        this.router.navigate(['dashboard']);    // Route to dashboard page
+                        this.router.navigate(['dashboard']); // Route to dashboard page
                     },
                     error: (response) => {
                         this.toast.danger(response?.error.message, "ERROR", 5000);

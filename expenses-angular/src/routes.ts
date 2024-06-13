@@ -8,6 +8,8 @@ import { LoginComponent } from "./app/components/login/login.component";
 import { SignupComponent } from "./app/components/signup/signup.component";
 import { HelpComponent } from "./app/components/help/help.component";
 
+import { authGuard } from "./app/guards/auth.guard";
+
 const routeConfig: Routes = [
     {
         path: '',
@@ -17,32 +19,38 @@ const routeConfig: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
-        title: 'Dashboard'
+        title: 'Dashboard',
+        canActivate: [authGuard]
     },
     {
         path: 'analysis',
         component: AnalysisComponent,
-        title: 'Analysis'
+        title: 'Analysis',
+        canActivate: [authGuard]
     },
     {
         path: 'edit-expense',
         component: EditExpenseComponent,
-        title: 'Add Expense'
+        title: 'Add Expense',
+        canActivate: [authGuard]
     },
     {
         path: 'edit-expense/:id',
         component: EditExpenseComponent,
-        title: 'Edit Expense'
+        title: 'Edit Expense',
+        canActivate: [authGuard]
     },
     {
         path: 'profile',
         component: ProfileComponent,
-        title: 'My Profile'
+        title: 'My Profile',
+        canActivate: [authGuard]
     },
     {
         path: 'help',
         component: HelpComponent,
-        title: 'Help'
+        title: 'Help',
+        canActivate: [authGuard]
     },
 
     {
@@ -55,10 +63,10 @@ const routeConfig: Routes = [
         component: SignupComponent,
         title: 'Sign Up'
     },
-    
+
     { // Optional: Redirect any unknown paths to the dashboard
         path: '**', 
-        redirectTo: '/dashboard' 
+        redirectTo: '/dashboard'
     } 
 ];
 

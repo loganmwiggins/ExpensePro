@@ -25,10 +25,19 @@
             </div>
             
             <div class="form-btns">
-                <button
-                    type="submit"
-                    class="btn btn-lg btn-save"
-                >Save</button>
+                <div>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Save</button>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-danger"
+                        (click)="signOut()"
+                    >Sign Out</button>
+                </div>
             </div>
         </form>
     </div>
