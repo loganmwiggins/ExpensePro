@@ -1,6 +1,7 @@
 ﻿using ExpensesAngularAPI.Data;
 using ExpensesAngularAPI.Models;
 using ExpensesAngularAPI.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
@@ -23,6 +24,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Return entire list of expenses from Db
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllExpenses()
         {
@@ -32,6 +34,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Return a single expense from the Db by its id
+        [Authorize]
         [HttpGet]
         [Route("{id:guid}")]    // Accepting an identifier is required for this action
         public IActionResult GetExpenseById(Guid id)
@@ -48,6 +51,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Add expense to Db
+        [Authorize]
         [HttpPost]
         public IActionResult AddExpense(AddExpenseDTO addExpenseDTO)
         {
@@ -70,6 +74,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Update/edit expense in the Db
+        [Authorize]
         [HttpPut]
         [Route("{id:guid}")]    // Accepts identifier for the action, but function also accepts parameter (DTO) for what we want to update
         public IActionResult UpdateExpense(Guid id, UpdateExpenseDTO updateExpenseDTO)
@@ -96,6 +101,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Delete expense from Db
+        [Authorize]
         [HttpDelete]
         [Route("{id:guid}")]
         public IActionResult DeleteExpense(Guid id)
