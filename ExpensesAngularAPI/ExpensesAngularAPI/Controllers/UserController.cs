@@ -1,6 +1,7 @@
 ﻿using ExpensesAngularAPI.Data;
 using ExpensesAngularAPI.Helpers;
 using ExpensesAngularAPI.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Get all users
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<User>> GetAllUsers()
         {
@@ -156,7 +158,7 @@ namespace ExpensesAngularAPI.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddDays(1),             // When token expires (valid for 1 day)
+                Expires = DateTime.Now.AddDays(1),             // When token expires and requires relogin (valid for 1 day)
                 SigningCredentials = credentials
             };
 

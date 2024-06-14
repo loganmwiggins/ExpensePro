@@ -27,7 +27,7 @@ builder.Services.AddCors(option =>
 builder.Services.AddDbContext<ExpensesDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Authentication with JWT
+// Authentication with JWT tokens
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -41,7 +41,8 @@ builder.Services.AddAuthentication(x =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("veryveryverysecretsauceonakrabbypatty.....")),
         ValidateAudience = false,
-        ValidateIssuer = false
+        ValidateIssuer = false,
+        ClockSkew = TimeSpan.Zero  // Essentially removes 5min minimum and allows exact expiration time to be set in controller
     };
 });
 
@@ -58,8 +59,9 @@ app.UseHttpsRedirection();
 
 app.UseCors("MyPolicy");
 
-app.UseAuthentication();
-
+// Used for protecting data acccessed through API calls [Authorize]
+// If trying to access API call without token, will return 401 error
+app.UseAuthentication();    
 app.UseAuthorization();
 
 app.MapControllers();

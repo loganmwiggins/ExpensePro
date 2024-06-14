@@ -6,6 +6,10 @@
 
     <div class="form-ctnr">
         <form>
+            <div class="expense-tables-hdr">
+                <h2>Account Information</h2>
+            </div>
+
             <div class="form-inputs">
                 <!-- Username input -->
                 <div class="input-ctnr">
@@ -40,5 +44,83 @@
                 </div>
             </div>
         </form>
+    </div>
+    <!-- <div>
+        <ul *ngFor="let user of users">
+            <li>{{user.username}}</li>
+        </ul>
+    </div> -->
+
+    <!-- ADMIN SETTINGS -->
+    <div class="expense-tables-ctnr">
+        <div class="expense-tables-hdr">
+            <h2>Admin</h2>
+        </div>
+
+        <!-- COMBINED  -->
+        <div class="table-group-ctnr">
+            <div class="table-ctnr">
+                <div class="table-header">
+                    <div class="title-ctnr">
+                        <h3>ALL USERS</h3>
+                        @if (userList$ | async; as userList) {
+                            <div class="list-count"><h3>{{userList.length}}</h3></div>
+                        }
+                    </div>
+                    <!-- <div class="sort-ctnr">
+                        <label for="sort-options">Sort by:</label>
+                        <select id="sort-options" (change)="sortAllExpenses($event)">
+                            <option value="default">Default (Order Added)</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="cost-asc">Cost (Low to High)</option>
+                            <option value="cost-desc">Cost (High to Low)</option>
+                            <option value="type-asc">Type (Monthly to Yearly)</option>
+                            <option value="type-desc">Type (Yearly to Monthly)</option>
+                            <option value="category-asc">Category (A-Z)</option>
+                        </select>
+                    </div> -->
+                </div>
+                <table>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                        <th>Income</th>
+                    </tr>
+                        @if (userList$ | async; as userList) {
+                            @if (userList.length > 0) {
+                                @for (user of userList; track $index) {
+                                    <tr>
+                                        <td>{{user.firstName}} {{user.lastName}}</td>
+                                        <td>{{user.username}}</td>
+                                        <td>{{user.role}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.income}}</td>
+                                    </tr>
+                                }
+                            }
+                            @else {
+                                <tr>
+                                    <td>
+                                        No users found...
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,14 +1,21 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';    // Allows Material animations
 
 import { AppComponent } from './app/app.component';
 import routeConfig from './routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';    // Allows Material animations
+import { TokenInterceptor } from './app/interceptors/token.interceptor';
 
 bootstrapApplication(AppComponent, {
     providers: [
         provideHttpClient(withFetch()),
-        provideRouter(routeConfig), provideAnimationsAsync()
+        provideRouter(routeConfig),
+        provideAnimationsAsync(),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }
     ]
 }).catch((err) => console.error(err));
