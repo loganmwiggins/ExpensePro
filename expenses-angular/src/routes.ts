@@ -63,8 +63,9 @@ const routeConfig: Routes = [
         component: SignupComponent,
         title: 'Sign Up'
     },
-
-    { // Optional: Redirect any unknown paths to the dashboard
+    
+    // Optional: Redirect any unknown paths to the dashboard
+    { 
         path: '**', 
         redirectTo: '/dashboard'
     } 
