@@ -158,7 +158,7 @@ namespace ExpensesAngularAPI.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddDays(1),             // When token expires and requires relogin (valid for 1 day)
+                Expires = DateTime.Now.AddDays(1),             // When token expires and requires relogin (valid for 2 hours)
                 SigningCredentials = credentials
             };
 

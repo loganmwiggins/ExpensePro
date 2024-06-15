@@ -52,7 +52,7 @@
     </div> -->
 
     <!-- ADMIN SETTINGS -->
-    <div class="expense-tables-ctnr">
+    <div class="expense-tables-ctnr" *ngIf="userRole === 'Admin'">
         <div class="expense-tables-hdr">
             <h2>Admin</h2>
         </div>

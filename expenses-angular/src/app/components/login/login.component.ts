@@ -6,6 +6,7 @@ import { NgToastService } from 'ng-angular-popup';
 
 import ValidateForm from '../../helpers/validateform';
 import { AuthService } from '../../services/auth.service';
+import { UserStoreService } from '../../services/user-store.service';
 
 @Component({
     selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent {
         private router: Router,
         private fb: FormBuilder,
         private auth: AuthService,
+        private userStore: UserStoreService,
         private toast: NgToastService
     ) {}
 
@@ -52,6 +54,9 @@ export class LoginComponent {
                     next: (response) => {
                         this.loginForm.reset(); // Clear form
                         this.auth.storeToken(response.token); // Get and store JWT token passed from .NET using AuthService
+                        const tokenPayload = this.auth.decodeToken();
+                        this.userStore.setFullNameForStore(tokenPayload.unique_name);
+                        this.userStore.setRoleForStore(tokenPayload.role);
                         this.toast.success(response.message, "SUCCESS", 5000);
                         this.router.navigate(['dashboard']); // Route to dashboard page
                     },
