@@ -165,11 +165,9 @@ namespace ExpensesAngularAPI.Controllers
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("veryveryverysecretsauceonakrabbypatty.....");   // Algorithm/key
-            var identity = new ClaimsIdentity(new Claim[]               // Payload = role and full name
+            var identity = new ClaimsIdentity(new Claim[]   // Payload = user ID
             {
                 new Claim("UserID", user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
             });
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);

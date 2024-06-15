@@ -6,9 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class UserStoreService {
-
-    private fullName$ = new BehaviorSubject<string>("");
-    private role$ = new BehaviorSubject<string>("");
     private userId$ = new BehaviorSubject<string>("");
 
     // Getter and setter for ID
@@ -17,21 +14,5 @@ export class UserStoreService {
     }
     public setUserIdForStore(userId: string) {
         this.userId$.next(userId);
-    }
-
-    // Getter and setter for role
-    public getRoleFromStore() {
-        return this.role$.asObservable();
-    }
-    public setRoleForStore(role: string) {
-        this.role$.next(role);
-    }
-
-    // Getter and setter for full name
-    public getFullNameFromStore() {
-        return this.fullName$.asObservable();
-    }
-    public setFullNameForStore(fullName: string) {
-        this.fullName$.next(fullName);
     }
 }

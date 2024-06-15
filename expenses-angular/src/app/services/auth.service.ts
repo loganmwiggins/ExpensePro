@@ -59,16 +59,7 @@ export class AuthService {
     // Get payload from token
     getUserIdFromToken() {
         // console.log(this.userPayload);
-
         if (this.userPayload)
             return this.userPayload.UserID;
-    }
-    getFullNameFromToken() {
-        if (this.userPayload)
-            return this.userPayload.unique_name;
-    }
-    getRoleFromToken() {
-        if (this.userPayload)
-            return this.userPayload.role;
     }
 }
