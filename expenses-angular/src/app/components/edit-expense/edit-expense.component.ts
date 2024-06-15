@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 
 import { Expense } from '../../../models/expense.model';
+import { UserStoreService } from '../../services/user-store.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-edit-expense',
@@ -18,6 +20,7 @@ import { Expense } from '../../../models/expense.model';
 export class EditExpenseComponent {
     http = inject(HttpClient);
 
+    userId!: string;
     expenseId!: string | null;
     expense$!: Observable<Expense>;
 
@@ -111,13 +114,26 @@ export class EditExpenseComponent {
         category: new FormControl<string>("")
     });
 
-    constructor(private route: ActivatedRoute, private router: Router, private toast: NgToastService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private auth: AuthService,
+        private userStore: UserStoreService,
+        private toast: NgToastService
+    ) {}
 
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
         this.expenseId = id;
 
         if (id !== null) { this.loadExpense(id); }
+
+        // Get current user ID
+        this.userStore.getUserIdFromStore()
+            .subscribe(val => {
+                const userIdFromToken = this.auth.getUserIdFromToken();
+                this.userId = val || userIdFromToken;
+            })
     }
 
     private getExpenseById(id: string): Observable<Expense> {
@@ -179,7 +195,7 @@ export class EditExpenseComponent {
                 });
         } else {
             // Add new expense
-            const newExpense = this.editExpenseForm.value;
+            const newExpense = { ...this.editExpenseForm.value, UserId: this.userId };
 
             this.http.post(`https://localhost:7265/api/Expenses`, newExpense)
                 .subscribe({

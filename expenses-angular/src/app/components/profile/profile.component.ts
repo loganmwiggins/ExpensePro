@@ -21,6 +21,7 @@ export class ProfileComponent {
     
     userList$ = this.getUsers();
     public userRole: string = "";
+    public userId: string = "";
 
     constructor(private auth: AuthService, private userStore: UserStoreService) {}
 
@@ -31,6 +32,14 @@ export class ProfileComponent {
                 // Then if we refresh, Observable will be empty and will grab name from token
                 const roleFromToken = this.auth.getRoleFromToken();
                 this.userRole = val || roleFromToken;
+            })
+
+        this.userStore.getUserIdFromStore()
+            .subscribe(val => {
+                // Implement both because full name from userStore will go first
+                // Then if we refresh, Observable will be empty and will grab name from token
+                const userIdFromToken = this.auth.getUserIdFromToken();
+                this.userId = val || userIdFromToken;
             })
     }
 

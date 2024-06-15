@@ -149,6 +149,7 @@ namespace ExpensesAngularAPI.Controllers
             var key = Encoding.ASCII.GetBytes("veryveryverysecretsauceonakrabbypatty.....");   // Algorithm/key
             var identity = new ClaimsIdentity(new Claim[]               // Payload = role and full name
             {
+                new Claim("UserID", user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
             });

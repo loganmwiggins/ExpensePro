@@ -55,6 +55,7 @@ export class LoginComponent {
                         this.loginForm.reset(); // Clear form
                         this.auth.storeToken(response.token); // Get and store JWT token passed from .NET using AuthService
                         const tokenPayload = this.auth.decodeToken();
+                        this.userStore.setUserIdForStore(tokenPayload.userId);
                         this.userStore.setFullNameForStore(tokenPayload.unique_name);
                         this.userStore.setRoleForStore(tokenPayload.role);
                         this.toast.success(response.message, "SUCCESS", 5000);

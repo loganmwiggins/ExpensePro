@@ -41,6 +41,11 @@ html::-webkit-scrollbar-track { background: black; }
 html::-webkit-scrollbar-thumb { background: var(--fourth); }
 
 a:link, a:visited, a:hover, a:active { text-decoration: none; }
+.hyperlink { color: var(--text-white); }
+.hyperlink:hover {
+    color: var(--accent);
+    text-decoration: underline !important;
+}
 
 /* Buttons */
 .btn {

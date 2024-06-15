@@ -129,7 +129,7 @@
             <mat-button-toggle value="separated">SEPARATED BY TYPE</mat-button-toggle>
             <mat-button-toggle value="combined">COMBINED</mat-button-toggle>
         </mat-button-toggle-group>
-        <button class="btn btn-icon" routerLink="/edit-expense">
+        <button class="btn btn-icon" routerLink="/edit-expense" title="Add an Expense">
             <img src="assets/icons/add-black.svg" draggable="false">
         </button>
     </div>
@@ -188,12 +188,10 @@
                                 </td>
                             </tr>
                         }
-                    }
-                    @else {
+                    } @else {
                         <tr>
-                            <td>
-                                No expenses found...
-                            </td>
+                            <td>No expenses found...</td>
+                            <td><a class="hyperlink" routerLink="/edit-expense">Add expense</a></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -245,22 +243,33 @@
                     <th>Payment Date</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let expense of sortedMonthlyExpenses; let i = index">
-                    <td>
-                        <img [src]="expense.icon" draggable="false">
-                        {{expense.name}}
-                    </td>
-                    <td>{{currencyFormatter.format(expense.cost)}}</td>
-                    <td>{{expense.paymentDate}}</td>
-                    <td class="td-btns">
-                        <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
-                            <img src="assets/icons/pencil-black.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
-                            <img src="assets/icons/trash-black.svg" draggable="false">
-                        </button>
-                    </td>
-                </tr>
+
+                @if (sortedMonthlyExpenses.length > 0) {
+                    <tr *ngFor="let expense of sortedMonthlyExpenses; let i = index">
+                        <td>
+                            <img [src]="expense.icon" draggable="false">
+                            {{expense.name}}
+                        </td>
+                        <td>{{currencyFormatter.format(expense.cost)}}</td>
+                        <td>{{expense.paymentDate}}</td>
+                        <td class="td-btns">
+                            <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                                <img src="assets/icons/pencil-black.svg" draggable="false">
+                            </button>
+                            <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                                <img src="assets/icons/trash-black.svg" draggable="false">
+                            </button>
+                        </td>
+                    </tr>
+                } @else {
+                    <tr>
+                        <td>No expenses found...</td>
+                        <td><a class="hyperlink" routerLink="/edit-expense">Add expense</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+                
                 <tr>
                     <th>Total:</th>
                     <th class="total">{{currencyFormatter.format(totalMonthlyCost)}}</th>
@@ -295,22 +304,33 @@
                     <th>Payment Date</th>
                     <th></th>
                 </tr>
-                <tr *ngFor="let expense of sortedYearlyExpenses; let i = index">
-                    <td>
-                        <img [src]="expense.icon" draggable="false">
-                        {{expense.name}}
-                    </td>
-                    <td>{{currencyFormatter.format(expense.cost)}}</td>
-                    <td>{{expense.paymentDate}}</td>
-                    <td class="td-btns">
-                        <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
-                            <img src="assets/icons/pencil-black.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
-                            <img src="assets/icons/trash-black.svg" draggable="false">
-                        </button>
-                    </td>
-                </tr>
+
+                @if (sortedYearlyExpenses.length > 0) {
+                    <tr *ngFor="let expense of sortedYearlyExpenses; let i = index">
+                        <td>
+                            <img [src]="expense.icon" draggable="false">
+                            {{expense.name}}
+                        </td>
+                        <td>{{currencyFormatter.format(expense.cost)}}</td>
+                        <td>{{expense.paymentDate}}</td>
+                        <td class="td-btns">
+                            <button class="btn btn-icon" [routerLink]="['/edit-expense', expense.id]">
+                                <img src="assets/icons/pencil-black.svg" draggable="false">
+                            </button>
+                            <button class="btn btn-icon" (click)="deleteExpense(expense.id)">
+                                <img src="assets/icons/trash-black.svg" draggable="false">
+                            </button>
+                        </td>
+                    </tr>
+                } @else {
+                    <tr>
+                        <td>No expenses found...</td>
+                        <td><a class="hyperlink" routerLink="/edit-expense">Add expense</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+                
                 <tr>
                     <th>Total:</th>
                     <th class="total">{{currencyFormatter.format(totalYearlyCost)}}</th>

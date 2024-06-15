@@ -9,8 +9,17 @@ export class UserStoreService {
 
     private fullName$ = new BehaviorSubject<string>("");
     private role$ = new BehaviorSubject<string>("");
+    private userId$ = new BehaviorSubject<string>("");
 
     constructor() { }
+
+    // Getter and setter for ID
+    public getUserIdFromStore() {
+        return this.userId$.asObservable();
+    }
+    public setUserIdForStore(userId: string) {
+        this.userId$.next(userId);
+    }
 
     // Getter and setter for role
     public getRoleFromStore() {

@@ -1,4 +1,5 @@
 ﻿using ExpensesAngularAPI.Data;
+using ExpensesAngularAPI.Helpers;
 using ExpensesAngularAPI.Models;
 using ExpensesAngularAPI.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +29,9 @@ namespace ExpensesAngularAPI.Controllers
         [HttpGet]
         public IActionResult GetAllExpenses()
         {
-            var allExpenses = dbContext.Expenses.ToList();
+            var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
+
+            var allExpenses = dbContext.Expenses.Where(exp => exp.UserId == currentUserId).ToList(); // Get expense list based on current user Id
             return Ok(allExpenses);
         }
 
@@ -55,9 +58,12 @@ namespace ExpensesAngularAPI.Controllers
         [HttpPost]
         public IActionResult AddExpense(AddExpenseDTO addExpenseDTO)
         {
+            var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
+
             var expenseEntity = new Expense
             {
                 //Id = Guid.NewGuid(), [not needed: Entity Framework does this for us]
+                UserId = currentUserId,
                 Name = addExpenseDTO.Name,
                 Type = addExpenseDTO.Type,
                 Icon = addExpenseDTO.Icon,
