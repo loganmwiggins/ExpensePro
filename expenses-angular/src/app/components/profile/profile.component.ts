@@ -2,49 +2,62 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../../models/user.model';
-import { UserStoreService } from '../../services/user-store.service';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-    imports: [ CommonModule, HttpClientModule ],
+    imports: [ CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule ],
     templateUrl: './profile.component.html',
     styleUrl: './profile.component.css'
 })
 
 export class ProfileComponent {
 
-    http = inject(HttpClient);  //Enables calls to API
-    
-    userList$ = this.getUsers();
-    public userRole: string = "";
-    public userId: string = "";
+    userList$ = this.getUserList();
+    currentUser$!: Observable<User>;
 
-    constructor(private auth: AuthService, private userStore: UserStoreService) {}
+    userProfileForm = new FormGroup({
+        firstName: new FormControl<string>(""),
+        lastName: new FormControl<string>(""),
+        username: new FormControl<string>(""),
+        email: new FormControl<string>(""),
+        annualIncome: new FormControl<number>(0)
+    });
+
+    constructor(private http: HttpClient, private auth: AuthService) {}
 
     ngOnInit(): void {
-        this.userStore.getRoleFromStore()
-            .subscribe(val => {
-                // Implement both because full name from userStore will go first
-                // Then if we refresh, Observable will be empty and will grab name from token
-                const roleFromToken = this.auth.getRoleFromToken();
-                this.userRole = val || roleFromToken;
-            })
-
-        this.userStore.getUserIdFromStore()
-            .subscribe(val => {
-                // Implement both because full name from userStore will go first
-                // Then if we refresh, Observable will be empty and will grab name from token
-                const userIdFromToken = this.auth.getUserIdFromToken();
-                this.userId = val || userIdFromToken;
-            })
+        this.currentUser$ = this.getCurrentUser();  // Sets currentUser observable with API call   
+        if (this.currentUser$ !== null) {
+            this.loadCurrentUser();
+        }
     }
 
-    getUsers(): Observable<User[]> {
+    // [HttpGet]
+    getUserList(): Observable<User[]> {
         return this.http.get<User[]>("https://localhost:7265/api/User");
+    }
+
+    // [HttpGet("current")]
+    getCurrentUser(): Observable<User> {
+        return this.http.get<User>("https://localhost:7265/api/User/current");
+    }
+
+    loadCurrentUser(): void {
+        this.currentUser$.subscribe(user => {
+            // Fill user profile form with observable data
+            this.userProfileForm.patchValue({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                username: user.username,
+                email: user.email,
+                annualIncome: user.income
+            });
+        })
     }
 
     signOut() {

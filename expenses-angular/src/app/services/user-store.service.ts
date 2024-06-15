@@ -11,8 +11,6 @@ export class UserStoreService {
     private role$ = new BehaviorSubject<string>("");
     private userId$ = new BehaviorSubject<string>("");
 
-    constructor() { }
-
     // Getter and setter for ID
     public getUserIdFromStore() {
         return this.userId$.asObservable();
@@ -36,5 +34,4 @@ export class UserStoreService {
     public setFullNameForStore(fullName: string) {
         this.fullName$.next(fullName);
     }
-
 }

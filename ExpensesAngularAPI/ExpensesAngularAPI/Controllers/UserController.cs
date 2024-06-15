@@ -36,6 +36,24 @@ namespace ExpensesAngularAPI.Controllers
         }
 
 
+        // Get current user by Id
+        [Authorize]
+        [HttpGet("current")]
+        public IActionResult GetCurrentUser()
+        {
+            var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
+
+            var user = dbContext.Users.Find(currentUserId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            return Ok(user);
+        }
+
+
         // Login authentication
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User userObj)
