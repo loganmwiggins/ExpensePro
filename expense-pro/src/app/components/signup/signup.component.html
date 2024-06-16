@@ -1,0 +1,71 @@
+<div class="content-ctnr">
+    <div class="page-title">
+        <img src="assets/icons/login-icons/user-add-black.svg" draggable="false">
+        <h1>Sign Up</h1>
+    </div>
+
+    <div class="form-ctnr">
+        <form [formGroup]="signupForm" (ngSubmit)="submitSignup()">
+            <!-- First Name input -->
+            <div class="login-input-ctnr" [class.error-input]="signupForm.controls['firstName'].dirty && signupForm.hasError('required', 'firstName')">
+                <img src="assets/icons/login-icons/badge.svg" draggable="false">
+                <input type="text" formControlName="firstName" placeholder="First Name">
+            </div>
+            <!-- Last Name input -->
+            <div class="login-input-ctnr" [class.error-input]="signupForm.controls['lastName'].dirty && signupForm.hasError('required', 'lastName')">
+                <img src="assets/icons/login-icons/badge.svg" draggable="false">
+                <input type="text" formControlName="lastName" placeholder="Last Name">
+            </div>
+            <!-- Email input -->
+            <div class="login-input-ctnr" [class.error-input]="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">
+                <img src="assets/icons/login-icons/envelope.svg" draggable="false">
+                <input type="text" formControlName="email" placeholder="Email Address">
+            </div>
+            <!-- Username input -->
+            <div class="login-input-ctnr" [class.error-input]="signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')">
+                <img src="assets/icons/nav-icons/user.svg" draggable="false">
+                <input type="text" formControlName="username" maxlength="20" placeholder="Username">
+            </div>
+            <!-- Password input -->
+            <div class="login-input-ctnr" [class.error-input]="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')">
+                <img src="assets/icons/expense-icons/lock.svg" draggable="false">
+                <input
+                    [type]="pwType"
+                    formControlName="password"
+                    placeholder="Password"
+                >
+                <img
+                    [src]="eyeIcon"
+                    draggable="false"
+                    class="eye-icon"
+                    (click)="hideShowPassword()"
+                >
+            </div>
+
+            <!-- Validation errors -->
+            <div class="error-msgs">
+                <small *ngIf="signupForm.controls['firstName'].dirty && signupForm.hasError('required', 'firstName')">* First Name is required</small>
+                <small *ngIf="signupForm.controls['lastName'].dirty && signupForm.hasError('required', 'lastName')">* Last Name is required</small>
+                <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">* Email Address is required</small>
+                <small *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')">* Username is required</small>
+                <small *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')">* Password is required</small>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-btns">
+                <div>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Create Account</button>
+                </div>
+                <div>
+                    <a routerLink="/login">
+                        Already have an account? 
+                        <span style="text-decoration: underline;">Login</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

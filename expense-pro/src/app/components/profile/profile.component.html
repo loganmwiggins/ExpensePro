@@ -1,0 +1,62 @@
+<div class="content-ctnr">
+    <div class="page-title">
+        <img src="assets/icons/nav-icons/user-black.svg" draggable="false">
+        <h1>My Profile</h1>
+    </div>
+
+    <div class="form-ctnr">
+        <form [formGroup]="userProfileForm">
+            <div class="expense-tables-hdr">
+                <h2>Account Information</h2>
+            </div>
+
+            <div class="form-inputs">
+                <!-- First Name input -->
+                <div class="input-ctnr">
+                    <p>First Name</p>
+                    <input type="text" formControlName="firstName">
+                </div>
+                <!-- Last Name input -->
+                <div class="input-ctnr">
+                    <p>Last Name</p>
+                    <input type="text" formControlName="lastName">
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Username input -->
+                <div class="input-ctnr">
+                    <p>Username</p>
+                    <input type="text" formControlName="username">
+                </div>
+                <!-- Email input -->
+                <div class="input-ctnr">
+                    <p>Email Address</p>
+                    <input type="text" formControlName="email">
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Annual Income input -->
+                <div class="input-ctnr">
+                    <p>Annual Income</p>
+                    <input type="number" formControlName="annualIncome" placeholder="Ex:  82500">
+                </div>
+            </div>
+            
+            <div class="form-btns">
+                <div>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Save</button>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-danger"
+                        (click)="signOut()"
+                    >Sign Out</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

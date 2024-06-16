@@ -1,0 +1,77 @@
+.help-ctnr {
+    display: flex;
+    flex-direction: column;
+    background: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+}
+
+.help-ctnr-hdr {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    h2 { font-size: 2.75rem; }
+}
+
+.help-ctnr-body { display: flex; }
+
+.app-info-ctnr {
+    flex: 1;
+
+    p:first-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
+    p:nth-child(2) {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* Suggestions */
+.suggestion-body {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.suggestion-ctnr {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--third);
+    border-radius: 1.5rem;
+    padding: 1rem 2rem;
+    gap: 6rem;
+
+    div:first-child {
+        display: flex;
+        flex-direction: column;
+
+        p:first-child {
+            color: var(--text-grey);
+            font-size: 1.5rem;
+        }
+    }
+    div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+        }
+        p {
+            color: var(--text-grey);
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.upvoted { filter: invert(32%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%); }
