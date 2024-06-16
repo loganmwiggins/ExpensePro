@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { JwtHelperService } from '@auth0/angular-jwt'
 
@@ -12,6 +13,9 @@ export class AuthService {
 
     private baseUrl: string = "https://localhost:7265/api/User";
     private userPayload: any;
+
+    // BehaviorSubject to track the login status
+    private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn());
 
     constructor(private http: HttpClient, private router: Router) {
         this.userPayload = this.decodeToken();
@@ -30,12 +34,14 @@ export class AuthService {
     // Clear JWT token in local storage when user signs out
     signOut() {
         localStorage.clear(); // Used to clear all local storage -- localStorage.removeItem("token");, Used to clear a specific item from local storage
+        this.isLoggedInSubject.next(false); // Update login status
         this.router.navigate([("login")]);
     }
 
     // Store JWT token in local storage when user *successfully* logs in
     storeToken(tokenValue: string) {
         localStorage.setItem("token", tokenValue);
+        this.isLoggedInSubject.next(true); // Update login status
     }
 
     // Retreive JWT token for authentication
@@ -46,6 +52,11 @@ export class AuthService {
     // Check if user is logged in or not
     isLoggedIn(): boolean {
         return !!localStorage.getItem("token"); // !! converts string to boolean: if token string is present = true, if null = false
+    }
+
+    // Observable function to check login status
+    checkIsLoggedIn(): Observable<boolean> {
+        return this.isLoggedInSubject.asObservable();
     }
 
     // Decrypt JWT token

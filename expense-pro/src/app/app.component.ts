@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +9,7 @@ import { ToasterPosition } from 'ng-angular-popup';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -15,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     imports: [
+        CommonModule,
         RouterOutlet,
         RouterModule,
         HttpClientModule,
@@ -28,4 +31,19 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 export class AppComponent {
     title = 'expenses-angular';
     ToasterPosition = ToasterPosition;
+
+    isUserLoggedIn!: boolean;
+
+    constructor(private authService: AuthService) {}
+
+    ngOnInit(): void {
+        this.authService.checkIsLoggedIn().subscribe(
+            isLoggedIn => {
+                this.isUserLoggedIn = isLoggedIn;
+            },
+            error => {
+                console.error('Error checking login status', error);
+            }
+        );
+    }
 }
