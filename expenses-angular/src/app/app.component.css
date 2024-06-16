@@ -1,6 +1,0 @@
-.main { display: flex; }
-
-.content {
-    flex: 1;
-    margin-left: 14rem; /* get out of the way of nav */
-}
