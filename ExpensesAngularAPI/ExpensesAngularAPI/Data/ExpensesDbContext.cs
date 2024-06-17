@@ -10,5 +10,7 @@ namespace ExpensesAngularAPI.Data
         public DbSet<Expense> Expenses { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Suggestion> Suggestions { get; set; }
     }
 }
