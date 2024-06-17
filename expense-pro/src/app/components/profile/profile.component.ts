@@ -26,7 +26,7 @@ export class ProfileComponent {
         lastName: new FormControl<string>(""),
         username: new FormControl<string>(""),
         email: new FormControl<string>(""),
-        annualIncome: new FormControl<number>(0)
+        income: new FormControl<number>(0)
     });
 
     constructor(private http: HttpClient, private auth: AuthService, private toast: NgToastService) {}
@@ -56,7 +56,7 @@ export class ProfileComponent {
                 lastName: user.lastName,
                 username: user.username,
                 email: user.email,
-                annualIncome: user.income
+                income: user.income
             });
         })
     }
