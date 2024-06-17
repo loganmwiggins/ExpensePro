@@ -8,6 +8,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgToastService } from 'ng-angular-popup';
 
 import { Expense } from '../../../models/expense.model';
+import { User } from '../../../models/user.model';
 
 @Component({
     selector: 'app-expense-tables',
@@ -31,6 +32,7 @@ export class ExpenseTablesComponent {
 
     http = inject(HttpClient);  //Enables calls to API
     expenseList$ = this.loadExpenses();
+    currentUser$!: Observable<User>;
     
     originalAllExpenses: Expense[] = [];  // Store the original order of expenses
     originalMonthlyExpenses: Expense[] = [];
@@ -49,8 +51,8 @@ export class ExpenseTablesComponent {
     totalExpenseCostPerMonth: number = 0;   // totalMonthlyCost + totalYearlyCostPerMonth
     totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
 
-    userYearlyIncome: number = 82500;
-    userMonthlyIncome: number = this.userYearlyIncome / 12;
+    userYearlyIncome: number = 0;
+    userMonthlyIncome: number = 0;
 
     summaryToggleValue: string = "perMonth";
     incomeVsExpensesToggleValue: string = "perMonth";
@@ -75,6 +77,11 @@ export class ExpenseTablesComponent {
             this.sortedAllExpenses = [...expenses];  // Initialize sortedAllExpenses with all expenses
             this.calculateExpenseCosts();
         });
+
+        this.currentUser$ = this.getCurrentUser();  // Sets currentUser observable with API call
+        if (this.currentUser$ !== null) {
+            this.loadCurrentUser();
+        }
     }
 
     // Change toggle functions
@@ -192,5 +199,18 @@ export class ExpenseTablesComponent {
             default:
                 break;
         }
+    }
+
+    // [HttpGet("current")]
+    getCurrentUser(): Observable<User> {
+        return this.http.get<User>("https://localhost:7265/api/User/current");
+    }
+
+    loadCurrentUser(): void {
+        this.currentUser$.subscribe(user => {
+            // Fill variables with observable data
+            this.userYearlyIncome = user.income;
+            this.userMonthlyIncome = this.userYearlyIncome / 12;
+        })
     }
 }
