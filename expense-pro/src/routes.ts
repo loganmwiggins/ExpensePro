@@ -7,6 +7,7 @@ import { ProfileComponent } from "./app/components/profile/profile.component";
 import { LoginComponent } from "./app/components/login/login.component";
 import { SignupComponent } from "./app/components/signup/signup.component";
 import { HelpComponent } from "./app/components/help/help.component";
+import { EditSuggestionComponent } from "./app/components/edit-suggestion/edit-suggestion.component";
 
 import { authGuard } from "./app/guards/auth.guard";
 
@@ -52,7 +53,20 @@ const routeConfig: Routes = [
         title: 'Help',
         canActivate: [authGuard]
     },
+    {
+        path: 'edit-suggestion',
+        component: EditSuggestionComponent,
+        title: 'Add Suggestion',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'edit-suggestion/:id',
+        component: EditSuggestionComponent,
+        title: 'Edit Suggestion',
+        canActivate: [authGuard]
+    },
 
+    // Unguarded pages
     {
         path: 'login',
         component: LoginComponent,

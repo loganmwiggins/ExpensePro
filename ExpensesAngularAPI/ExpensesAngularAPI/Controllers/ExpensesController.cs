@@ -42,7 +42,7 @@ namespace ExpensesAngularAPI.Controllers
         [Route("{id:guid}")]    // Accepting an identifier is required for this action
         public IActionResult GetExpenseById(Guid id)
         {
-            var expense = dbContext.Expenses.Find(id);  // Result can be a found employee, or if not found, var is nullable
+            var expense = dbContext.Expenses.Find(id);  // Result can be a found expense, or if not found, var is nullable
 
             if (expense is null)
             {
