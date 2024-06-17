@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-ctnr">
-        <form [formGroup]="userProfileForm">
+        <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile()">
             <div class="expense-tables-hdr">
                 <h2>Account Information</h2>
             </div>

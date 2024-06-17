@@ -1,5 +1,6 @@
 ﻿using ExpensesAngularAPI.Data;
 using ExpensesAngularAPI.Helpers;
+using ExpensesAngularAPI.Models;
 using ExpensesAngularAPI.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -49,6 +50,46 @@ namespace ExpensesAngularAPI.Controllers
             {
                 return NotFound("User not found");
             }
+
+            return Ok(user);
+        }
+
+
+        // Update/edit user
+        [Authorize]
+        [HttpPut]
+        //[Route("{id:int}")]    // Accepts identifier for the action, but function also accepts parameter (DTO) for what we want to update
+        public async Task<IActionResult> UpdateExpense(UpdateUserDTO updateUserDTO)
+        {
+            var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
+
+            var user = dbContext.Users.Find(currentUserId);
+
+            if (user == null)
+            {
+                return NotFound(new { Message = "User not found." });  // 404
+            }
+
+            // Check if username is unique
+            if (await CheckUsernameExistAsync(updateUserDTO.Username) && user.Username != updateUserDTO.Username)
+                return BadRequest(new { Message = "Username taken." });
+            //if (await dbContext.Users.AnyAsync(x => x.Username == updateUserDTO.Username) && user.Username != updateUserDTO.Username)
+            //{
+            //    return BadRequest(new { Message = "Username taken." });
+            //}
+
+            // Check if email is unique
+            if (await CheckEmailExistAsync(updateUserDTO.Email) && user.Email != updateUserDTO.Email)
+                return BadRequest(new { Message = "An account has already been registered with this email." });
+
+            // Use information from client (DTO param) to update Db vars, if above checks are passed
+            user.FirstName = updateUserDTO.FirstName;
+            user.LastName = updateUserDTO.LastName;
+            user.Username = updateUserDTO.Username;
+            user.Email = updateUserDTO.Email;
+            user.Income = updateUserDTO.Income;
+
+            dbContext.SaveChanges();
 
             return Ok(user);
         }
