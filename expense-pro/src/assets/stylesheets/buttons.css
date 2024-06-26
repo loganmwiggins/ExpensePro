@@ -1,0 +1,71 @@
+/* STYLESHEET FOR BUTTON ELEMENTS */
+
+/* All Buttons */
+.btn {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    background: none;
+    color: var(--text-grey);
+    border: 2px solid #acacac;;
+    border-radius: 4rem;
+    font-family: "Poppins-Medium";
+    cursor: pointer;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        margin: 0;
+        filter: invert(71%) sepia(1%) saturate(826%) hue-rotate(64deg) brightness(100%) contrast(85%);
+    }
+}
+.btn:hover {
+    color: var(--text-white);
+    border: 2px solid #ffffff;;
+
+    img { filter: invert(100%) sepia(1%) saturate(1768%) hue-rotate(247deg) brightness(119%) contrast(100%); }
+}
+
+
+/* Button Sizing */
+.btn-sm { padding: .5rem 1rem; }
+
+.btn-md { padding: .5rem 2rem; }
+
+.btn-lg {
+    padding: .5rem 2rem;
+    font-size: 1.5rem;
+}
+
+
+/* Button Types */
+.btn-save {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+.btn-save:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--fourth);
+    font-weight: 600;
+}
+
+.btn-danger {
+    color: var(--text-red);
+    border-color: var(--text-red);
+}
+.btn-danger:hover {
+    background: var(--text-red);
+    border-color: var(--text-red);
+    color: var(--fourth);
+    font-weight: 600;
+}
+
+.btn-icon {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+
+    img { width: 2.5rem; height: 2.5rem; }
+}
+.btn-icon:hover { border: none; }

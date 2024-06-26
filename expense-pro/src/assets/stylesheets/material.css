@@ -1,0 +1,30 @@
+/* STYLESHEET FOR MATERIAL ELEMENTS */
+
+/* Material Button Toggle */
+.mat-button-toggle-group {
+    border: 2px solid #acacac !important;
+    border-radius: 4rem !important;
+}
+
+.mat-button-toggle {
+    border-radius: 4rem !important;
+    background: none !important;
+    color: var(--text-grey) !important;
+    border: none !important;
+}
+
+.mat-button-toggle-label-content {
+    font-family: "Poppins-Regular";
+    font-size: 1.4rem;
+    padding: .85rem 2rem !important;
+    line-height: 1.2 !important;
+}
+
+.mat-button-toggle-checked {
+    background: var(--second) !important;
+    color: white !important;
+}
+
+.mat-ripple { border-radius: 4rem !important; }
+
+.mat-pseudo-checkbox { display: none !important; }

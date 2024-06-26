@@ -1,0 +1,11 @@
+/* STYLESHEET FOR POPUPS, TOASTS, CONFIRMATION MESSAGES, ETC. */
+
+/* NgToast Messages */
+.toast-message {
+    .msg-title { font-size: 1.5rem !important; }
+
+    .msg-summary {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+    }
+}
