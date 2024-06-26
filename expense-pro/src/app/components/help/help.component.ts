@@ -26,6 +26,8 @@ export class HelpComponent {
 
     }
 
+    contactSupport(): void { window.location.href = "mailto:loganmwiggins1@gmail.com"; }
+
     // [HttpGet]
     loadSuggestions(): Observable<Suggestion[]> {
         return this.http.get<Suggestion[]>("https://localhost:7265/api/Suggestions");
