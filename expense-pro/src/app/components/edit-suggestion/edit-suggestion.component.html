@@ -13,10 +13,10 @@
     <div class="form-ctnr">
         <form [formGroup]="suggestionForm" (ngSubmit)="updateSuggestion()">
             <div class="form-inputs">
-                <!-- Name input -->
+                <!-- Message input -->
                 <div class="input-ctnr">
                     <p>Message</p>
-                    <input type="textarea" formControlName="message" placeholder="Ex:   Please add a light mode feature">
+                    <input type="textarea" formControlName="message" placeholder="Describe a suggestion for the ExpensePro application...">
                 </div>
             </div>
             
@@ -25,7 +25,7 @@
                     <button
                         type="button"
                         class="btn btn-lg"
-                        routerLink="/dashboard"
+                        routerLink="/help"
                     >Cancel</button>
                     <button
                         type="submit"

@@ -23,7 +23,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Return entire list of suggestions from Db
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult GetAllSuggestions()
         {
@@ -49,23 +49,23 @@ namespace ExpensesAngularAPI.Controllers
         }
 
 
-        // Add expense to Db
-        [Authorize]
+        // Add suggestion to Db
+        //[Authorize]
         [HttpPost]
         public IActionResult AddSuggestion(AddSuggestionDTO addSuggestionDTO)
         {
-            var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
+            //var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
 
-            var user = dbContext.Users.Find(currentUserId);
+            //var user = dbContext.Users.Find(currentUserId);
 
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
+            //if (user == null)
+            //{
+            //    return NotFound("User not found");
+            //}
 
             var suggestionEntity = new Suggestion
             {
-                User = user.Username,
+                Username = addSuggestionDTO.Username,
                 Message = addSuggestionDTO.Message,
                 UpvoteCount = 0
             };

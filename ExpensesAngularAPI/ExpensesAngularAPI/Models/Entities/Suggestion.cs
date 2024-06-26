@@ -7,10 +7,10 @@ namespace ExpensesAngularAPI.Models.Entities
         [Key]
         public Guid Id { get; set; }
 
-        public required string User {  get; set; }
+        public required string Username {  get; set; }
 
         public required string Message { get; set; }
 
-        public required int UpvoteCount { get; set; }
+        public int? UpvoteCount { get; set; }
     }
 }

@@ -15,7 +15,7 @@
             </div>
             <div class="app-info-ctnr">
                 <p>Last Updated</p>
-                <p>Jun 12, 2024</p>
+                <p>July 2024</p>
             </div>
             <div class="app-info-ctnr">
                 <p>Developer</p>
@@ -30,7 +30,7 @@
     <div class="help-ctnr">
         <div class="help-ctnr-hdr">
             <h2>App Suggestions</h2>
-            <button class="btn btn-icon" routerLink="" title="Add a Suggestion">
+            <button type="button" class="btn btn-icon" routerLink="/edit-suggestion" title="Add a Suggestion">
                 <img src="assets/icons/add-black.svg" draggable="false">
             </button>
         </div>
@@ -38,7 +38,8 @@
             <div class="suggestion-ctnr">
                 <div>
                     <p>ExpensePro</p>
-                    <p>Hello all. I hope you are enjoying ExpensePro. If you have any suggestions for the application,
+                    <p>
+                        Hello, I hope you are enjoying ExpensePro. If you have any suggestions for the application,
                         feel free to add them here. You are also able to like/upvote other users' suggestions.
                     </p>
                 </div>
@@ -47,7 +48,34 @@
                 </div>
             </div>
             <hr>
-            <div class="suggestion-ctnr">
+            <!-- Suggestion list -->
+            @if (suggestionList$ | async; as suggestionList) {
+                @if (suggestionList.length > 0) {
+                    @for (suggestion of suggestionList; track $index) {
+                        <div class="suggestion-ctnr">
+                            <div>
+                                <p>{{suggestion.username}}</p>
+                                <p>{{suggestion.message}}</p>
+                            </div>
+                            <div>
+                                <img
+                                    [src]="suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null ? 'assets/icons/thumbs-up-filled.svg' : 'assets/icons/thumbs-up.svg'"
+                                    draggable="false"
+                                    [class]="suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null ? 'upvoted' : ''"
+                                >
+                                @if (suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null) {
+                                    <p>{{suggestion.upvoteCount}}</p>
+                                }
+                            </div>
+                        </div>
+                    }
+                } @else {
+                    <div class="suggestion-ctnr">
+                        <p>No suggestions yet...</p>
+                    </div>
+                }
+            }
+            <!-- <div class="suggestion-ctnr">
                 <div>
                     <p>johndoe24</p>
                     <p>Testing a suggestion message</p>
@@ -68,7 +96,7 @@
                     <img src="assets/icons/thumbs-up.svg" draggable="false">
                     <p>9</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
