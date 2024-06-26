@@ -4,25 +4,35 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NgToastService } from 'ng-angular-popup';
 
 import { Suggestion } from '../../../models/suggestion.model';
-import { NgToastService } from 'ng-angular-popup';
+import { User } from '../../../models/user.model';
 
 @Component({
     selector: 'app-edit-suggestion',
     standalone: true,
-    imports: [ CommonModule, RouterModule, HttpClientModule, FormsModule, ReactiveFormsModule ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
     templateUrl: './edit-suggestion.component.html',
     styleUrl: './edit-suggestion.component.css'
 })
 export class EditSuggestionComponent {
+
+    currentUser$!: Observable<User>;
 
     suggestionId!: string | null;
     suggestion$!: Observable<Suggestion>;
     userUsername!: string;
 
     suggestionForm = new FormGroup({
-        message: new FormControl<string>(""),
+        username: new FormControl<string>(""),
+        message: new FormControl<string>("")
     });
 
     constructor(
@@ -33,10 +43,26 @@ export class EditSuggestionComponent {
     ) {}
 
     ngOnInit(): void {
+        // Current user
+        this.currentUser$ = this.getCurrentUser();  // Sets currentUser observable with API call   
+        if (this.currentUser$ !== null) {
+            this.currentUser$.subscribe(user => {
+                this.suggestionForm.patchValue({
+                    username: user.username
+                });
+            });
+        }
+
+        // Existing suggestion
         const id = this.route.snapshot.paramMap.get('id');
         this.suggestionId = id;
 
         if (id !== null) { this.loadSuggestion(id); }
+    }
+
+    // [HttpGet("current")]
+    getCurrentUser(): Observable<User> {
+        return this.http.get<User>("https://localhost:7265/api/User/current");
     }
 
     private getSuggestionById(id: string): Observable<Suggestion> {
@@ -48,14 +74,17 @@ export class EditSuggestionComponent {
 
         // Fill form with retrieved observable data
         this.suggestion$.subscribe(suggestion => {
-            this.suggestionForm.patchValue({message: suggestion.message});
+            this.suggestionForm.patchValue({
+                username: suggestion.username,
+                message: suggestion.message
+            });
         });
     }
 
     updateSuggestion(): void {
         // What to do if form is not valid
         if (this.suggestionForm.value.message == null || this.suggestionForm.value.message == "") {
-            this.toast.danger("Message is required.");
+            this.toast.danger("Message is required.", "ERROR", 5000);
             return;
         }
 

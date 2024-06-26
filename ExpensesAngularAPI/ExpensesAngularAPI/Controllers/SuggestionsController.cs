@@ -50,19 +50,10 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Add suggestion to Db
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public IActionResult AddSuggestion(AddSuggestionDTO addSuggestionDTO)
         {
-            //var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
-
-            //var user = dbContext.Users.Find(currentUserId);
-
-            //if (user == null)
-            //{
-            //    return NotFound("User not found");
-            //}
-
             var suggestionEntity = new Suggestion
             {
                 Username = addSuggestionDTO.Username,

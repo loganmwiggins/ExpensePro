@@ -13,6 +13,9 @@
     <div class="form-ctnr">
         <form [formGroup]="suggestionForm" (ngSubmit)="updateSuggestion()">
             <div class="form-inputs">
+                <!-- Username -->
+                <input type="hidden" formControlName="username">
+                
                 <!-- Message input -->
                 <div class="input-ctnr">
                     <p>Message</p>

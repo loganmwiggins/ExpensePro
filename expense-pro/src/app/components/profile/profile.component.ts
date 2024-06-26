@@ -58,7 +58,7 @@ export class ProfileComponent {
                 email: user.email,
                 income: user.income
             });
-        })
+        });
     }
 
     // [HttpPut]
