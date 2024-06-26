@@ -33,7 +33,7 @@
 
     <div class="help-ctnr">
         <div class="help-ctnr-hdr">
-            <h2>App Suggestions</h2>
+            <h2>Feedback</h2>
             <button type="button" class="btn btn-icon" routerLink="/edit-suggestion" title="Add a Suggestion">
                 <img src="assets/icons/add-black.svg" draggable="false">
             </button>
@@ -52,6 +52,7 @@
                 </div>
             </div>
             <hr>
+            
             <!-- Suggestion list -->
             @if (suggestionList$ | async; as suggestionList) {
                 @if (suggestionList.length > 0) {
@@ -79,28 +80,6 @@
                     </div>
                 }
             }
-            <!-- <div class="suggestion-ctnr">
-                <div>
-                    <p>johndoe24</p>
-                    <p>Testing a suggestion message</p>
-                </div>
-                <div>
-                    <img src="assets/icons/thumbs-up-filled.svg" draggable="false" class="upvoted">
-                    <p>12</p>
-                </div>
-            </div>
-            <div class="suggestion-ctnr">
-                <div>
-                    <p>sillywilly19</p>
-                    <p>Testing a suggestion message that is a bit longer than the other one to see if
-                        what it looks like when messages are longer than they normally are.
-                    </p>
-                </div>
-                <div>
-                    <img src="assets/icons/thumbs-up.svg" draggable="false">
-                    <p>9</p>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
