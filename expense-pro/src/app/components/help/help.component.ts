@@ -18,6 +18,8 @@ export class HelpComponent {
 
     suggestionList$ = this.loadSuggestions();
 
+    suggestionLiked: boolean = false;
+
     constructor(private http: HttpClient) {}
 
     ngOnInit(): void {

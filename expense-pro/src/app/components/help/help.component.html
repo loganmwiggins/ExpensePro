@@ -39,12 +39,12 @@
                 <div>
                     <p>ExpensePro</p>
                     <p>
-                        Hello, I hope you are enjoying ExpensePro. If you have any suggestions for the application,
+                        Hello! I hope you are enjoying ExpensePro. If you have any suggestions for the application,
                         feel free to add them here. You are also able to like/upvote other users' suggestions.
                     </p>
                 </div>
                 <div>
-                    <img src="assets/icons/thumbs-up-filled.svg" draggable="false" class="upvoted">
+                    <img src="assets/icons/thumbtack.svg" draggable="false" class="cursor-default">
                 </div>
             </div>
             <hr>
@@ -59,9 +59,9 @@
                             </div>
                             <div>
                                 <img
-                                    [src]="suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null ? 'assets/icons/thumbs-up-filled.svg' : 'assets/icons/thumbs-up.svg'"
+                                    [src]="suggestionLiked ? 'assets/icons/thumbs-up-filled.svg' : 'assets/icons/thumbs-up.svg'"
                                     draggable="false"
-                                    [class]="suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null ? 'upvoted' : ''"
+                                    [class]="suggestionLiked ? 'upvoted' : ''"
                                 >
                                 @if (suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null) {
                                     <p>{{suggestion.upvoteCount}}</p>
