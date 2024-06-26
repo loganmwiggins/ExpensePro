@@ -35,8 +35,8 @@ namespace ExpensesAngularAPI.Controllers
         // Return a single suggestion from the Db by its id
         [Authorize]
         [HttpGet]
-        [Route("{id:guid}")]    // Accepting an identifier is required for this action
-        public IActionResult GetSuggestionById(Guid id)
+        [Route("{id:int}")]    // Accepting an identifier is required for this action
+        public IActionResult GetSuggestionById(int id)
         {
             var suggestion = dbContext.Suggestions.Find(id);  // Result can be a found suggestion, or if not found, var is nullable
 
