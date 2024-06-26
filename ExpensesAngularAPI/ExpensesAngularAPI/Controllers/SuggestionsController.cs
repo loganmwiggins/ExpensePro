@@ -23,7 +23,7 @@ namespace ExpensesAngularAPI.Controllers
 
 
         // Return entire list of suggestions from Db
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllSuggestions()
         {
