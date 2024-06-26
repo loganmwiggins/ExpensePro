@@ -52,7 +52,7 @@
                 </div>
             </div>
             <hr>
-            
+
             <!-- Suggestion list -->
             @if (suggestionList$ | async; as suggestionList) {
                 @if (suggestionList.length > 0) {
@@ -68,7 +68,7 @@
                                     draggable="false"
                                     [class]="suggestionLiked ? 'upvoted' : ''"
                                 >
-                                @if (suggestion.upvoteCount > 0 && suggestion.upvoteCount !== null) {
+                                @if (suggestion.upvoteCount !== null) {
                                     <p>{{suggestion.upvoteCount}}</p>
                                 }
                             </div>
