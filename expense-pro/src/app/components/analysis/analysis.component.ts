@@ -158,18 +158,19 @@ export class AnalysisComponent implements OnInit {
                 },
                 backgroundColor: '#292929',
                 colorCount: 9,
-                borderColor: '#fff'
+                borderColor: '#fff', 
+                width: 600
             },
             colors: ['#006400', '#32CD32', '#00FA9A', '#228B22', '#7FFF00', '#3CB371', '#ADFF2F', '#2E8B57', '#98FB98'],
             credits: { enabled: false },  // Hide Highcharts watermark
             plotOptions: {
                 pie: {
-                  innerSize: '80%',
-                  borderWidth: 0,
-                  borderRadius: 0,
-                  borderColor: '',
-                  slicedOffset: 10,
-                  dataLabels: { connectorWidth: 0 },
+                    innerSize: '80%',
+                    borderWidth: 0,
+                    borderRadius: 0,
+                    borderColor: '',
+                    slicedOffset: 10,
+                    dataLabels: { connectorWidth: 0 },
                 }
             },
             title: {
@@ -210,18 +211,19 @@ export class AnalysisComponent implements OnInit {
                 },
                 backgroundColor: '#292929',
                 colorCount: 9,
-                borderColor: '#fff'
+                borderColor: '#fff',
+                width: 500
             },
             colors: ['#006400', '#32CD32', '#00FA9A', '#228B22', '#7FFF00', '#3CB371', '#ADFF2F', '#2E8B57', '#98FB98'],
             credits: { enabled: false },  // Hide Highcharts watermark
             plotOptions: {
                 pie: {
-                  innerSize: '80%',
-                  borderWidth: 0,
-                  borderRadius: 0,
-                  borderColor: '',
-                  slicedOffset: 10,
-                  dataLabels: { connectorWidth: 0 },
+                    innerSize: '80%',
+                    borderWidth: 0,
+                    borderRadius: 0,
+                    borderColor: '',
+                    slicedOffset: 10,
+                    dataLabels: { connectorWidth: 0 },
                 }
             },
             title: {
