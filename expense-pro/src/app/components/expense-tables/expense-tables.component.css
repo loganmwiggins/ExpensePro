@@ -87,6 +87,8 @@ tr {
     tr:first-child {
         background-color: var(--second);
         border-bottom: 1px solid rgba(221, 221, 221, 0.25);
+        align-items: end;
+        white-space: nowrap;
     }
     tr:last-child {
         background-color: var(--second);

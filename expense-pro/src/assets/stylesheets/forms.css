@@ -17,6 +17,10 @@ form {
     gap: 2rem;
 }
 
+.form-hdr {
+    h2 { font-size: 2.75rem; }
+}
+
 .form-inputs {
     display: flex;
     flex-flow: wrap;
