@@ -15,10 +15,10 @@
                 <div class="input-ctnr icon-input-ctnr">
                     <p>Icon</p>
                     <div class="custom-dropdown">
-                        <div class="selected-option" (click)="toggleDropdown()">
+                        <div class="selected-option-icon" (click)="toggleIconDropdown()">
                             <img [src]="editExpenseForm.get('icon')?.value" alt="Selected Icon" draggable="false">
                         </div>
-                        <div class="options" *ngIf="dropdownOpen">
+                        <div class="options" *ngIf="iconDropdownOpen">
                             <p>Finance</p>
                             <div class="options-category">
                                 <div 
@@ -80,12 +80,22 @@
                 <!-- Name input -->
                 <div class="input-ctnr">
                     <p>Name</p>
-                    <input type="text" formControlName="name" placeholder="Ex:   Rent, Netflix, ...">
+                    <input
+                        type="text"
+                        formControlName="name"
+                        placeholder="Ex:   Rent, Netflix, ..."
+                        (click)="closeAllDropdowns()"
+                    >
                 </div>
                 <!-- Type input -->
                 <div class="input-ctnr">
                     <p>Type</p>
-                    <select formControlName="type" [ngStyle]="editExpenseForm.value.type == '' ? {'color': 'grey'} : {'color': 'white'}">
+                    <select
+                        formControlName="type"
+                        [ngStyle]="editExpenseForm.value.type == '' ? {'color': 'grey'} : {'color': 'white'}"
+                        (click)="closeAllDropdowns()"
+                        (change)="editExpenseForm.patchValue({paymentDate: ''})"
+                    >
                         <option value="" selected disabled>Select Monthly or Yearly...</option>
                         <option value="Monthly">Monthly</option>
                         <option value="Yearly">Yearly</option>
@@ -96,17 +106,65 @@
                 <!-- Cost input -->
                 <div class="input-ctnr">
                     <p>Cost</p>
-                    <input type="text" formControlName="cost">
+                    <input type="text" formControlName="cost" (click)="closeAllDropdowns()">
                 </div>
                 <!-- Payment Date input -->
                 <div class="input-ctnr">
                     <p>Payment Date</p>
-                    <input type="text" formControlName="paymentDate" placeholder="Ex:   8th, Nov 2, ...">
+                    <!-- <input type="text" formControlName="paymentDate" placeholder="Ex:   8th, Nov 2, ..."> -->
+                    <div class="custom-dropdown">
+                        <div class="selected-option-text" (click)="toggleDateDropdown()">
+                            @if (editExpenseForm.get('paymentDate')?.value == "") {
+                                <p style="color: var(--text-darkgrey)">Select a date...</p>
+                            } @else {
+                                <p>{{ editExpenseForm.get('paymentDate')?.value }}</p>
+                            }
+                        </div>
+                        <!-- Monthly (Days of Month) -->
+                        <div class="options" *ngIf="mpdDropdownOpen">
+                            <p>Day of Month</p>
+                            <div class="options-category spaced-evenly">
+                                <div 
+                                    *ngFor="let day of daysOfMonth"
+                                    class="option"
+                                    (click)="selectMonthlyDate(day)"
+                                >
+                                    <p>{{ day.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Yearly (Months) -->
+                        <div class="options" *ngIf="ypdmDropdownOpen">
+                            <p>Month</p>
+                            <div class="options-category spaced-evenly">
+                                <div 
+                                    *ngFor="let month of months"
+                                    class="option"
+                                    (click)="selectYearlyMonth(month)"
+                                >
+                                    <p>{{ month.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Yearly (Days) -->
+                        <div class="options" *ngIf="ypddDropdownOpen">
+                            <p>Day of Month</p>
+                            <div class="options-category spaced-evenly">
+                                <div 
+                                    *ngFor="let day of daysOfMonth"
+                                    class="option"
+                                    (click)="selectYearlyDay(day)"
+                                >
+                                    <p>{{ day.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Category input -->
                 <div class="input-ctnr">
                     <p>Category</p>
-                    <select formControlName="category" [ngStyle]="editExpenseForm.value.category == '' ? {'color': 'grey'} : {'color': 'white'}">
+                    <select formControlName="category" [ngStyle]="editExpenseForm.value.category == '' ? {'color': 'grey'} : {'color': 'white'}" (click)="closeAllDropdowns()">
                         <option value="" selected disabled>Select a Category...</option>
                         <option value="Housing & Utilities">Housing & Utilities</option>
                         <option value="Car & Transportation">Car & Transportation</option>

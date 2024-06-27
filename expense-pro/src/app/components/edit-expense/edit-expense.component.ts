@@ -24,9 +24,14 @@ export class EditExpenseComponent {
     expenseId!: string | null;
     expense$!: Observable<Expense>;
 
-    dropdownOpen = false;
+    // Dropdown booleans
+    iconDropdownOpen = false;
+    mpdDropdownOpen = false;
+    ypdmDropdownOpen = false;
+    ypddDropdownOpen = false;
+    tempYearlyPd = "";
 
-    iconsFinance= [
+    iconsFinance = [
         { path: "/assets/icons/expense-icons/usd-circle.svg", name: "Default" },
         { path: "/assets/icons/expense-icons/coins.svg", name: "Coins" },
         { path: "/assets/icons/expense-icons/credit-card.svg", name: "Credit Card" },
@@ -66,7 +71,7 @@ export class EditExpenseComponent {
         { path: "/assets/icons/expense-icons/plane.svg", name: "Plane" }
     ];
 
-    iconsEntertainment= [
+    iconsEntertainment = [
         { path: "/assets/icons/expense-icons/music-note.svg", name: "Music" },
         { path: "/assets/icons/expense-icons/tv-retro.svg", name: "TV Retro" },
         { path: "/assets/icons/expense-icons/clapperboard.svg", name: "Clapperboard" },
@@ -77,7 +82,7 @@ export class EditExpenseComponent {
         { path: "/assets/icons/expense-icons/golf-club.svg", name: "Golf Club" }
     ];
 
-    iconsTech= [
+    iconsTech = [
         { path: "/assets/icons/expense-icons/computer.svg", name: "Computer" },
         { path: "/assets/icons/expense-icons/laptop.svg", name: "Laptop" },
         { path: "/assets/icons/expense-icons/mobile-phone.svg", name: "Mobile Phone" },
@@ -90,7 +95,7 @@ export class EditExpenseComponent {
         { path: "/assets/icons/expense-icons/internet.svg", name: "Internet" }
     ];
 
-    iconsOther= [
+    iconsOther = [
         { path: "/assets/icons/expense-icons/star.svg", name: "Star" },
         { path: "/assets/icons/expense-icons/sparkles.svg", name: "Sparkles" },
         { path: "/assets/icons/expense-icons/heart.svg", name: "Heart" },
@@ -103,6 +108,55 @@ export class EditExpenseComponent {
         { path: "/assets/icons/expense-icons/gear.svg", name: "Gear" },
         { path: "/assets/icons/expense-icons/gift.svg", name: "Gift" },
         { path: "/assets/icons/expense-icons/handshake.svg", name: "Handshake" }
+    ];
+
+    daysOfMonth = [
+        { name: "1st", value: "00-01-0000" },
+        { name: "2nd", value: "00-02-0000" },
+        { name: "3rd", value: "00-03-0000" },
+        { name: "4th", value: "00-04-0000" },
+        { name: "5th", value: "00-05-0000" },
+        { name: "6th", value: "00-06-0000" },
+        { name: "7th", value: "00-07-0000" },
+        { name: "8th", value: "00-08-0000" },
+        { name: "9th", value: "00-09-0000" },
+        { name: "10th", value: "00-10-0000" },
+        { name: "11th", value: "00-11-0000" },
+        { name: "12th", value: "00-12-0000" },
+        { name: "13th", value: "00-13-0000" },
+        { name: "14th", value: "00-14-0000" },
+        { name: "15th", value: "00-15-0000" },
+        { name: "16th", value: "00-16-0000" },
+        { name: "17th", value: "00-17-0000" },
+        { name: "18th", value: "00-18-0000" },
+        { name: "19th", value: "00-19-0000" },
+        { name: "20th", value: "00-20-0000" },
+        { name: "21st", value: "00-21-0000" },
+        { name: "22nd", value: "00-22-0000" },
+        { name: "23rd", value: "00-23-0000" },
+        { name: "24th", value: "00-24-0000" },
+        { name: "25th", value: "00-25-0000" },
+        { name: "26th", value: "00-26-0000" },
+        { name: "27th", value: "00-27-0000" },
+        { name: "28th", value: "00-28-0000" },
+        { name: "29th", value: "00-29-0000" },
+        { name: "30th", value: "00-30-0000" },
+        { name: "31st", value: "00-31-0000" },
+    ];
+
+    months = [
+        { name: "January" },
+        { name: "February" },
+        { name: "March" },
+        { name: "April" },
+        { name: "May" },
+        { name: "June" },
+        { name: "July" },
+        { name: "August" },
+        { name: "September" },
+        { name: "October" },
+        { name: "November" },
+        { name: "December" }
     ];
 
     editExpenseForm = new FormGroup({
@@ -156,13 +210,53 @@ export class EditExpenseComponent {
         });
     }
 
-    toggleDropdown(): void {
-        this.dropdownOpen = !this.dropdownOpen;
+    closeAllDropdowns(): void {
+        this.iconDropdownOpen = false;
+        this.mpdDropdownOpen = false;
+        this.ypdmDropdownOpen = false;
+        this.ypddDropdownOpen = false;
     }
 
+    toggleIconDropdown(): void {
+        this.iconDropdownOpen = !this.iconDropdownOpen;
+        this.mpdDropdownOpen = false;
+        this.ypdmDropdownOpen = false;
+        this.ypddDropdownOpen = false;
+    }
     selectIcon(icon: { path: string; name: string }): void {
         this.editExpenseForm.get('icon')?.setValue(icon.path);
-        this.dropdownOpen = false;
+        this.iconDropdownOpen = false;
+    }
+
+    toggleDateDropdown(): void {
+        this.iconDropdownOpen = false;
+
+        if (this.editExpenseForm.value.type == "") {
+            this.toast.warning("Please select a Type before choosing a Payment Date.", "", 5000);
+        }
+        else if (this.editExpenseForm.value.type == "Monthly") {
+            this.mpdDropdownOpen = !this.mpdDropdownOpen;
+        }
+        else if (this.editExpenseForm.value.type == "Yearly") {
+            this.ypdmDropdownOpen = !this.ypdmDropdownOpen;
+        }
+    }
+
+    selectMonthlyDate(day: { name: string; value: string; }): void {
+        this.editExpenseForm.get('paymentDate')?.setValue(day.name);
+        this.mpdDropdownOpen = false;
+    }
+    selectYearlyMonth(month: { name: string; }): void {
+        this.tempYearlyPd = month.name;
+
+        this.ypdmDropdownOpen = false;
+        this.ypddDropdownOpen = true;
+    }
+    selectYearlyDay(day: { name: string; value: string; }): void {
+        this.tempYearlyPd += " " + day.name;
+        this.editExpenseForm.get('paymentDate')?.setValue(this.tempYearlyPd);
+
+        this.ypddDropdownOpen = false;
     }
 
     updateExpense(): void {
