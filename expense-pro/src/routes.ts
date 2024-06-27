@@ -7,6 +7,7 @@ import { ProfileComponent } from "./app/components/profile/profile.component";
 import { LoginComponent } from "./app/components/login/login.component";
 import { SignupComponent } from "./app/components/signup/signup.component";
 import { HelpComponent } from "./app/components/help/help.component";
+import { AddSuggestionComponent } from "./app/components/add-suggestion/add-suggestion.component";
 
 import { authGuard } from "./app/guards/auth.guard";
 
@@ -50,6 +51,12 @@ const routeConfig: Routes = [
         path: 'help',
         component: HelpComponent,
         title: 'Help',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'add-suggestion',
+        component: AddSuggestionComponent,
+        title: 'Add Suggestion',
         canActivate: [authGuard]
     },
 

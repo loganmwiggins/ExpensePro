@@ -4,6 +4,7 @@
         <h1>Help</h1>
     </div>
 
+    <!-- App Information -->
     <div class="help-ctnr">
         <div class="help-ctnr-hdr">
             <h2>App Information</h2>
@@ -28,6 +29,58 @@
                     (click)="contactSupport()"
                 >CONTACT FOR SUPPORT</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="help-ctnr">
+        <div class="help-ctnr-hdr">
+            <h2>Feedback</h2>
+            <button type="button" class="btn btn-icon" routerLink="/add-suggestion" title="Add a Suggestion">
+                <img src="assets/icons/add-black.svg" draggable="false">
+            </button>
+        </div>
+        <div class="help-ctnr-body suggestion-body">
+            <div class="suggestion-ctnr">
+                <div>
+                    <p>ExpensePro</p>
+                    <p>
+                        Hello! I hope you are enjoying ExpensePro. If you have any suggestions for the application,
+                        feel free to add them here. Upvoting other users' suggestions feature coming soon.
+                    </p>
+                </div>
+                <div>
+                    <img src="assets/icons/thumbtack.svg" draggable="false" class="cursor-default">
+                </div>
+            </div>
+            <hr>
+
+            <!-- Suggestion list -->
+            @if (suggestionList$ | async; as suggestionList) {
+                @if (suggestionList.length > 0) {
+                    @for (suggestion of suggestionList; track $index) {
+                        <div class="suggestion-ctnr">
+                            <div>
+                                <p>{{suggestion.username}}</p>
+                                <p>{{suggestion.message}}</p>
+                            </div>
+                            <!-- <div>
+                                <img
+                                    [src]="isUpvoted(suggestion.id) ? 'assets/icons/thumbs-up-filled.svg' : 'assets/icons/thumbs-up.svg'"
+                                    [class.upvoted]="isUpvoted(suggestion.id)"
+                                    draggable="false"
+                                    (click)="toggleUpvote(suggestion.id)"
+                                >
+                                <p>{{suggestion.upvoteCount}}</p>
+                            </div> -->
+                        </div>
+                    }
+                } @else {
+                    <div class="suggestion-ctnr">
+                        <p>No suggestions yet...</p>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
