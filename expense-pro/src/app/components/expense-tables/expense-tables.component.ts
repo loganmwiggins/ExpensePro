@@ -34,14 +34,17 @@ export class ExpenseTablesComponent {
     expenseList$ = this.loadExpenses();
     currentUser$!: Observable<User>;
     
-    originalAllExpenses: Expense[] = [];  // Store the original order of expenses
+    // Expense arrays with original/default table orders
+    originalAllExpenses: Expense[] = [];  
     originalMonthlyExpenses: Expense[] = [];
     originalYearlyExpenses: Expense[] = [];
 
+    // Expense arrays with sorted table orders
     sortedAllExpenses: Expense[] = [];
     sortedMonthlyExpenses: Expense[] = [];
     sortedYearlyExpenses: Expense[] = [];
 
+    // Total variables
     totalMonthlyCost: number = 0;   // Sum of all monthly expenses
     totalYearlyCost: number = 0;    // Sum of all yearly expenses
     totalExpenseCost: number = 0;
@@ -51,9 +54,11 @@ export class ExpenseTablesComponent {
     totalExpenseCostPerMonth: number = 0;   // totalMonthlyCost + totalYearlyCostPerMonth
     totalExpenseCostPerYear: number = 0;    // totalYearlyCost + totalMonthlyCostPerYear
 
+    // Income variables
     userYearlyIncome: number = 0;
     userMonthlyIncome: number = 0;
 
+    // Filter and toggle variables
     summaryToggleValue: string = "perMonth";
     incomeVsExpensesToggleValue: string = "perMonth";
     tableViewValue: string = "separated";
@@ -137,6 +142,12 @@ export class ExpenseTablesComponent {
             case 'cost-desc': // Cost (High to Low)
                 this.sortedAllExpenses.sort((a, b) => b.cost - a.cost);
                 break;
+            case 'pd-asc':
+                this.sortedAllExpenses.sort((a, b) => a.paymentDateNum.localeCompare(b.paymentDateNum));
+                break;
+            case 'pd-desc':
+                this.sortedAllExpenses.sort((a, b) => b.paymentDateNum.localeCompare(a.paymentDateNum));
+                break;
             case 'type-asc':  // Type (Monthly to Yearly)
                 this.sortedAllExpenses.sort((a, b) => a.type.localeCompare(b.type));
                 break;
@@ -156,17 +167,23 @@ export class ExpenseTablesComponent {
         const sortOption = (event.target as HTMLSelectElement).value;
 
         switch (sortOption) {
-            case 'default':   //Default (Order Added)
+            case 'default':   // Default (Order Added)
                 this.sortedMonthlyExpenses = [...this.originalMonthlyExpenses];
                 break;
-            case 'name-asc':  //Name (A-Z)
+            case 'name-asc':  // Name (A-Z)
                 this.sortedMonthlyExpenses.sort((a, b) => a.name.localeCompare(b.name));
                 break;
-            case 'cost-asc':  //Cost (Low to High)
+            case 'cost-asc':  // Cost (Low to High)
                 this.sortedMonthlyExpenses.sort((a, b) => a.cost - b.cost);
                 break;
-            case 'cost-desc': //Cost (High to Low)
+            case 'cost-desc': // Cost (High to Low)
                 this.sortedMonthlyExpenses.sort((a, b) => b.cost - a.cost);
+                break;
+            case 'pd-asc':
+                this.sortedMonthlyExpenses.sort((a, b) => a.paymentDateNum.localeCompare(b.paymentDateNum));
+                break;
+            case 'pd-desc':
+                this.sortedMonthlyExpenses.sort((a, b) => b.paymentDateNum.localeCompare(a.paymentDateNum));
                 break;
             case 'category-asc':  // Category (A-Z)
                 this.sortedMonthlyExpenses.sort((a, b) => a.category.localeCompare(b.category));
@@ -192,6 +209,12 @@ export class ExpenseTablesComponent {
                 break;
             case 'cost-desc': //Cost (High to Low)
                 this.sortedYearlyExpenses.sort((a, b) => b.cost - a.cost);
+                break;
+            case 'pd-asc':
+                this.sortedYearlyExpenses.sort((a, b) => a.paymentDateNum.localeCompare(b.paymentDateNum));
+                break;
+            case 'pd-desc':
+                this.sortedYearlyExpenses.sort((a, b) => b.paymentDateNum.localeCompare(a.paymentDateNum));
                 break;
             case 'category-asc':  // Category (A-Z)
                 this.sortedYearlyExpenses.sort((a, b) => a.category.localeCompare(b.category));
