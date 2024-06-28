@@ -5,5 +5,6 @@ export interface Expense {
     icon: string;
     cost: number;
     paymentDate: string;
+    paymentDateNum: string;
     category: string;
 }

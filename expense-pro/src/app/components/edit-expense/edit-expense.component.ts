@@ -29,7 +29,10 @@ export class EditExpenseComponent {
     mpdDropdownOpen = false;
     ypdmDropdownOpen = false;
     ypddDropdownOpen = false;
+
     tempYearlyPd = "";
+    tempMonthlyPdNum = "";
+    tempYearlyPdNum = "";
 
     iconsFinance = [
         { path: "/assets/icons/expense-icons/usd-circle.svg", name: "Default" },
@@ -111,52 +114,52 @@ export class EditExpenseComponent {
     ];
 
     daysOfMonth = [
-        { name: "1st", value: "00-01-0000" },
-        { name: "2nd", value: "00-02-0000" },
-        { name: "3rd", value: "00-03-0000" },
-        { name: "4th", value: "00-04-0000" },
-        { name: "5th", value: "00-05-0000" },
-        { name: "6th", value: "00-06-0000" },
-        { name: "7th", value: "00-07-0000" },
-        { name: "8th", value: "00-08-0000" },
-        { name: "9th", value: "00-09-0000" },
-        { name: "10th", value: "00-10-0000" },
-        { name: "11th", value: "00-11-0000" },
-        { name: "12th", value: "00-12-0000" },
-        { name: "13th", value: "00-13-0000" },
-        { name: "14th", value: "00-14-0000" },
-        { name: "15th", value: "00-15-0000" },
-        { name: "16th", value: "00-16-0000" },
-        { name: "17th", value: "00-17-0000" },
-        { name: "18th", value: "00-18-0000" },
-        { name: "19th", value: "00-19-0000" },
-        { name: "20th", value: "00-20-0000" },
-        { name: "21st", value: "00-21-0000" },
-        { name: "22nd", value: "00-22-0000" },
-        { name: "23rd", value: "00-23-0000" },
-        { name: "24th", value: "00-24-0000" },
-        { name: "25th", value: "00-25-0000" },
-        { name: "26th", value: "00-26-0000" },
-        { name: "27th", value: "00-27-0000" },
-        { name: "28th", value: "00-28-0000" },
-        { name: "29th", value: "00-29-0000" },
-        { name: "30th", value: "00-30-0000" },
-        { name: "31st", value: "00-31-0000" },
+        { name: "1st", abbr: "1", value: "01" },
+        { name: "2nd", abbr: "2", value: "02" },
+        { name: "3rd", abbr: "3", value: "03" },
+        { name: "4th", abbr: "4", value: "04" },
+        { name: "5th", abbr: "5", value: "05" },
+        { name: "6th", abbr: "6", value: "06" },
+        { name: "7th", abbr: "7", value: "07" },
+        { name: "8th", abbr: "8", value: "08" },
+        { name: "9th", abbr: "9", value: "09" },
+        { name: "10th", abbr: "10", value: "10" },
+        { name: "11th", abbr: "11", value: "11" },
+        { name: "12th", abbr: "12", value: "12" },
+        { name: "13th", abbr: "13", value: "13" },
+        { name: "14th", abbr: "14", value: "14" },
+        { name: "15th", abbr: "15", value: "15" },
+        { name: "16th", abbr: "16", value: "16" },
+        { name: "17th", abbr: "17", value: "17" },
+        { name: "18th", abbr: "18", value: "18" },
+        { name: "19th", abbr: "19", value: "19" },
+        { name: "20th", abbr: "20", value: "20" },
+        { name: "21st", abbr: "21", value: "21" },
+        { name: "22nd", abbr: "22", value: "22" },
+        { name: "23rd", abbr: "23", value: "23" },
+        { name: "24th", abbr: "24", value: "24" },
+        { name: "25th", abbr: "25", value: "25" },
+        { name: "26th", abbr: "26", value: "26" },
+        { name: "27th", abbr: "27", value: "27" },
+        { name: "28th", abbr: "28", value: "28" },
+        { name: "29th", abbr: "29", value: "29" },
+        { name: "30th", abbr: "30", value: "30" },
+        { name: "31st", abbr: "31", value: "31" },
     ];
 
     months = [
-        { name: "January" },
-        { name: "February" },
-        { name: "March" },
-        { name: "April" },
-        { name: "May" },
-        { name: "June" },
-        { name: "July" },
-        { name: "August" },
-        { name: "September" },
-        { name: "October" },
-        { name: "November" },
-        { name: "December" }
+        { name: "January", abbr: "Jan", value: "01" },
+        { name: "February", abbr: "Feb", value: "02" },
+        { name: "March", abbr: "Mar", value: "03" },
+        { name: "April", abbr: "Apr", value: "04" },
+        { name: "May", abbr: "May", value: "05" },
+        { name: "June", abbr: "Jun", value: "06" },
+        { name: "July", abbr: "Jul", value: "07" },
+        { name: "August", abbr: "Aug", value: "08" },
+        { name: "September", abbr: "Sep", value: "09" },
+        { name: "October", abbr: "Oct", value: "10" },
+        { name: "November", abbr: "Nov", value: "11" },
+        { name: "December", abbr: "Dec", value: "12" }
     ];
 
     editExpenseForm = new FormGroup({
@@ -165,6 +168,7 @@ export class EditExpenseComponent {
         icon: new FormControl<string>("/assets/icons/expense-icons/usd-circle.svg"),
         cost: new FormControl<number>(0),
         paymentDate: new FormControl<string>(""),
+        paymentDateNum: new FormControl<string>(""),
         category: new FormControl<string>("")
     });
 
@@ -242,19 +246,30 @@ export class EditExpenseComponent {
         }
     }
 
-    selectMonthlyDate(day: { name: string; value: string; }): void {
+    // Choose monthly payment date
+    selectMonthlyDate(day: { name: string; abbr: string; value: string; }): void {
         this.editExpenseForm.get('paymentDate')?.setValue(day.name);
+
+        this.tempMonthlyPdNum = "00-" + day.value;
+        this.editExpenseForm.get('paymentDateNum')?.setValue(this.tempMonthlyPdNum);
+
         this.mpdDropdownOpen = false;
     }
-    selectYearlyMonth(month: { name: string; }): void {
-        this.tempYearlyPd = month.name;
+
+    // Choose yearly payment date
+    selectYearlyMonth(month: { name: string; abbr: string; value: string; }): void {
+        this.tempYearlyPd = month.abbr;
+        this.tempYearlyPdNum = month.value + "-";
 
         this.ypdmDropdownOpen = false;
         this.ypddDropdownOpen = true;
     }
-    selectYearlyDay(day: { name: string; value: string; }): void {
-        this.tempYearlyPd += " " + day.name;
+    selectYearlyDay(day: { name: string; abbr: string; value: string; }): void {
+        this.tempYearlyPd += " " + day.abbr;
         this.editExpenseForm.get('paymentDate')?.setValue(this.tempYearlyPd);
+
+        this.tempYearlyPdNum += day.value;
+        this.editExpenseForm.get('paymentDateNum')?.setValue(this.tempYearlyPdNum);
 
         this.ypddDropdownOpen = false;
     }
@@ -268,7 +283,7 @@ export class EditExpenseComponent {
             || this.editExpenseForm.value.cost == null || this.editExpenseForm.value.cost == 0
             || this.editExpenseForm.value.category == null || this.editExpenseForm.value.category == ""
         ) {
-            this.toast.danger("Icon, Name, Type, Cost, and Category fields are required.", "ERROR", 5000);
+            this.toast.warning("Icon, Name, Type, Cost, and Category fields are required.", "", 5000);
             return;
         }
 

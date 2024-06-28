@@ -16,6 +16,8 @@
 
         public string? PaymentDate { get; set; }
 
+        public string? PaymentDateNum { get; set; }
+
         public required string Category { get; set; }
     }
 }

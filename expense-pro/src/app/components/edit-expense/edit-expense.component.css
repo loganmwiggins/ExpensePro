@@ -22,6 +22,7 @@
 .selected-option-text {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background: var(--third);
     min-height: 3rem;
     border: 1.5px solid var(--text-grey);

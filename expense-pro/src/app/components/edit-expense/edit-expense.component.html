@@ -118,11 +118,14 @@
                                 <p style="color: var(--text-darkgrey)">Select a date...</p>
                             } @else {
                                 <p>{{ editExpenseForm.get('paymentDate')?.value }}</p>
+                                <button type="button" class="btn btn-icon" (click)="editExpenseForm.patchValue({paymentDate: ''}); $event.stopPropagation();">
+                                    <img src="assets/icons/x-circle-black.svg" draggable="false">
+                                </button>
                             }
                         </div>
                         <!-- Monthly (Days of Month) -->
                         <div class="options" *ngIf="mpdDropdownOpen">
-                            <p>Day of Month</p>
+                            <p>Select day of month...</p>
                             <div class="options-category spaced-evenly">
                                 <div 
                                     *ngFor="let day of daysOfMonth"
@@ -135,7 +138,7 @@
                         </div>
                         <!-- Yearly (Months) -->
                         <div class="options" *ngIf="ypdmDropdownOpen">
-                            <p>Month</p>
+                            <p>Select month...</p>
                             <div class="options-category spaced-evenly">
                                 <div 
                                     *ngFor="let month of months"
@@ -148,7 +151,7 @@
                         </div>
                         <!-- Yearly (Days) -->
                         <div class="options" *ngIf="ypddDropdownOpen">
-                            <p>Day of Month</p>
+                            <p>Select day...</p>
                             <div class="options-category spaced-evenly">
                                 <div 
                                     *ngFor="let day of daysOfMonth"
