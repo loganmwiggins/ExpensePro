@@ -151,6 +151,7 @@ namespace ExpensesAngularAPI.Controllers
             // Default values
             userObj.Role = "User";
             userObj.Token = "";
+            userObj.DateJoined = DateTime.Now;
 
             // Add user to database
             await dbContext.Users.AddAsync(userObj);    

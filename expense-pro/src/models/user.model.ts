@@ -8,4 +8,5 @@ export interface User {
     token: string;
     role: string;
     income: number;
+    dateJoined: Date;
 }

@@ -24,5 +24,7 @@ namespace ExpensesAngularAPI.Models.Entities
 
         // Extra user info
         public double? Income { get; set; }
+
+        public DateTime? DateJoined { get; set; }
     }
 }
