@@ -59,6 +59,11 @@
                                 <p>{{suggestion.username}}</p>
                                 <p>{{suggestion.message}}</p>
                             </div>
+                            <div *ngIf="userIsAdmin">
+                                <button class="btn btn-icon" (click)="deleteSuggestion(suggestion.id)">
+                                    <img src="assets/icons/trash-black.svg" draggable="false">
+                                </button>
+                            </div>
                             <!-- <div>
                                 <img
                                     [src]="isUpvoted(suggestion.id) ? 'assets/icons/thumbs-up-filled.svg' : 'assets/icons/thumbs-up.svg'"

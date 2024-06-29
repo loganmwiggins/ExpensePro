@@ -67,5 +67,23 @@ namespace ExpensesAngularAPI.Controllers
 
             return Ok(suggestionEntity);
         }
+
+
+        // Delete suggestion from Db
+        [Authorize]
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IActionResult DeleteSuggestion(int id)
+        {
+            var suggestion = dbContext.Suggestions.Find(id);
+
+            // Check if Id exists in database, if not, return 404 NotFound
+            if (suggestion is null) { return NotFound(); }
+
+            dbContext.Suggestions.Remove(suggestion);
+            dbContext.SaveChanges();
+
+            return Ok(); // Can pass a specific response if wanted, but not necessary
+        }
     }
 }
