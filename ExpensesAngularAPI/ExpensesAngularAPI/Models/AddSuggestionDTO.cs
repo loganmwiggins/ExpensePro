@@ -7,5 +7,7 @@
         public required string Message { get; set; }
 
         public int? UpvoteCount { get; set; }
+
+        public DateTime? Timestamp { get; set; }
     }
 }

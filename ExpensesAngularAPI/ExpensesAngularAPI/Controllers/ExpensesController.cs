@@ -70,7 +70,8 @@ namespace ExpensesAngularAPI.Controllers
                 Cost = addExpenseDTO.Cost,
                 PaymentDate = addExpenseDTO.PaymentDate,
                 PaymentDateNum = addExpenseDTO.PaymentDateNum,
-                Category = addExpenseDTO.Category
+                Category = addExpenseDTO.Category,
+                Timestamp = DateTime.Now
             };
 
             dbContext.Expenses.Add(expenseEntity);
@@ -101,6 +102,7 @@ namespace ExpensesAngularAPI.Controllers
             expense.PaymentDate = updateExpenseDTO.PaymentDate;
             expense.PaymentDateNum = updateExpenseDTO.PaymentDateNum;
             expense.Category = updateExpenseDTO.Category;
+            expense.Timestamp = DateTime.Now;
 
             dbContext.SaveChanges();
 

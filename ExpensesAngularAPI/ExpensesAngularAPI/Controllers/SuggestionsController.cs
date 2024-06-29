@@ -58,7 +58,8 @@ namespace ExpensesAngularAPI.Controllers
             {
                 Username = addSuggestionDTO.Username,
                 Message = addSuggestionDTO.Message,
-                UpvoteCount = 0
+                UpvoteCount = 0,
+                Timestamp = DateTime.Now
             };
 
             dbContext.Suggestions.Add(suggestionEntity);

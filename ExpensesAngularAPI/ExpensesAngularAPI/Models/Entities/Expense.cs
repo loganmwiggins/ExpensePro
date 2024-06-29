@@ -19,5 +19,7 @@
         public string? PaymentDateNum { get; set; }
 
         public required string Category { get; set; }
+
+        public DateTime? Timestamp { get; set; }
     }
 }
