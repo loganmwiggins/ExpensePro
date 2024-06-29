@@ -1,25 +1,3 @@
-// import { HttpInterceptorFn } from '@angular/common/http';
-// import { inject } from '@angular/core';
-
-
-// import { AuthService } from '../services/auth.service';
-
-// export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-
-//     const auth = inject(AuthService);
-
-//     const myToken = auth.getToken();
-
-//     if (myToken) {
-//         // Create clone of request and append token in header
-//         req = req.clone({ 
-//             setHeaders: { Authorization: `Bearer ${myToken}` }  // "Bearer " + myToken
-//         });  
-//     }
-
-//     return next(req);
-// };
-
 import { Injectable } from "@angular/core";
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable, catchError, throwError } from "rxjs";
@@ -51,6 +29,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     // Handles 401 authentication errors
                     if (err.status === 401) { 
                         this.toast.warning("Token is expired. Login again.", "WARNING", 5000);
+                        localStorage.clear();   // Remove token from local storage
                         this.router.navigate(['login']);
                     }
                 }
