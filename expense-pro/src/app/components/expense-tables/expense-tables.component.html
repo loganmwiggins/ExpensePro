@@ -359,3 +359,64 @@
         </div>
     </div>
 </div>
+
+
+<!-- UPCOMING EXPENSES -->
+<div class="expense-tables-ctnr"  *ngIf="showUpcomingList">
+    <div class="expense-tables-hdr">
+        <h2>Upcoming Payments</h2>
+    </div>
+
+    <div class="table-group-ctnr">
+        <div class="table-ctnr">
+            <div class="table-header">
+                <div class="title-ctnr">
+                    <h3>EXPENSES (NEXT 14 DAYS)</h3>
+                    @if (upcomingExpenseList$ | async; as upcomingExpenseList) {
+                        <div class="list-count"><h3>{{upcomingExpenseList.length}}</h3></div>
+                    }
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Expense</th>
+                    <th>Cost</th>
+                    <th>Payment Date</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                </tr>
+                @if (upcomingExpenseList$ | async; as upcomingExpenseList) {
+                    @if (upcomingExpenseList.length > 0) {
+                        @for (expense of sortedUpcomingExpenses; track $index) {
+                            <tr>
+                                <td>
+                                    <img [src]="expense.icon" draggable="false">
+                                    {{expense.name}}
+                                </td>
+                                <td>{{currencyFormatter.format(expense.cost)}}</td>
+                                <td>{{expense.paymentDate}}</td>
+                                <td>{{expense.type}}</td>
+                                <td>{{expense.category}}</td>
+                            </tr>
+                        }
+                    } @else {
+                        <tr>
+                            <td>No expenses found...</td>
+                            <td><a class="hyperlink" routerLink="/edit-expense">Add expense</a></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

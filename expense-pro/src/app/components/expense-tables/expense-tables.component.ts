@@ -29,9 +29,11 @@ export class ExpenseTablesComponent {
     @Input() showSummary = true;
     @Input() showExpenseList = true;
     @Input() showIncomeVsExpenses = true;
+    @Input() showUpcomingList = true;
 
-    http = inject(HttpClient);  //Enables calls to API
+    http = inject(HttpClient);  // Enables calls to API
     expenseList$ = this.loadExpenses();
+    upcomingExpenseList$ = this.loadUpcomingExpenses();
     currentUser$!: Observable<User>;
     
     // Expense arrays with original/default table orders
@@ -43,6 +45,7 @@ export class ExpenseTablesComponent {
     sortedAllExpenses: Expense[] = [];
     sortedMonthlyExpenses: Expense[] = [];
     sortedYearlyExpenses: Expense[] = [];
+    sortedUpcomingExpenses: Expense[] = [];
 
     // Total variables
     totalMonthlyCost: number = 0;   // Sum of all monthly expenses
@@ -72,6 +75,13 @@ export class ExpenseTablesComponent {
     constructor(private toast: NgToastService) {}
 
     ngOnInit(): void {
+        // Sets currentUser observable with API call
+        this.currentUser$ = this.getCurrentUser();  
+        if (this.currentUser$ !== null) {
+            this.loadCurrentUser();
+        }
+
+        // Expense list subscription
         this.expenseList$.subscribe(expenses => {
             this.originalMonthlyExpenses = expenses.filter(expense => expense.type === "Monthly");
             this.originalYearlyExpenses = expenses.filter(expense => expense.type === "Yearly");
@@ -83,10 +93,10 @@ export class ExpenseTablesComponent {
             this.calculateExpenseCosts();
         });
 
-        this.currentUser$ = this.getCurrentUser();  // Sets currentUser observable with API call
-        if (this.currentUser$ !== null) {
-            this.loadCurrentUser();
-        }
+        // Upcoming expenses subscription
+        this.upcomingExpenseList$.subscribe(expenses => {
+            this.sortedUpcomingExpenses = [...expenses].sort((a, b) => a.paymentDateNum.localeCompare(b.paymentDateNum));
+        });
     }
 
     // Change toggle functions
@@ -112,6 +122,11 @@ export class ExpenseTablesComponent {
     // [HttpGet]
     loadExpenses(): Observable<Expense[]> {
         return this.http.get<Expense[]>("https://localhost:7265/api/Expenses");
+    }
+
+    // [HttpGet]
+    loadUpcomingExpenses(): Observable<Expense[]> {
+        return this.http.get<Expense[]>("https://localhost:7265/api/Expenses/upcoming");
     }
 
     calculateExpenseCosts(): void {
