@@ -1,0 +1,56 @@
+<div class="content-ctnr">
+    <div class="form-ctnr">
+        <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile()">
+            <div class="form-hdr">
+                <h2>Edit Profile</h2>
+            </div>
+
+            <div class="form-inputs">
+                <!-- First Name input -->
+                <div class="input-ctnr">
+                    <p>First Name</p>
+                    <input type="text" formControlName="firstName">
+                </div>
+                <!-- Last Name input -->
+                <div class="input-ctnr">
+                    <p>Last Name</p>
+                    <input type="text" formControlName="lastName">
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Username input -->
+                <div class="input-ctnr">
+                    <p>Username</p>
+                    <input type="text" formControlName="username">
+                </div>
+                <!-- Email input -->
+                <div class="input-ctnr">
+                    <p>Email Address</p>
+                    <input type="text" formControlName="email">
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Annual Income input -->
+                <div class="input-ctnr">
+                    <p>Annual Income</p>
+                    <input type="number" formControlName="income" placeholder="Ex:  82500">
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="form-btns">
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg"
+                        routerLink="/profile"
+                    >Cancel</button>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

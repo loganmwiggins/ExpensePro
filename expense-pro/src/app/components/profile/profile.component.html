@@ -1,57 +1,50 @@
 <div class="content-ctnr">
-    <div class="form-ctnr">
-        <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile()">
-            <div class="expense-tables-hdr">
-                <h2>Account Information</h2>
+    @if (currentUser != null) {
+        <div class="profile-ctnr">
+            <div class="profile-row">
+                <span>
+                    <div class="img-placeholder">
+                        <img src="assets/icons/nav-icons/user.svg" draggable="false">
+                    </div>
+                    <br>
+                    <div class="namecard">
+                        <h2>{{ currentUser.firstName + " " + currentUser.lastName }}</h2>
+                        <p>&#64;{{ currentUser.username }}</p>
+                    </div>
+                </span>
+                <span>
+                    <button type="button" class="btn btn-icon" routerLink="/edit-profile">
+                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                    </button>
+                </span>
             </div>
-
-            <div class="form-inputs">
-                <!-- First Name input -->
-                <div class="input-ctnr">
-                    <p>First Name</p>
-                    <input type="text" formControlName="firstName">
-                </div>
-                <!-- Last Name input -->
-                <div class="input-ctnr">
-                    <p>Last Name</p>
-                    <input type="text" formControlName="lastName">
-                </div>
-            </div>
-            <div class="form-inputs">
-                <!-- Username input -->
-                <div class="input-ctnr">
-                    <p>Username</p>
-                    <input type="text" formControlName="username">
-                </div>
-                <!-- Email input -->
-                <div class="input-ctnr">
-                    <p>Email Address</p>
-                    <input type="text" formControlName="email">
-                </div>
-            </div>
-            <div class="form-inputs">
-                <!-- Annual Income input -->
-                <div class="input-ctnr">
-                    <p>Annual Income</p>
-                    <input type="number" formControlName="income" placeholder="Ex:  82500">
-                </div>
-            </div>
-            
-            <div class="form-btns">
-                <div>
+            <div class="profile-row">
+                <span>
+                    <div class="profile-stat">
+                        <p>Member Since:</p>
+                        <p>{{ this.joinMonthStr + " " + profileDateJoined.getFullYear() }}</p>
+                    </div>
+                    <div class="profile-stat">
+                        <p>Income:</p>
+                        <p>{{ currencyFormatter.format(currentUser.income) }}</p>
+                    </div>
+                </span>
+                <span>
                     <button
-                        type="submit"
-                        class="btn btn-lg btn-save"
-                    >Save</button>
-                </div>
-                <div>
+                        type="button"
+                        class="btn btn-lg"
+                    >Reset Password</button>
                     <button
                         type="button"
                         class="btn btn-lg btn-danger"
                         (click)="signOut()"
                     >Sign Out</button>
-                </div>
+                </span>
             </div>
-        </form>
-    </div>
+        </div>
+    } @else {
+        <div class="profile-ctnr">
+            <p>Loading...</p>
+        </div>
+    }
 </div>

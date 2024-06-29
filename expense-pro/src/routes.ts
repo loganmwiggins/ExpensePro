@@ -4,6 +4,7 @@ import { DashboardComponent } from "./app/components/dashboard/dashboard.compone
 import { AnalysisComponent } from "./app/components/analysis/analysis.component";
 import { EditExpenseComponent } from "./app/components/edit-expense/edit-expense.component";
 import { ProfileComponent } from "./app/components/profile/profile.component";
+import { EditProfileComponent } from "./app/components/edit-profile/edit-profile.component";
 import { LoginComponent } from "./app/components/login/login.component";
 import { SignupComponent } from "./app/components/signup/signup.component";
 import { HelpComponent } from "./app/components/help/help.component";
@@ -45,6 +46,12 @@ const routeConfig: Routes = [
         path: 'profile',
         component: ProfileComponent,
         title: 'My Profile',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'edit-profile',
+        component: EditProfileComponent,
+        title: 'Edit Profile',
         canActivate: [authGuard]
     },
     {
