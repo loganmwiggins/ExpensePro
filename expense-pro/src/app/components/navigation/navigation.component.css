@@ -54,7 +54,7 @@
 
     img {
         opacity: 1;
-        filter: invert(32%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%);
+        /* filter: invert(32%) sepia(75%) saturate(763%) hue-rotate(41deg) brightness(107%) contrast(106%); */
     }
     p { opacity: 1; }
 }

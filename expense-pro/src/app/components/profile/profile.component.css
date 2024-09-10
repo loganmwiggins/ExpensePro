@@ -59,3 +59,22 @@
     }
     p:nth-child(2) { color: var(--text-white); }
 }
+
+.colors {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    #theme1 { background: #7cfc00; }
+    #theme2 { background: #669ef3; }
+    #theme3 { background: #fff; }
+}
+
+.color-dot {
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--text-grey);
+    border-radius: 100%;
+    cursor: pointer;
+}

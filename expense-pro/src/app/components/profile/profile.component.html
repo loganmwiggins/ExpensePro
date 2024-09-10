@@ -1,5 +1,6 @@
 <div class="content-ctnr">
     @if (currentUser != null) {
+        <!-- Profile card -->
         <div class="profile-ctnr">
             <div class="profile-row">
                 <span>
@@ -42,7 +43,19 @@
                 </span>
             </div>
         </div>
-    } @else {
+
+        <!-- Theme card -->
+        <div class="profile-ctnr">
+            Theme
+            <div class="colors">
+                <span class="color-dot" id="theme1"></span>
+                <span class="color-dot" id="theme2"></span>
+                <span class="color-dot" id="theme3"></span>
+            </div>
+        </div>
+    }
+
+    @else {
         <div class="profile-ctnr">
             <p>Loading...</p>
         </div>

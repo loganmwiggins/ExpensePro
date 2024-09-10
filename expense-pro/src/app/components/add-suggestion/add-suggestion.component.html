@@ -1,17 +1,9 @@
 <div class="content-ctnr">
-    <div class="page-title">
-        <ng-container *ngIf="suggestionId; else addSuggestion">
-            <img src="assets/icons/pencil.svg" draggable="false">
-            <h1>Edit Suggestion</h1>
-        </ng-container>
-        <ng-template #addSuggestion>
-            <img src="assets/icons/add.svg" draggable="false">
-            <h1>Add Suggestion</h1>
-        </ng-template>
-    </div>
-
     <div class="form-ctnr">
         <form [formGroup]="suggestionForm" (ngSubmit)="updateSuggestion()">
+            <div class="form-hdr">
+                <h2>Add Suggestion</h2>
+            </div>
             <div class="form-inputs">
                 <!-- Username -->
                 <input type="hidden" formControlName="username">

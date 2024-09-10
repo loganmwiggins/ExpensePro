@@ -156,7 +156,7 @@ export class AnalysisComponent implements OnInit {
                     fontFamily: 'Poppins-Regular',
                     fontSize: '2rem',
                 },
-                backgroundColor: '#292929',
+                backgroundColor: 'var(--fourth)',
                 colorCount: 9,
                 borderColor: '#fff', 
                 width: 600
@@ -209,7 +209,7 @@ export class AnalysisComponent implements OnInit {
                     fontFamily: 'Poppins-Regular',
                     fontSize: '2rem',
                 },
-                backgroundColor: '#292929',
+                backgroundColor: 'var(--fourth)',
                 colorCount: 9,
                 borderColor: '#fff',
                 width: 500

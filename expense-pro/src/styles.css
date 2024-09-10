@@ -14,7 +14,7 @@
 
 
 /* COLOR VARS */
-:root {
+/* :root {
     --first: #0a0a0a;
     --second: #141414;
     --third: #1f1f1f;
@@ -24,8 +24,29 @@
     --text-grey: #acacac;
     --text-darkgrey: grey;
     --text-red: #ee2926;
+} */
+:root {
+    --first: #0c0e1b;
+    --second: #0c0e1b;
+    --third: #272b3b;
+    --fourth: #1d1f2b;
+    --accent: #669ef3;
+    --text-white: #ffffff;
+    --text-grey: #acacac;
+    --text-darkgrey: grey;
+    --text-red: #ee2926;
 }
-
+/* :root {
+    --first: #e0e0e0;
+    --second: #cccccc;
+    --third: #dfdfdf;
+    --fourth: #fff;
+    --accent: #433bff;
+    --text-white: #111111;
+    --text-grey: #acacac;
+    --text-darkgrey: grey;
+    --text-red: #ee2926;
+} */
 
 /* GLOBAL ELEMENTS */
 * { margin: 0; padding: 0; }
