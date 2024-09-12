@@ -11,6 +11,7 @@ import { HelpComponent } from "./app/components/help/help.component";
 import { AddSuggestionComponent } from "./app/components/add-suggestion/add-suggestion.component";
 
 import { authGuard } from "./app/guards/auth.guard";
+import { CardsComponent } from "./app/components/cards/cards.component";
 
 const routeConfig: Routes = [
     {
@@ -28,6 +29,12 @@ const routeConfig: Routes = [
         path: 'analysis',
         component: AnalysisComponent,
         title: 'Analysis',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'cards',
+        component: CardsComponent,
+        title: 'My Cards',
         canActivate: [authGuard]
     },
     {
