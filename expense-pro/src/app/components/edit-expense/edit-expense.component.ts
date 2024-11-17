@@ -13,13 +13,19 @@ import { AuthService } from '../../services/auth.service';
 @Component({
     selector: 'app-edit-expense',
     standalone: true,
-    imports: [ CommonModule, RouterModule, HttpClientModule, FormsModule, ReactiveFormsModule ],
+    imports: [ 
+        CommonModule, 
+        RouterModule, 
+        HttpClientModule, 
+        FormsModule, 
+        ReactiveFormsModule 
+    ],
     templateUrl: './edit-expense.component.html',
     styleUrl: './edit-expense.component.css'
 })
-export class EditExpenseComponent {
-    http = inject(HttpClient);
 
+export class EditExpenseComponent {
+    
     userId!: string;
     expenseId!: string | null;
     expense$!: Observable<Expense>;
@@ -173,6 +179,7 @@ export class EditExpenseComponent {
     });
 
     constructor(
+        private http: HttpClient,
         private route: ActivatedRoute,
         private router: Router,
         private auth: AuthService,

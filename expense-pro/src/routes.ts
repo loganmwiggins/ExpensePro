@@ -12,6 +12,7 @@ import { AddSuggestionComponent } from "./app/components/add-suggestion/add-sugg
 import { CardsComponent } from "./app/components/cards/cards.component";
 
 import { authGuard } from "./app/guards/auth.guard";
+import { EditCardComponent } from "./app/components/edit-card/edit-card.component";
 
 const routeConfig: Routes = [
     {
@@ -35,6 +36,18 @@ const routeConfig: Routes = [
         path: 'cards',
         component: CardsComponent,
         title: 'My Cards',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'edit-card',
+        component: EditCardComponent,
+        title: 'Add Card',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'edit-card/:id',
+        component: EditCardComponent,
+        title: 'Edit Card',
         canActivate: [authGuard]
     },
     {

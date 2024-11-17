@@ -1,0 +1,126 @@
+<div class="content-ctnr">
+    <div class="form-ctnr">
+        <form [formGroup]="editCardForm" (ngSubmit)="updateCard()">
+            <div class="form-hdr">
+                <ng-container *ngIf="cardId; else addCard">
+                    <h2>Edit Card</h2>
+                </ng-container>
+                <ng-template #addCard>
+                    <h2>Add Card</h2>
+                </ng-template>
+            </div>
+
+            <div class="form-inputs">
+                <!-- Name input -->
+                <div class="input-ctnr">
+                    <p>Card Name</p>
+                    <input
+                        type="text"
+                        formControlName="cardName"
+                        placeholder="Ex:   Chase Sapphire Preferred"
+                    >
+                </div>
+                <!-- Card Image input -->
+                <div class="input-ctnr">
+                    <p>Image</p>
+                    <input
+                        type="text"
+                        formControlName="cardImage"
+                        placeholder="Ex:   assets/..."
+                    >
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Credit Limit input -->
+                <div class="input-ctnr">
+                    <p>Credit Limit</p>
+                    <input 
+                        type="text" 
+                        formControlName="creditLimit"
+                        placeholder="Ex:   4000"
+                    >
+                </div>
+                <!-- Annual Fee input -->
+                <div class="input-ctnr">
+                    <p>Annual Fee</p>
+                    <input 
+                        type="text" 
+                        formControlName="annualFee"
+                        placeholder="Ex:   325"
+                    >
+                </div>
+                <!-- Annual Fee Date input -->
+                <div class="input-ctnr">
+                    <p>Annual Fee Date</p>
+                    <input 
+                        type="text" 
+                        formControlName="annualFeeDate"
+                        placeholder="Ex:   Dec 9"
+                    >
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Statement Date input -->
+                <div class="input-ctnr">
+                    <p>Statement Date</p>
+                    <input 
+                        type="text" 
+                        formControlName="statementDate"
+                        placeholder="Ex:   12th"
+                    >
+                </div>
+                <!-- Payment Date input -->
+                <div class="input-ctnr">
+                    <p>Payment Date</p>
+                    <input 
+                        type="text" 
+                        formControlName="paymentDate"
+                        placeholder="Ex:   22nd"
+                    >
+                </div>
+                <!-- Due Date input -->
+                <div class="input-ctnr">
+                    <p>Due Date</p>
+                    <input 
+                        type="text" 
+                        formControlName="dueDate"
+                        placeholder="Ex:   25th"
+                    >
+                </div>
+            </div>
+            <div class="form-inputs">
+                <!-- Notes input -->
+                <div class="input-ctnr">
+                    <p>Notes</p>
+                    <input 
+                        type="text" 
+                        formControlName="notes"
+                        placeholder="Ex:   Use for ..."
+                    >
+                </div>
+            </div>
+            
+            <div class="form-btns">
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg"
+                        routerLink="/cards"
+                    >Cancel</button>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-save"
+                    >Save</button>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-danger"
+                        (click)="deleteCard()"
+                        *ngIf="cardId"
+                    >Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
