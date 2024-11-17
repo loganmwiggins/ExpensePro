@@ -59,7 +59,7 @@ namespace ExpensesAngularAPI.Controllers
         [Authorize]
         [HttpPut]
         //[Route("{id:int}")]    // Accepts identifier for the action, but function also accepts parameter (DTO) for what we want to update
-        public async Task<IActionResult> UpdateExpense(UpdateUserDTO updateUserDTO)
+        public async Task<IActionResult> UpdateUser(UpdateUserDTO updateUserDTO)
         {
             var currentUserId = CurrentUserFinder.GetCurrentUserId(User);
 

@@ -9,9 +9,9 @@ import { LoginComponent } from "./app/components/login/login.component";
 import { SignupComponent } from "./app/components/signup/signup.component";
 import { HelpComponent } from "./app/components/help/help.component";
 import { AddSuggestionComponent } from "./app/components/add-suggestion/add-suggestion.component";
+import { CardsComponent } from "./app/components/cards/cards.component";
 
 import { authGuard } from "./app/guards/auth.guard";
-import { CardsComponent } from "./app/components/cards/cards.component";
 
 const routeConfig: Routes = [
     {
