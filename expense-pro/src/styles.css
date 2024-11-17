@@ -14,7 +14,8 @@
 
 
 /* COLOR VARS */
-:root {
+/* Original black/green styles */
+/* :root {
     --first: #0a0a0a;
     --second: #141414;
     --third: #1f1f1f;
@@ -24,8 +25,9 @@
     --text-grey: #acacac;
     --text-darkgrey: grey;
     --text-red: #ee2926;
-}
-/* :root {
+} */
+ /* Blue styles */
+:root {
     --first: #0c0e1b;
     --second: #0c0e1b;
     --third: #272b3b;
@@ -35,7 +37,8 @@
     --text-grey: #acacac;
     --text-darkgrey: grey;
     --text-red: #ee2926;
-} */
+}
+/* Light mode */
 /* :root {
     --first: #e0e0e0;
     --second: #cccccc;
