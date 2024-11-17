@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpensesAngularAPI.Controllers
 {
-    // localhost:xxxx/api/creditcards
+    // localhost:xxxx/api/CreditCard
     [Route("api/[controller]")]
     [ApiController]
     public class CreditCardController : ControllerBase
@@ -62,6 +62,7 @@ namespace ExpensesAngularAPI.Controllers
                 //Id = Guid.NewGuid(), [not needed: Entity Framework does this for us]
                 UserId = currentUserId,
                 CardName = addCardDTO.CardName,
+                CardIssuer = addCardDTO.CardIssuer,
                 CardImage = addCardDTO.CardImage,
                 CreditLimit = addCardDTO.CreditLimit,
                 AnnualFee = addCardDTO.AnnualFee,

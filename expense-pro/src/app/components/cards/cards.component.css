@@ -117,6 +117,9 @@ td {
     
     img { width: 2rem; height: 2rem; }
 }
+.long-td {
+    width: 200%;
+}
 .td-btns {
     justify-content: right;
 

@@ -1,6 +1,7 @@
 export interface CreditCard {
     id: string;
     cardName: string;
+    cardIssuer: string;
     cardImage: string;
     creditLimit: number;
     annualFee: number;

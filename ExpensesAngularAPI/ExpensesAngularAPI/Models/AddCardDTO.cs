@@ -4,6 +4,8 @@
     {
         public required string CardName { get; set; }
 
+        public required string CardIssuer { get; set; }
+
         public string? CardImage { get; set; }
 
         public int? CreditLimit { get; set; }

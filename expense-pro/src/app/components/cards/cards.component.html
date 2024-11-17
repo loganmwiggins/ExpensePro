@@ -25,7 +25,7 @@
             <table>
                 <!-- Table header -->
                 <tr>
-                    <th>Card Name</th>
+                    <th class="long-td">Card Name</th>
                     <th>Credit Limit</th>
                     <th>Annual Fee</th>
                     <th></th>
@@ -39,9 +39,9 @@
                         @for (card of cardList; track $index)
                         {
                             <tr [routerLink]="['/cards', card.id]" class="card-row">
-                                <td>
+                                <td class="long-td">
                                     <img [src]="card.cardImage" class="card-img" draggable="false">
-                                    {{ card.cardName }}
+                                    {{card.cardIssuer}}<br>{{card.cardName}}
                                 </td>
                                 <td>{{currencyFormatter.format(card.creditLimit)}}</td>
                                 <td>{{currencyFormatter.format(card.annualFee)}}</td>

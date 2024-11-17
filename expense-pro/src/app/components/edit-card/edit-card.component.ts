@@ -33,6 +33,7 @@ export class EditCardComponent {
 
     editCardForm = new FormGroup({
         cardName: new FormControl<string>(""),
+        cardIssuer: new FormControl<string>(""),
         cardImage: new FormControl<string>(""),
         creditLimit: new FormControl<number>(0),
         annualFee: new FormControl<number>(0),
@@ -77,6 +78,7 @@ export class EditCardComponent {
         this.card$.subscribe(card => {
             this.editCardForm.patchValue({
                 cardName: card.cardName,
+                cardIssuer: card.cardIssuer,
                 cardImage: card.cardImage,
                 creditLimit: card.creditLimit,
                 annualFee: card.annualFee,
@@ -93,10 +95,11 @@ export class EditCardComponent {
         // What to do if form is not valid
         if (
             this.editCardForm.value.cardName == null || this.editCardForm.value.cardName == ""
+            || this.editCardForm.value.cardIssuer == null || this.editCardForm.value.cardIssuer == ""
             || this.editCardForm.value.annualFee == null || this.editCardForm.value.annualFee == 0
             || this.editCardForm.value.creditLimit == null
         ) {
-            this.toast.warning("'Card Name' and 'Annual Fee' fields are required.", "", 5000);
+            this.toast.warning("Card Name, Issuer, and Annual Fee fields are required.", "", 5000);
             return;
         }
 
