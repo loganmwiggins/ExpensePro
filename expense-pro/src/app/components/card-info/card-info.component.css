@@ -1,0 +1,30 @@
+.card-head-ctnr {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth);
+    width: 85%;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+
+    img {
+        width: 12rem;
+        /* transform: translateY(-4rem); */
+    }
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.card-title-txt {
+    display: flex;
+    flex-direction: column;
+
+    h3 { color: var(--text-grey); }
+}
+
+hr { opacity: .25; }

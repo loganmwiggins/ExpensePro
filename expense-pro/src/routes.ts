@@ -13,6 +13,7 @@ import { CardsComponent } from "./app/components/cards/cards.component";
 
 import { authGuard } from "./app/guards/auth.guard";
 import { EditCardComponent } from "./app/components/edit-card/edit-card.component";
+import { CardInfoComponent } from "./app/components/card-info/card-info.component";
 
 const routeConfig: Routes = [
     {
@@ -36,6 +37,12 @@ const routeConfig: Routes = [
         path: 'cards',
         component: CardsComponent,
         title: 'My Cards',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'cards/:id',
+        component: CardInfoComponent, 
+        title: 'Card Information',
         canActivate: [authGuard]
     },
     {

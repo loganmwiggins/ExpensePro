@@ -124,3 +124,7 @@ td {
 }
 
 .total { color: var(--accent); }
+
+.card-row {
+    cursor: pointer;
+}

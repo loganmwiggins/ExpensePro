@@ -32,10 +32,13 @@
                 </tr>
 
                 <!-- Table content -->
-                @if (cardList$ | async; as cardList) {
-                    @if (cardList.length > 0) {
-                        @for (card of cardList; track $index) {
-                            <tr>
+                @if (cardList$ | async; as cardList)
+                {
+                    @if (cardList.length > 0)
+                    {
+                        @for (card of cardList; track $index)
+                        {
+                            <tr [routerLink]="['/cards', card.id]" class="card-row">
                                 <td>
                                     <img [src]="card.cardImage" class="card-img" draggable="false">
                                     {{ card.cardName }}
@@ -52,7 +55,9 @@
                                 </td>
                             </tr>
                         }
-                    } @else {
+                    } 
+                    @else 
+                    {
                         <tr>
                             <td>No cards found...</td>
                             <td><a class="hyperlink" routerLink="/edit-card">+ Add card</a></td>

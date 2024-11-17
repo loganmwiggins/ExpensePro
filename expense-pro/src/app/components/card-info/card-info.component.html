@@ -1,0 +1,15 @@
+<div class="content-ctnr">
+    @if (card$ | async; as card) { 
+        <div class="card-head-ctnr">
+            <div class="card-title">
+                <img [src]="card.cardImage">
+                <div class="card-title-txt">
+                    <h1>{{card.cardName}}</h1>
+                    <h3>American Express</h3>
+                </div>
+            </div>
+            
+            <hr>
+        </div>
+    }
+</div>
