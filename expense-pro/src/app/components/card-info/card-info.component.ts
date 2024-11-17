@@ -18,6 +18,12 @@ export class CardInfoComponent {
 
     cardId!: string | null;
     card$!: Observable<CreditCard>;
+
+    // Ensures numbers follow USD currency format -- $xx.xx
+    currencyFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
     
     constructor(private http: HttpClient, private route: ActivatedRoute) {}
 

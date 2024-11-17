@@ -4,6 +4,8 @@ using ExpensesAngularAPI.Models.Entities;
 using ExpensesAngularAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using static Azure.Core.HttpHeader;
 
 namespace ExpensesAngularAPI.Controllers
 {
@@ -77,6 +79,36 @@ namespace ExpensesAngularAPI.Controllers
             dbContext.SaveChanges();
 
             return Ok(cardEntity);
+        }
+
+        // Update/edit card in the Db
+        [Authorize]
+        [HttpPut]
+        [Route("{id:guid}")]    // Accepts identifier for the action, but function also accepts parameter (DTO) for what we want to update
+        public IActionResult UpdateCard(Guid id, AddCardDTO updateCardDTO)
+        {
+            var card = dbContext.CreditCards.Find(id);  // var is an expense if found, or null
+
+            if (card is null)
+            {
+                return NotFound("Expense not found."); // 404
+            }
+
+            // Use information from client (DTO param) to update Db vars
+            card.CardName = updateCardDTO.CardName;
+            card.CardIssuer = updateCardDTO.CardIssuer;
+            card.CardImage = updateCardDTO.CardImage;
+            card.CreditLimit = updateCardDTO.CreditLimit;
+            card.AnnualFee = updateCardDTO.AnnualFee;
+            card.AnnualFeeDate = updateCardDTO.AnnualFeeDate;
+            card.StatementDate = updateCardDTO.StatementDate;
+            card.PaymentDate = updateCardDTO.PaymentDate;
+            card.DueDate = updateCardDTO.DueDate;
+            card.Notes = updateCardDTO.Notes;
+
+            dbContext.SaveChanges();
+
+            return Ok(card);
         }
 
 

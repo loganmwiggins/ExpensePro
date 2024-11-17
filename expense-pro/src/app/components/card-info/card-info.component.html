@@ -10,6 +10,31 @@
             </div>
             
             <hr>
+
+            <div class="card-summary-ctnr">
+                <div class="card-summary">
+                    <p>{{currencyFormatter.format(card.creditLimit)}}</p>
+                    <p>Credit Limit</p>
+                </div>
+                @if (card.dueDate)
+                {
+                    <div class="card-summary">
+                        <p>{{card.dueDate}}</p>
+                        <p>Payments Due</p>
+                    </div>
+                }
+                <div class="card-summary">
+                    <p>{{currencyFormatter.format(card.annualFee)}}</p>
+                    <p>Annual Fee</p>
+                </div>
+                @if (card.annualFeeDate) 
+                {
+                    <div class="card-summary">
+                        <p>{{card.annualFeeDate}}</p>
+                        <p>Annual Fee Date</p>
+                    </div>
+                }
+            </div>
         </div>
     }
 </div>

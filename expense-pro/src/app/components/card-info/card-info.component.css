@@ -27,4 +27,18 @@
     h3 { color: var(--text-grey); }
 }
 
+.card-summary-ctnr { display: flex; }
+
+.card-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    p:first-child { font-size: 3.5rem; }
+    p:last-child {
+        color: var(--text-grey);
+        font-size: 1.5rem;
+    }
+}
+
 hr { opacity: .25; }
