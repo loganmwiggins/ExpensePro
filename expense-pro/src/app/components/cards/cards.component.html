@@ -2,7 +2,7 @@
     <div class="cards-table-ctnr">
         <div class="cards-table-hdr">
             <h2>My Cards</h2>
-            <button class="btn btn-icon" routerLink="" title="Add a Card">
+            <button class="btn btn-icon" routerLink="/edit-card" title="Add a Card">
                 <img src="assets/icons/add-black.svg" draggable="false">
             </button>
         </div>
@@ -10,8 +10,8 @@
             <div class="table-header">
                 <div class="title-ctnr">
                     <h3>ALL CARDS</h3>
-                    @if (true) {
-                        <div class="list-count"><h3>4</h3></div>
+                    @if (cardList$ | async; as cardList) {
+                        <div class="list-count"><h3>{{cardList.length}}</h3></div>
                     }
                 </div>
                 <div class="sort-ctnr">
@@ -28,25 +28,39 @@
                     <th>Card Name</th>
                     <th>Credit Limit</th>
                     <th>Annual Fee</th>
+                    <th></th>
                 </tr>
 
                 <!-- Table content -->
-                <tr>
-                    <td>
-                        <img src="assets/images/gold-card.avif" class="card-img" draggable="false">
-                        Amex Gold Card
-                    </td>
-                    <td>N/A</td>
-                    <td>$325</td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="assets/images/blue-cash-preferred.avif" class="card-img" draggable="false">
-                        Amex Blue Cash Preferred
-                    </td>
-                    <td>N/A</td>
-                    <td>$95</td>
-                </tr>
+                @if (cardList$ | async; as cardList) {
+                    @if (cardList.length > 0) {
+                        @for (card of cardList; track $index) {
+                            <tr>
+                                <td>
+                                    <img [src]="card.cardImage" class="card-img" draggable="false">
+                                    {{ card.cardName }}
+                                </td>
+                                <td>{{currencyFormatter.format(card.creditLimit)}}</td>
+                                <td>{{currencyFormatter.format(card.annualFee)}}</td>
+                                <td class="td-btns">
+                                    <button class="btn btn-icon" [routerLink]="['/edit-card', card.id]">
+                                        <img src="assets/icons/pencil-black.svg" draggable="false">
+                                    </button>
+                                    <button class="btn btn-icon" (click)="deleteCard(card.id)">
+                                        <img src="assets/icons/trash-black.svg" draggable="false">
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    } @else {
+                        <tr>
+                            <td>No cards found...</td>
+                            <td><a class="hyperlink" routerLink="/edit-card">+ Add card</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                } 
 
                 <!-- Table footer -->
                 <tr>

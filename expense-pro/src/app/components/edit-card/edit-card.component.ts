@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -15,6 +16,7 @@ import { UserStoreService } from '../../services/user-store.service';
     standalone: true,
     imports: [
         CommonModule,
+        RouterModule,
         FormsModule, 
         ReactiveFormsModule,
         HttpClientModule
@@ -54,7 +56,7 @@ export class EditCardComponent {
         const id = this.route.snapshot.paramMap.get('id');
         this.cardId = id;
 
-        // if (id !== null) { this.loadExpense(id); }
+        if (id !== null) { this.loadCard(id); }
 
         // Get current user ID
         this.userStore.getUserIdFromStore()
@@ -85,16 +87,6 @@ export class EditCardComponent {
                 notes: card.notes
             });
         });
-
-        // cardName: new FormControl<string>(""),
-        // cardImage: new FormControl<string>(""),
-        // creditLimit: new FormControl<number>(0),
-        // annualFee: new FormControl<number>(0),
-        // annualFeeDate: new FormControl<string>(""),
-        // statementDate: new FormControl<string>(""),
-        // paymentDate: new FormControl<string>(""),
-        // dueDate: new FormControl<string>(""),
-        // notes: new FormControl<string>("")
     }
 
     updateCard(): void {
@@ -102,6 +94,7 @@ export class EditCardComponent {
         if (
             this.editCardForm.value.cardName == null || this.editCardForm.value.cardName == ""
             || this.editCardForm.value.annualFee == null || this.editCardForm.value.annualFee == 0
+            || this.editCardForm.value.creditLimit == null
         ) {
             this.toast.warning("'Card Name' and 'Annual Fee' fields are required.", "", 5000);
             return;
@@ -139,7 +132,18 @@ export class EditCardComponent {
         }
     }
 
+    // [HttpDelete]
     deleteCard(): void {
-
+        if (window.confirm("Are you sure you want to delete this credit card?")) {  //Confirmation request
+            this.http.delete(`https://localhost:7265/api/CreditCard/${this.cardId}`)
+              .subscribe({
+                    // Will only run when we get a success response from API
+                    next: (response) => {
+                        this.router.navigate(['/cards']); // Redirect to the card list
+                        this.toast.success("Card deleted successfully.", "SUCCESS", 5000);
+                        this.ngOnInit();
+                    }
+              });
+        }
     }
 }

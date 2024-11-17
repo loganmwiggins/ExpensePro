@@ -77,5 +77,26 @@ namespace ExpensesAngularAPI.Controllers
 
             return Ok(cardEntity);
         }
+
+
+        // Delete card from Db
+        [Authorize]
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult DeleteCard(Guid id)
+        {
+            // Check if id exists in Db
+            var card = dbContext.CreditCards.Find(id);
+
+            if (card is null)
+            {
+                return NotFound(); // 404
+            }
+
+            dbContext.CreditCards.Remove(card);
+            dbContext.SaveChanges();
+
+            return Ok(); // Can pass a specific response if wanted, but not necessary
+        }
     }
 }

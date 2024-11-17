@@ -31,7 +31,6 @@ export class ExpenseTablesComponent {
     @Input() showIncomeVsExpenses = true;
     @Input() showUpcomingList = true;
 
-    http = inject(HttpClient);  // Enables calls to API
     expenseList$ = this.loadExpenses();
     upcomingExpenseList$ = this.loadUpcomingExpenses();
     currentUser$!: Observable<User>;
@@ -72,7 +71,7 @@ export class ExpenseTablesComponent {
         currency: "USD"
     });
 
-    constructor(private toast: NgToastService) {}
+    constructor(private http: HttpClient, private toast: NgToastService) {}
 
     ngOnInit(): void {
         // Sets currentUser observable with API call
@@ -111,9 +110,9 @@ export class ExpenseTablesComponent {
               .subscribe({
                   // Will only run when we get a success response from API
                   next: (response) => {
-                      this.expenseList$ = this.loadExpenses();
-                      this.toast.success("Expense deleted successfully.", "SUCCESS", 5000);
-                      this.ngOnInit();
+                    this.expenseList$ = this.loadExpenses();
+                    this.toast.success("Expense deleted successfully.", "SUCCESS", 5000);
+                    this.ngOnInit();
                   }
               });
         }
