@@ -1,4 +1,4 @@
-.card-head-ctnr {
+.card-bio-ctnr {
     display: flex;
     flex-direction: column;
     background-color: var(--fourth);
@@ -14,10 +14,17 @@
     }
 }
 
+.card-bio-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .card-title {
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .card-title-txt {
@@ -25,6 +32,17 @@
     flex-direction: column;
 
     h3 { color: var(--text-grey); }
+}
+
+.card-tags {
+    p {
+        font-size: 1.5rem;
+        background: var(--second);
+        color: var(--accent);
+        padding: .25rem 1rem;
+        border-radius: .5rem;
+        font-weight: 600;
+    }
 }
 
 .card-summary-ctnr { display: flex; }

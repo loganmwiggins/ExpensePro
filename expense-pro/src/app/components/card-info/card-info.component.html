@@ -1,21 +1,33 @@
 <div class="content-ctnr">
     @if (card$ | async; as card) { 
-        <div class="card-head-ctnr">
-            <div class="card-title">
-                <img [src]="card.cardImage">
-                <div class="card-title-txt">
-                    <h1>{{card.cardName}}</h1>
-                    <h3>American Express</h3>
+        <div class="card-bio-ctnr">
+            <div class="card-bio-head">
+                <div class="card-bio-id">
+                    <div class="card-title">
+                        <img [src]="card.cardImage">
+                        <div class="card-title-txt">
+                            <h2>{{card.cardName}}</h2>
+                            <h3>American Express</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <p>{{currencyFormatterND.format(card.annualFee)}} every {{card.annualFeeDate}}</p>
                 </div>
             </div>
             
-            <hr>
-
+            <!-- Card summary -->
             <div class="card-summary-ctnr">
-                <div class="card-summary">
-                    <p>{{currencyFormatter.format(card.creditLimit)}}</p>
-                    <p>Credit Limit</p>
-                </div>
+                @if (card.creditLimit != 0) {
+                    <div class="card-summary">
+                        <p>{{currencyFormatterND.format(card.creditLimit)}}</p>
+                        <p>Credit Limit</p>
+                    </div>
+                    <div class="card-summary">
+                        <p>{{currencyFormatterND.format(card.creditLimit * .3)}}</p>
+                        <p>Target Limit (30%)</p>
+                    </div>
+                }
                 @if (card.dueDate)
                 {
                     <div class="card-summary">
@@ -23,7 +35,7 @@
                         <p>Payments Due</p>
                     </div>
                 }
-                <div class="card-summary">
+                <!-- <div class="card-summary">
                     <p>{{currencyFormatter.format(card.annualFee)}}</p>
                     <p>Annual Fee</p>
                 </div>
@@ -31,9 +43,9 @@
                 {
                     <div class="card-summary">
                         <p>{{card.annualFeeDate}}</p>
-                        <p>Annual Fee Date</p>
+                        <p>Annual Fee Due</p>
                     </div>
-                }
+                } -->
             </div>
         </div>
     }
