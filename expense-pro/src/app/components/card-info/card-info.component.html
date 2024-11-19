@@ -10,43 +10,55 @@
                             <h3>American Express</h3>
                         </div>
                     </div>
-                </div>
-                <div class="card-tags">
-                    <p>{{currencyFormatterND.format(card.annualFee)}} every {{card.annualFeeDate}}</p>
-                </div>
-            </div>
-            
-            <!-- Card summary -->
-            <div class="card-summary-ctnr">
-                @if (card.creditLimit != 0) {
-                    <div class="card-summary">
-                        <p>{{currencyFormatterND.format(card.creditLimit)}}</p>
-                        <p>Credit Limit</p>
+                    
+                    <div class="card-btns">
+                        <button 
+                            class="btn btn-sm btn-save"
+                            [routerLink]="['/edit-card', card.id]"
+                        >Edit</button>
+                        <button class="btn btn-sm">Delete</button>
                     </div>
-                    <div class="card-summary">
-                        <p>{{currencyFormatterND.format(card.creditLimit * .3)}}</p>
-                        <p>Target Limit (30%)</p>
+                </div>
+                <div class="card-info">
+                    <div class="card-info-row">
+                        <p>Annual Fee</p>
+                        <p>{{currencyFormatterND.format(card.annualFee)}} / {{card.annualFeeDate}}</p>
                     </div>
-                }
-                @if (card.dueDate)
-                {
-                    <div class="card-summary">
+                    <div class="card-info-row">
+                        <p>Statement Date</p>
+                        <p>{{card.statementDate}}</p>
+                    </div>
+                    <div class="card-info-row">
+                        <p>Payment Date</p>
+                        <p>{{card.paymentDate}}</p>
+                    </div>
+                    <div class="card-info-row">
+                        <p>Due Date</p>
                         <p>{{card.dueDate}}</p>
-                        <p>Payments Due</p>
                     </div>
-                }
-                <!-- <div class="card-summary">
-                    <p>{{currencyFormatter.format(card.annualFee)}}</p>
-                    <p>Annual Fee</p>
                 </div>
-                @if (card.annualFeeDate) 
-                {
-                    <div class="card-summary">
-                        <p>{{card.annualFeeDate}}</p>
-                        <p>Annual Fee Due</p>
-                    </div>
-                } -->
             </div>
         </div>
+
+        @if (card.creditLimit != 0) {
+            <div class="card-bio-ctnr">
+                <div class="card-limit-ctnr">
+                    <div class="card-summary-ctnr">
+                        <div class="card-summary">
+                            <p>Target Spend (30%)</p>
+                            <p>≤ {{currencyFormatter.format(card.creditLimit * .3)}}</p>
+                        </div>
+                        <div class="card-summary">
+                            <p>Credit Limit</p>
+                            <p>{{currencyFormatter.format(card.creditLimit)}}</p>
+                        </div>
+                    </div>
+                    <div class="credit-bar">
+                        <div class="target-bar"></div>
+                    </div>
+                    <p>Renews in {{daysUntilTarget(dayOfMonth, targetDate)}} days</p>
+                </div>
+            </div>
+        }
     }
 </div>

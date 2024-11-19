@@ -7,11 +7,6 @@
     border-radius: 2rem;
     padding: 2rem 4rem;
     font-size: 2rem;
-
-    img {
-        width: 12rem;
-        /* transform: translateY(-4rem); */
-    }
 }
 
 .card-bio-head {
@@ -20,11 +15,26 @@
     align-items: center;
 }
 
+.card-bio-id {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .card-title {
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2rem;
+
+    img {
+        width: 12rem;
+        box-shadow: 0 0 1rem rgba(255, 255, 255, .25);
+    }
+}
+.card-title:hover {
+    background: var(--second);
+    border-radius: .5rem;
+    cursor: pointer;
 }
 
 .card-title-txt {
@@ -33,6 +43,38 @@
 
     h3 { color: var(--text-grey); }
 }
+
+.card-btns {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    width: 20%;
+}
+.card-info-row {
+    display: flex;
+    justify-content: right;
+    border-bottom: 1px solid rgba(128, 128, 128, .25);
+    padding: .5rem 0;
+
+    p { 
+        font-size: 1.5rem;
+        flex: 1; 
+    }
+    p:first-child {
+        opacity: .5;
+    }
+    p:nth-child(2) {
+        display: flex;
+        justify-content: right;
+    }
+}
+.card-info-row:last-child { border: none; }
 
 .card-tags {
     p {
@@ -45,18 +87,40 @@
     }
 }
 
-.card-summary-ctnr { display: flex; }
+/* Credit limit stuff */
+.card-limit-ctnr {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    p { font-size: 1.5rem; }
+}
+.credit-bar {
+    background: var(--text-grey);
+    width: 100%;
+    height: 1rem;
+    border-radius: 2rem;
+}
+.target-bar {
+    background: var(--accent);
+    width: 30%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
+.card-summary-ctnr {
+    display: flex;
+    justify-content: space-between;
+}
 
 .card-summary {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
 
-    p:first-child { font-size: 3.5rem; }
-    p:last-child {
+    p:first-child {
         color: var(--text-grey);
         font-size: 1.5rem;
     }
+    p:last-child { font-size: 3.5rem; }
 }
-
-hr { opacity: .25; }

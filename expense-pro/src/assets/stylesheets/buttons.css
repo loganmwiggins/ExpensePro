@@ -69,3 +69,11 @@
     img { width: 2.5rem; height: 2.5rem; }
 }
 .btn-icon:hover { border: none; }
+
+.btn-styled {
+    background: var(--second);
+    color: var(--accent);
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .5rem;
+}
