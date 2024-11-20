@@ -11,6 +11,8 @@ namespace ExpensesAngularAPI.Data
 
         public DbSet<CreditCard> CreditCards { get; set; }
 
+        public DbSet<Payment> Payments { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Suggestion> Suggestions { get; set; }

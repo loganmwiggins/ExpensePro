@@ -20,22 +20,30 @@
                     </div>
                 </div>
                 <div class="card-info">
-                    <div class="card-info-row">
-                        <p>Annual Fee</p>
-                        <p>{{currencyFormatterND.format(card.annualFee)}} / {{card.annualFeeDate}}</p>
-                    </div>
-                    <div class="card-info-row">
-                        <p>Statement Date</p>
-                        <p>{{card.statementDate}}</p>
-                    </div>
-                    <div class="card-info-row">
-                        <p>Payment Date</p>
-                        <p>{{card.paymentDate}}</p>
-                    </div>
-                    <div class="card-info-row">
-                        <p>Due Date</p>
-                        <p>{{card.dueDate}}</p>
-                    </div>
+                    @if (card.annualFee != 0) {
+                        <div class="card-info-row">
+                            <p>Annual Fee</p>
+                            <p>{{currencyFormatterND.format(card.annualFee)}} / {{card.annualFeeDate}}</p>
+                        </div>
+                    }
+                    @if (card.statementDate != null) {
+                        <div class="card-info-row">
+                            <p>Statement Date</p>
+                            <p>{{card.statementDate}}</p>
+                        </div>
+                    }
+                    @if (card.paymentDate != null) {
+                        <div class="card-info-row">
+                            <p>Payment Date</p>
+                            <p>{{card.paymentDate}}</p>
+                        </div>
+                    }
+                    @if (card.dueDate) {
+                        <div class="card-info-row">
+                            <p>Due Date</p>
+                            <p>{{card.dueDate}}</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

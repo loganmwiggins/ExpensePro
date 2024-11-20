@@ -96,7 +96,7 @@ export class EditCardComponent {
         if (
             this.editCardForm.value.cardName == null || this.editCardForm.value.cardName == ""
             || this.editCardForm.value.cardIssuer == null || this.editCardForm.value.cardIssuer == ""
-            || this.editCardForm.value.annualFee == null || this.editCardForm.value.annualFee == 0
+            || this.editCardForm.value.annualFee == null
             || this.editCardForm.value.creditLimit == null
         ) {
             this.toast.warning("Card Name, Issuer, and Annual Fee fields are required.", "", 5000);
