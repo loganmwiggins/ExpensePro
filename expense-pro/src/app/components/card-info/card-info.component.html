@@ -1,5 +1,6 @@
 <div class="content-ctnr">
     @if (card$ | async; as card) { 
+        <!-- Card Information -->
         <div class="card-bio-ctnr">
             <div class="card-bio-head">
                 <div class="card-bio-id">
@@ -48,6 +49,7 @@
             </div>
         </div>
 
+        <!-- Credit Limit -->
         @if (card.creditLimit != 0) {
             <div class="card-bio-ctnr">
                 <div class="card-limit-ctnr">
@@ -68,5 +70,100 @@
                 </div>
             </div>
         }
+
+        <!-- Payments -->
+        <div class="outer-table-ctnr">
+            <div class="outer-table-ctnr-hdr">
+                <h2>Card Payments</h2>
+                <!-- <mat-button-toggle-group [(ngModel)]="tableViewValue" (change)="changeTableView($event)">
+                    <mat-button-toggle value="separated">SEPARATED BY TYPE</mat-button-toggle>
+                    <mat-button-toggle value="combined">COMBINED</mat-button-toggle>
+                </mat-button-toggle-group> -->
+                <button class="btn btn-icon" routerLink="/edit-expense" title="Add an Expense">
+                    <img src="assets/icons/add-black.svg" draggable="false">
+                </button>
+            </div>
+        
+            <!-- COMBINED  -->
+            <div class="table-group-ctnr">
+                <div class="table-ctnr">
+                    <div class="table-header">
+                        <div class="title-ctnr">
+                            <h3>ALL PAYMENTS</h3>
+                            <!-- @if (expenseList$ | async; as expenseList) {
+                                <div class="list-count"><h3>{{expenseList.length}}</h3></div>
+                            } -->
+                        </div>
+                        <!-- <div class="sort-ctnr">
+                            <label for="sort-options">Sort by:</label>
+                            <select id="sort-options" (change)="sortAllExpenses($event)">
+                                <option value="default">Default (Order Added)</option>
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="cost-asc">Cost&nbsp;&nbsp;↑</option>
+                                <option value="cost-desc">Cost&nbsp;&nbsp;↓</option>
+                                <option value="pd-asc">Payment Date&nbsp;&nbsp;↑</option>
+                                <option value="pd-desc">Payment Date&nbsp;&nbsp;↓</option>
+                                <option value="type-asc">Type (Monthly to Yearly)</option>
+                                <option value="type-desc">Type (Yearly to Monthly)</option>
+                                <option value="category-asc">Category (A-Z)</option>
+                            </select>
+                        </div> -->
+                    </div>
+                    <table>
+                        <!-- Table headers -->
+                        <tr>
+                            <th>Statement Period</th>
+                            <th>Amount</th>
+                            <th>Payment Date</th>
+                            <th>Due Date</th>
+                            <th>Paid?</th>
+                            <th></th>
+                        </tr>
+                        <!-- @if (expenseList$ | async; as expenseList) {
+                            @if (expenseList.length > 0) {
+                                @for (expense of sortedAllExpenses; track $index) {
+                                    <tr>
+                                        <td>
+                                            <img [src]="expense.icon" draggable="false">
+                                            {{expense.name}}
+                                        </td>
+                                        <td>{{currencyFormatter.format(expense.cost)}}</td>
+                                        <td>{{expense.paymentDate}}</td>
+                                        <td>{{expense.type}}</td>
+                                        <td>{{expense.category}}</td>
+                                        <td class="td-btns">
+                                            <button class="btn btn-icon">
+                                                <img src="assets/icons/pencil-black.svg" draggable="false">
+                                            </button>
+                                            <button class="btn btn-icon">
+                                                <img src="assets/icons/trash-black.svg" draggable="false">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr>
+                                    <td>No payments found...</td>
+                                    <td><a class="hyperlink" routerLink="/edit-expense">Add expense</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        } -->
+                        <!-- Table footer -->
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     }
 </div>
