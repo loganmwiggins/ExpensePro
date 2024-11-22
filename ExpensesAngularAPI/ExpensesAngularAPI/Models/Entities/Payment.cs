@@ -4,6 +4,8 @@
     {
         public Guid Id { get; set; }
 
+        public required int UserId { get; set; }
+
         public required Double Amount { get; set; }
 
         public required DateOnly StatementOpen { get; set; }
